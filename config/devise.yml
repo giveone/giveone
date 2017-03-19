@@ -1,0 +1,8 @@
+test:
+  secret: ABC123
+
+development:
+  secret: ABC123
+
+production:
+  secret: ABC123

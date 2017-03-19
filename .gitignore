@@ -1,0 +1,25 @@
+tmp/*
+!tmp/.*
+.sass-cache
+log/*
+sinatra.log
+.DS_Store
+public/.DS_Store
+db/*.sqlite3
+.powenv
+.capistrano/metrics
+coverage/*
+.capistrano
+.bundle
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# AWS Keys
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+
+# Extract docker_env from live environments
+docker_env

@@ -1,0 +1,30 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "502734509659.dkr.ecr.us-east-1.amazonaws.com/giveone:latest",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "9000"
+    }
+  ],
+  "Volumes": [
+    {
+      "HostDirectory": "/app/public",
+      "ContainerDirectory": "/app/public"
+    },
+    {
+      "HostDirectory": "/app/tmp",
+      "ContainerDirectory": "/app/tmp"
+    },
+    {
+      "HostDirectory": "/app/log",
+      "ContainerDirectory": "/app/log"
+    },
+    {
+      "HostDirectory": "/tmp",
+      "ContainerDirectory": "/tmp"
+    }
+  ]
+}
