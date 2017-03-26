@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 #
-# NFG whitelists IP addresses that can make requests to
-# its servers. You can use this as a simple temporary proxy
+# You can use this as a simple temporary proxy
 # from your server that's whitelisted to send SOAP requests
 # for your development environment. Beware: don't leave it open to the world
 # for a long time!

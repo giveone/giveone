@@ -7,7 +7,6 @@ class CreateTransactions < ActiveRecord::Migration
       t.string :guid
       t.datetime :scheduled_at
       t.datetime :executed_at
-      t.string :nfg_charge_id
       t.boolean :locked_at
       t.timestamps
     end

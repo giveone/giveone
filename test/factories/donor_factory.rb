@@ -1,8 +1,8 @@
 FactoryGirl.define do
   sequence(:guid) { |n| SecureRandom.hex(16) }
 
-  factory :nfg_donor, class: Donor do
-    association :card, factory: :nfg_donor_card, strategy: :build
+  factory :donor, class: Donor do
+    association :card, factory: :donor_card, strategy: :build
     association :subscriber, factory: :donor_subscriber, strategy: :build
     started_on { Time.zone.now.to_date }
     public_name "Ed S"

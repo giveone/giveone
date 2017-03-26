@@ -21,7 +21,6 @@
     <ul style="font-family: 'Apercu', Helvetica Neue, Helvetica, sans-serif; font-weight: normal; font-size: 16px; line-height: 24px; color: #444; margin-bottom: 30px; list-style-type: none; margin; padding: 0 20px;">
       <li><span style="font-weight: bold;">Gift:</span> <%= @gift.infinite? ? "Unlimited" : @gift.original_months_remaining * 30 %> Days of <%= CONFIG[:name] %></li>
       <li><span style="font-weight: bold;">Payment:</span> $30</li>
-      <% if false %><li><span style="font-weight: bold;">Card:</span> XXXX-XXXX-XXXX-<%= "@gift.donor.card.get_nfg_cof[:cc_suffix]" %></li><% end %>
       <li><span style="font-weight: bold;">End date:</span> <%= @gift.infinite? ? "Unlimited" : @gift.finish_on.to_s(:short_name) %></li>
     </ul>
 

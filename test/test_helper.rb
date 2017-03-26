@@ -1,7 +1,8 @@
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_group "Jobs", "app/jobs"
-end
+# @TODO: fix
+# require 'simplecov'
+# SimpleCov.start 'rails' do
+#   add_group "Jobs", "app/jobs"
+# end
 
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
@@ -17,19 +18,6 @@ class ActiveSupport::TestCase
   setup do
     Timecop.freeze(Time.now)
     StripeMock.start
-
-    NetworkForGood::CreditCard.stubs(:get_donor_co_fs)
-    NetworkForGood::CreditCard.stubs(:get_fee)
-    NetworkForGood::CreditCard.stubs(:delete_donor_cof)
-    NetworkForGood::CreditCard.stubs(:npo_detail_info).returns({})
-    NetworkForGood::CreditCard.stubs(:create_cof).at_least(0).returns({
-      status_code: "Success",
-      message: nil,
-      error_details: nil,
-      call_duration: "2.0000383999999998",
-      donor_token: "should_be_a_donor_token",
-      cof_id: "1243661"
-    })
   end
 
   teardown do

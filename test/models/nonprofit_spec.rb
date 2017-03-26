@@ -23,7 +23,7 @@ class NonprofitTest < ActiveSupport::TestCase
     nonprofit = FactoryGirl.build(:invalid_nonprofit)
 
     assert !nonprofit.valid?
-    assert "NFG error: some error".in?(nonprofit.errors[:ein])
+    assert "error: some error".in?(nonprofit.errors[:ein])
   end
 
   context "a valid nonprofit" do

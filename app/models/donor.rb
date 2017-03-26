@@ -37,7 +37,6 @@ class Donor < ActiveRecord::Base
   audited
 
   def stripe?; stripe_customer_id.present?; end
-  def nfg?; nfg_donor_token.present?; end
 
   # # Get all the donors that have a donation to this nonprofit
   scope :for_nonprofit, ->(n) {
@@ -134,10 +133,6 @@ class Donor < ActiveRecord::Base
       save!
       SendUncancelledJob.new(self.id).save
     end
-  end
-
-  def nfg_history
-    NetworkForGood::CreditCard.get_donor_donation_history(self)
   end
 
   private
