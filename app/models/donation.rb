@@ -1,7 +1,6 @@
 class Donation < ActiveRecord::Base
   NUMBER_OF_NONPROFITS = 30
 
-  NFG_FEE_PERCENT    = 0.04
   STRIPE_FEE_FIXED   = 0.30
   STRIPE_FEE_PERCENT = 0.029
 
@@ -55,7 +54,6 @@ class Donation < ActiveRecord::Base
   validates :scheduled_at, presence: true
   validates :guid, uniqueness: true
 
-  validates_presence_of :nfg_charge_id, if: lambda { self.executed? and !self.stripe? }
   validates_presence_of :stripe_charge_id, if: lambda { self.executed? and self.stripe? }
 
   scope :pending,   -> { where(executed_at: nil, locked_at: nil, failed_at: nil, cancelled_at: nil, disputed_at: nil, refunded_at: nil) }
@@ -66,9 +64,7 @@ class Donation < ActiveRecord::Base
   scope :disputed,  -> { where.not(disputed_at: nil) }
   scope :refunded,  -> { where.not(refunded_at: nil) }
 
-  scope :via_nfg,    -> { where.not(nfg_charge_id: nil) }
   scope :via_stripe, -> { where.not(stripe_charge_id: nil)}
-
 
   def pending?
     !executed? && !locked? && !cancelled?
@@ -124,12 +120,12 @@ class Donation < ActiveRecord::Base
     self.total = calculate_total                  # $30 + extra
     self.total_minus_fee = total - calculate_fee  # ($30 + extra) - fee
 
-    charge_or_success = stripe? ? execute_via_stripe! : execute_via_nfg!
+    charge_or_success = execute_via_stripe!
 
     if charge_or_success
       self.executed_at = Time.now
       save!
-      DonorMailer.receipt(self, charge_or_success).deliver if stripe?
+      DonorMailer.receipt(self, charge_or_success).deliver
       Email.create(to: donor.subscriber.email, subscriber: donor.subscriber, sent_at: Time.now, mailer: "DonorMailer", mailer_method: "receipt")
     end
   rescue NoAvailableCOF => e
@@ -158,26 +154,6 @@ class Donation < ActiveRecord::Base
     ExceptionNotifier.notify_exception(e)
 
     fail!(e.message, notify_donor: false)
-  end
-
-  def execute_via_nfg!
-    resp = NetworkForGood::CreditCard.make_cof_donation self
-
-    if resp.is_a?(Array)
-      # For example: [{:err_code=>"NpoNotEligible", :err_data=>"The NPO with EIN = \"98-0115409\" [Pro Mujer Inc.] has chosen not to receive online donations through Network for Good"}]
-      # TODO could we pull these into the NFG classes?
-      raise NetworkForGood::Base::ChargeFailed.new(resp)
-    else
-      self.nfg_charge_id = resp[:charge_id]
-      true
-    end
-  rescue NetworkForGood::Base::Error => e
-    # Notify us (to learn more about these errors), and mark donor as failed
-    ExceptionNotifier.notify_exception(NetworkForGood::Base::UnexpectedResponse.new(resp), data: {nfg_response: e.message})
-
-    # We don't want to notify users when an error is caused by "NpoNotEligible".
-    notify_donor = e.message =~ /NpoNotEligible/ ? false : true
-    fail!(e.message, notify_donor: notify_donor)
   end
 
   # Call this if you've just refunded a transaction on Stripe's UI.
@@ -242,15 +218,9 @@ class Donation < ActiveRecord::Base
 
   def calculate_added_fee
     if donor.add_fee?
-      if stripe?
-        # https://support.stripe.com/questions/can-i-charge-my-stripe-fees-to-my-customers
-        # 2.9% + 30¢
-        (((calculate_amount + STRIPE_FEE_FIXED) / (1 - STRIPE_FEE_PERCENT)) - calculate_amount)
-      else
-        # don't need complicated calculation like stripe as NFG assumes fee is included
-        # 4.0%
-        calculate_amount * NFG_FEE_PERCENT
-      end
+      # https://support.stripe.com/questions/can-i-charge-my-stripe-fees-to-my-customers
+      # 2.9% + 30¢
+      (((calculate_amount + STRIPE_FEE_FIXED) / (1 - STRIPE_FEE_PERCENT)) - calculate_amount)
     else
       0.0
     end
@@ -263,13 +233,8 @@ class Donation < ActiveRecord::Base
 
   # The actual fee taken, whether donor has added_fee or not
   def calculate_fee
-    if stripe?
-      # Stripe::Charge.retrieve(id: stripe_charge_id, expand: ['balance_transaction'])
-      ((calculate_total * STRIPE_FEE_PERCENT) + STRIPE_FEE_FIXED).round(2)
-    else
-      # NetworkForGood::CreditCard.get_fee(Nonprofit.last)[:total_add_fee].to_d
-      (amount * NFG_FEE_PERCENT).round(2)
-    end
+    # Stripe::Charge.retrieve(id: stripe_charge_id, expand: ['balance_transaction'])
+    ((calculate_total * STRIPE_FEE_PERCENT) + STRIPE_FEE_FIXED).round(2)
   end
 
   # how much each nonprofit gets for this

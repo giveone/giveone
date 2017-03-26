@@ -10,44 +10,7 @@ class DonorTest < ActiveSupport::TestCase
     should belong_to(:gift)
     should belong_to(:subscriber)
   end
-
-  context "a new nfg donor" do
-    subject { FactoryGirl.build(:nfg_donor) }
-
-    context "saving" do
-      setup { subject.save! }
-
-      should "set default nfg_donor_token" do assert_equal 64, subject.nfg_donor_token.length end
-      should "set default started_on" do assert_equal Time.zone.now.to_date, subject.started_on end
-      should "set default guid" do assert_equal 32, subject.guid.length end
-      should "set subscriber" do
-        assert subject.subscriber.present?
-        assert_in_delta Time.zone.now, subject.subscriber.subscribed_at, 1.second
-        assert_equal subject.card.name, subject.subscriber.name
-        assert_equal subject.card.email, subject.subscriber.email
-        assert_equal "1.1.1.1", subject.subscriber.ip_address
-      end
-    end
-
-    should "validate uniqueness of guid" do
-      existing_donor = FactoryGirl.create(:stripe_donor, guid: subject.guid)
-      assert !subject.valid?
-      assert_equal ["has already been taken"], subject.errors[:guid]
-    end
-
-    context "creating" do
-      setup { subject.save! }
-
-      should_change "Donors", by: 1 do Donor.count end
-      should "schedule first donation" do
-        donation = subject.donations.first
-        assert donation.pending?
-        assert_equal Time.now.change(usec: 0), donation.scheduled_at.change(usec: 0)
-      end
-    end
-  end
-
-
+  
   context "a new stripe donor" do
     subject { FactoryGirl.build(:stripe_donor) }
 

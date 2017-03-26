@@ -48,8 +48,7 @@ set :linked_files, %w{
   config/secrets.yml
   config/stripe.yml
   config/mail.yml
-  config/mailgun.yml
-  config/nfg.yml
+  config/mandrill.yml
   config/devise.yml
 }
 
@@ -85,8 +84,7 @@ namespace :deploy do
       upload! "config/s3.yml.example", "#{shared_path}/config/s3.yml"
       upload! "config/stripe.yml.example", "#{shared_path}/config/stripe.yml"
       upload! "config/mail.yml.example", "#{shared_path}/config/mail.yml"
-      upload! "config/mailgun.yml.example", "#{shared_path}/config/mailgun.yml"
-      upload! "config/nfg.yml.example", "#{shared_path}/config/nfg.yml"
+      upload! "config/mandrill.yml.example", "#{shared_path}/config/mandrill.yml"
       upload! "config/devise.yml.example", "#{shared_path}/config/devise.yml"
       info "\n\n\n\n\n\n\n\n*********************"
       info "NOTICE: Now edit the config files in #{shared_path}."

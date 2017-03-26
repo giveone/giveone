@@ -20,34 +20,13 @@ class DonorCard < ActiveRecord::Base
 
   scope :active, -> { where(is_active: true) }
 
-  def stripe?; stripe_card_id.present? || stripe_token.present?; end
-  def nfg?; nfg_cof_id.present?; end
-
-  def nfg_history
-    NetworkForGood::CreditCard.get_donor_donation_history(self)
-  end
-
-  def get_nfg_cof
-    response = NetworkForGood::CreditCard.get_donor_co_fs(donor)
-
-    if cards = (response[:cards] && response[:cards][:cof_record])
-      # NFG returns:
-      #   1 COF:  {nfg_cof_id: ...}
-      #   2+ COF: [{nfg_cof_id: ...}, {nfg_cof_id}]
-      Array.wrap(cards).find { |c| c[:cof_id] == nfg_cof_id }
-    else
-      nil
-    end
-  rescue => e
-    ExceptionNotifier.notify_exception(e, data: {nfg_response: response.inspect, donor_card_id: self.id})
-    nil
-  end
+  def stripe?; true end # onle Stripe supported for now
 
   def get_stripe_card_details
     customer = Stripe::Customer.retrieve(donor.stripe_customer_id)
     card = customer.sources.retrieve(self.stripe_card_id)
 
-    # return a NFG-esque array of card details, as strings
+    # return an array of card details, as strings
     return {
       cc_suffix: card.last4.to_s,
       cc_exp_month: ('%02d' % card.exp_month),
@@ -58,13 +37,8 @@ class DonorCard < ActiveRecord::Base
     nil
   end
 
-  # Does COF still exist on NFG?
-  def cof_exists?
-    !!get_nfg_cof
-  end
-
   def valid_credentials?(last_4="0000", exp_month="00", exp_year="0000")
-    cof = stripe? ? get_stripe_card_details : get_nfg_cof
+    cof = get_stripe_card_details
 
     return false if cof.blank?
     return false if cof[:cc_suffix]    != last_4.to_s.squish
@@ -81,16 +55,10 @@ class DonorCard < ActiveRecord::Base
   # TODO if this fails and return false, maybe we should update is_active:false
   # anyway? The error will likely be dev/staging errors for CardNotFound.
   def deactivate!
-    response = NetworkForGood::CreditCard.delete_donor_cof(self) if stripe_card_id.nil?
-    update!(is_active: false)
-  rescue => e
-    # Anticipating that these COFs will be missing, so give us more info if it does happen
-    ExceptionNotifier.notify_exception(e, data: {nfg_response: response, donor_card_id: self.id})
-    false
+    return true # TODO add deactivate support for true
   end
 
   private
-
 
   validate :create_cof, on: :create
   def create_cof

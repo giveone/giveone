@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :scheduled_donation, class: Donation do
-    association :donor, factory: :nfg_donor
+    association :donor, factory: :donor
     donor_card { donor.card }
     scheduled_at 1.day.from_now
 
@@ -17,7 +17,6 @@ FactoryGirl.define do
     scheduled_at 20.days.ago
     executed_at 20.days.ago
     amount 30.00
-    nfg_charge_id "123abc"
 
     before(:create) do |d|
       # Create the nonprofits for which this donation was executed

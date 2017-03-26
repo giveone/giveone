@@ -35,13 +35,6 @@
           <%= link_to "Terms & Privacy", legal_path(ref: default_ref_tag), class: "mr1 inline-block" %>
           <%= link_to "FAQ", faq_path(ref: default_ref_tag), class: "inline-block" %>
         </div>
-        <div class="flag-img align-right">
-          <% if false # enable if you're using NFG as a processor -%>
-          <%= image_tag "checkout/powered-by-nfg.png", alt: "Powered by Network for Good", width: "130", class: "tablet-hide inline-block relative tooltip", title: "<div style='width: 400px;'>#{render('donors/nfg_tooltip') }</div>" %>
-          <%= image_tag "checkout/powered-by-nfg.png", alt: "Powered by Network for Good", width: "130", class: "tablet-block hide inline-block relative tooltip" %>
-          <a href='http://www1.networkforgood.org/donationfaq' target='_blank'>Questions about NFG?</a>
-          <% end -%>
-        </div>
     </footer>
   </div>
 

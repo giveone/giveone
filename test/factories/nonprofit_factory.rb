@@ -14,32 +14,14 @@ FactoryGirl.define do
     website_url { FactoryGirl.generate(:website_url) }
     featured_on { FactoryGirl.generate(:featured_on) }
     is_public false
-
-    after(:build) do |nonprofit|
-      NetworkForGood::CreditCard.expects(:get_fee).with(nonprofit).at_least(0).returns({
-        total_charge_amount: "1.04",
-        total_add_fee: "0.04",
-        total_deduct_fee: "0.0",
-        tip_amount: "0.0",
-        message: nil,
-        error_details: nil,
-        call_duration:"0.10916179999999999"
-      })
-    end
   end
 
   factory :valid_nonprofit, parent: :nonprofit do
-    after(:build) do |nonprofit|
-      NetworkForGood::CreditCard.expects(:get_fee).with(nonprofit).returns({})
-    end
+    true
   end
 
   factory :invalid_nonprofit, parent: :nonprofit do
-    after(:build) do |nonprofit|
-      NetworkForGood::CreditCard.
-        expects(:get_fee).with(nonprofit).
-        raises(NetworkForGood::Base::UnexpectedResponse.new({error_details: {error_info: {err_data: "some error"}}}))
-    end
+    false
   end
 
   factory :current_nonprofit, parent: :valid_nonprofit do

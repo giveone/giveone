@@ -42,11 +42,6 @@ $(function() {
         html += JSON.stringify(data.propublica).replace(/,\"/gmi, ",<br />\"");
         html += "</p>";
 
-        html += "<br /><b>NFG Details for EIN " + ein + "</b>: <br />";
-        html += "<p style='margin: 5px; padding: 20px; background: #FFF'>";
-        html += JSON.stringify(data.nfg).replace(/,\"/gmi, ",<br />\"");
-        html += "</p>";
-
         $('#ein_lookup_data').html(html);
       }
     });

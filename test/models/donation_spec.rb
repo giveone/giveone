@@ -9,7 +9,6 @@ class DonationTest < ActiveSupport::TestCase
   should have_many(:nonprofits).through(:donation_nonprofits)
 
   should validate_presence_of(:scheduled_at)
-  should_not validate_presence_of(:nfg_charge_id)
   should "validate uniqueness of guid" do
     existing_donation = FactoryGirl.create(:scheduled_donation, guid: subject.guid)
     assert !subject.valid?
@@ -19,7 +18,6 @@ class DonationTest < ActiveSupport::TestCase
   context "an executed donation" do
     subject { FactoryGirl.create(:executed_donation) }
 
-    should validate_presence_of(:nfg_charge_id)
     should "have 30 nonprofits" do
       assert_equal 30, subject.nonprofits.count
     end
@@ -32,7 +30,6 @@ class DonationTest < ActiveSupport::TestCase
 
         @pending = FactoryGirl.create(:scheduled_donation, donor: subject.donor, scheduled_at: 30.days.since(subject.scheduled_at).beginning_of_day)
         @pending.donor_card.expects(:cof_exists?).once.returns(true)
-        NetworkForGood::CreditCard.expects(:make_cof_donation).with(@pending).once.returns({charge_id: "123"})
         @pending.execute!
       end
 
@@ -50,7 +47,6 @@ class DonationTest < ActiveSupport::TestCase
         # Using 29 to demonstrate the 1 overlapping nonprofit
         @pending = FactoryGirl.create(:scheduled_donation, donor: subject.donor, scheduled_at: 29.days.since(subject.scheduled_at).beginning_of_day)
         @pending.donor_card.expects(:cof_exists?).once.returns(true)
-        NetworkForGood::CreditCard.expects(:make_cof_donation).with(@pending).never
       end
 
       should "raise error when executing" do
@@ -71,7 +67,6 @@ class DonationTest < ActiveSupport::TestCase
     context "with 1 month left" do
       context "executing" do
         setup do
-          NetworkForGood::CreditCard.expects(:make_cof_donation).with(@donation).once.returns({charge_id: "123"})
           DonorCard.any_instance.expects(:cof_exists?).once.returns(true)
           @donation.execute!
         end
@@ -88,7 +83,6 @@ class DonationTest < ActiveSupport::TestCase
 
       context "executing" do
         setup do
-          NetworkForGood::CreditCard.expects(:make_cof_donation).never
           DonorCard.any_instance.expects(:cof_exists?).once.returns(true)
           @donation.expects(:fail!).with("Donation::ExpiredGift", notify_donor: false)
         end
@@ -97,7 +91,6 @@ class DonationTest < ActiveSupport::TestCase
           @donation.execute!
           @donation.reload
 
-          assert_equal nil, @donation.nfg_charge_id
           assert_equal 0, @donation.nonprofits(true).count
           assert_equal 0.0, @donation.amount.to_f
           assert_equal 0.0, @donation.added_fee.to_f
@@ -110,101 +103,12 @@ class DonationTest < ActiveSupport::TestCase
       setup { @gift.update_column(:months_remaining, nil) }
       context "executing" do
         setup do
-          NetworkForGood::CreditCard.expects(:make_cof_donation).with(@donation).once.returns({charge_id: "123"})
           DonorCard.any_instance.expects(:cof_exists?).once.returns(true)
           @donation.execute!
         end
 
         should_not_change "gift months remaining" do @gift.reload.months_remaining end
         should_change "executed?", to: true do @donation.executed? end
-      end
-    end
-  end
-
-  context "an NFG donation" do
-    setup { @donation = FactoryGirl.create(:scheduled_donation) }
-
-    context "locking and executing" do
-      setup { @donation.lock_and_execute! }
-
-      should_delay_job "ExecuteDonationJob"
-      should_change "lock", from: nil do @donation.locked_at end
-    end
-
-    context "executing" do
-      setup do
-        NetworkForGood::CreditCard.expects(:make_cof_donation).with(@donation).once.returns({charge_id: "123"})
-        DonorCard.any_instance.expects(:cof_exists?).once.returns(true)
-        @donation.execute!
-      end
-
-      should_change "nfg_charge_id", to: "123" do @donation.reload.nfg_charge_id end
-      should_change "donation's nonprofits", from: 0, to: 30 do
-        @donation.nonprofits(true).count
-      end
-      should "set donation's nonprofits correctly" do
-        assert_equal @donation.nonprofits, @donation.scheduled_nonprofits
-      end
-      should "set donation's donation_nonprofits' dates" do
-        assert_equal @donation.donation_nonprofits(true).map(&:donation_on), @donation.nonprofits.map(&:featured_on)
-      end
-      should_change "donation's amount", from: 0.0, to: 30.0 do @donation.reload.amount.to_f end
-      should_not_change "donation's added_fee" do @donation.reload.added_fee.to_f end
-      should_change "executed_at" do @donation.reload.executed_at end
-    end
-
-    context "executing with added fee" do
-      setup do
-        @donation.donor.update_column(:add_fee, true)
-        @donation.reload
-        NetworkForGood::CreditCard.expects(:make_cof_donation).with(@donation).once.returns({charge_id: "123"})
-        DonorCard.any_instance.expects(:cof_exists?).once.returns(true)
-        @donation.execute!
-      end
-
-      should_change "nfg_charge_id", to: "123" do @donation.reload.nfg_charge_id end
-      should_change "donation's nonprofits", from: 0.0, to: 30 do @donation.nonprofits(true).count end
-      should_change "donation's amount", from: 0.0, to: 30.0 do @donation.reload.amount.to_f end
-      should_change "donation's added_fee", from: 0.0, to: 1.2 do @donation.reload.added_fee.to_f end
-      should_change "executed_at" do @donation.reload.executed_at end
-    end
-
-    context "executing without a COF" do
-      setup do
-        NetworkForGood::CreditCard.expects(:make_cof_donation).never
-        @donation.donor_card.expects(:cof_exists?).once.returns(false)
-        @donation.expects(:fail!).with("Donation::NoAvailableCOF", notify_donor: true)
-      end
-
-      should "raise error" do
-        @donation.execute!
-        @donation.reload
-
-        assert_equal nil, @donation.nfg_charge_id
-        assert_equal 0, @donation.nonprofits(true).count
-        assert_equal 0.0, @donation.amount.to_f
-        assert_equal 0.0, @donation.added_fee.to_f
-        assert_nil @donation.executed_at
-      end
-    end
-
-    context "executing and getting an NFG error" do
-      setup do
-        error_response = [{error_details: {error_info: {err_code: "NpoNotEligible", err_data: "some error"}}}]
-        NetworkForGood::CreditCard.expects(:make_cof_donation).with(@donation).once.returns(error_response)
-        @donation.donor_card.expects(:cof_exists?).once.returns(true)
-        @donation.expects(:fail!).with(error_response.to_s, notify_donor: false)
-      end
-
-      should "raise error" do
-        @donation.execute!
-        @donation.reload
-
-        assert_equal nil, @donation.nfg_charge_id
-        assert_equal 30, @donation.nonprofits(true).count
-        assert_equal 0.0, @donation.amount.to_f
-        assert_equal 0.0, @donation.added_fee.to_f
-        assert_nil @donation.executed_at
       end
     end
   end

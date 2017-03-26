@@ -8,9 +8,6 @@
         <div class="col col-4">
           <h1 class="mb1"><%= number_to_currency Donation.executed.pluck(:amount).sum %></h1>
           <p class="mb0">dollars donated to non-profits
-            <br />
-            + <%= number_to_currency Donation.via_nfg.executed.pluck(:added_fee).sum %> collected in NFG fees
-            <br />
             + <%= number_to_currency Donation.via_stripe.executed.pluck(:added_fee).sum %> collected in Stripe fees
           </p>
         </div>

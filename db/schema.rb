@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730031818) do
+ActiveRecord::Schema.define(version: 20170326220650) do
 
   create_table "audits", force: true do |t|
     t.integer  "auditable_id"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20150730031818) do
     t.string   "guid"
     t.integer  "donor_id"
     t.integer  "donor_card_id"
-    t.string   "nfg_charge_id"
     t.string   "stripe_charge_id"
     t.decimal  "amount",           precision: 8, scale: 2, default: 0.0
     t.decimal  "added_fee",        precision: 8, scale: 2, default: 0.0
@@ -85,7 +84,6 @@ ActiveRecord::Schema.define(version: 20150730031818) do
 
   create_table "donor_cards", force: true do |t|
     t.integer  "donor_id"
-    t.string   "nfg_cof_id"
     t.string   "stripe_card_id"
     t.boolean  "is_active"
     t.string   "name"
@@ -99,7 +97,6 @@ ActiveRecord::Schema.define(version: 20150730031818) do
     t.string   "guid"
     t.integer  "subscriber_id"
     t.integer  "gift_id"
-    t.string   "nfg_donor_token"
     t.string   "stripe_customer_id"
     t.boolean  "is_anonymous",       default: false
     t.boolean  "add_fee",            default: false
@@ -111,6 +108,7 @@ ActiveRecord::Schema.define(version: 20150730031818) do
     t.datetime "uncancelled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
   create_table "emails", force: true do |t|
@@ -166,7 +164,6 @@ ActiveRecord::Schema.define(version: 20150730031818) do
 
   create_table "nonprofits", force: true do |t|
     t.string   "name"
-    t.string   "nfg_name"
     t.text     "description"
     t.string   "blurb"
     t.string   "website_url"

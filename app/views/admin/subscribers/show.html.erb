@@ -35,7 +35,6 @@
       <u>Donations:</u><br />
       <table cellpadding="10"  cellspacing="10" border="0">
         <tr>
-          <th>NFG Charge Id</th>
           <th>Stripe Charge Id</th>
           <th>Scheduled?</th>
           <th>Executed?</th>
@@ -49,7 +48,6 @@
         </tr>
         <% @donor.donations.each do |donation| %>
           <tr>
-            <td><%= donation.nfg_charge_id %></td>
             <td><%= donation.stripe_charge_id %></td>
             <td><%= donation.scheduled_at.to_date.to_s(:short_name) %></td>
             <td><%= donation.executed_at.to_date.to_s(:short_name) if donation.executed_at %></td>

@@ -46,19 +46,19 @@ en:
     errors:
       models:
         donor:
-          nfg_invalid_email_address: not valid
+          stripe_invalid_email_address: not valid
         donor_card:
           attributes:
             csc:
               invalid: "is invalid. This is the 3-digit number on the back of your credit card. American Express users, it is the 4-digit number on the front of your card."
-          nfg_invalid_zip: not recognized :(
-          nfg_invalid_address_field: not recognized :(
-          nfg_invalid_credit_card_number: failed validation :(
-          nfg_invalid_country_code: not recognized :(
-          nfg_invalid_expiration: invalid or has passed
-          nfg_invalid_credit_card_type: 'must be Amex, MC, or Visa'
-          nfg_invalid_name: Please enter your full name
-          nfg_other_error: "Something went wrong, please check the info and try one more time"
+          stripe_invalid_zip: not recognized :(
+          stripe_invalid_address_field: not recognized :(
+          stripe_invalid_credit_card_number: failed validation :(
+          stripe_invalid_country_code: not recognized :(
+          stripe_invalid_expiration: invalid or has passed
+          stripe_invalid_credit_card_type: 'must be Amex, MC, or Visa'
+          stripe_invalid_name: Please enter your full name
+          stripe_other_error: "Something went wrong, please check the info and try one more time"
         subscriber:
           attributes:
             email:
