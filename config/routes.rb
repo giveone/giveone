@@ -14,15 +14,6 @@ Rails.application.routes.draw do
       get 'map'
     end
   end
-  resources :gifts, param: :guid, only: [:update, :new, :create] do
-    member do
-      get 'convert'
-    end
-    collection do
-      get 'exists'
-      get 'thanks'
-    end
-  end
 
   resources :nonprofits do
     get 'autotweet', on: :member
@@ -68,8 +59,6 @@ Rails.application.routes.draw do
   get  'subscribe',        to: 'subscribers#new',    as: :subscribe
   get  'donate',           to: 'donors#new',         as: :donate
   post 'donate',           to: 'donors#create'
-  get  'gift',             to: 'gifts#new',          as: :gift_page
-  post 'gift',             to: 'gifts#create'
   get  'legal',            to: 'site#legal'
   get  'contact',          to: 'site#contact'
   post 'send_feedback',    to: 'site#send_feedback'

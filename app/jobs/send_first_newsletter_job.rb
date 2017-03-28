@@ -6,9 +6,6 @@ class SendFirstNewsletterJob < GiveOneJob.new(:subscriber_id)
   def perform
     return true if Email.where(subscriber_id: subscriber.id, newsletter_id: newsletter.id).exists?
 
-    # The first newsletter for a Giftee is sent separately in SendGiftRecipientInitialJob.
-    return true if subscriber.try(:donor).try(:gift).present?
-
     type = subscriber.active_donor? ? "donor" : "subscriber"
 
     NewsletterMailer.batched_daily(type, newsletter.id, subscriber.to_mailgun_recipient, is_first: true)

@@ -32,9 +32,4 @@ FactoryGirl.define do
     last_failure "UnexpectedResponse blah blah"
     failed_at Time.now
   end
-
-
-  factory :failed_gift_donation, parent: :failed_donation do
-    last_failure "Donation::ExpiredGift"
-  end
 end

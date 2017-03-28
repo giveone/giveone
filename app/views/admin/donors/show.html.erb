@@ -11,12 +11,6 @@
             <td class="small p1 border-bottom align-left">PENDING DONATIONS</td>
             <td class="small p1 border-bottom align-left"><%= @donor.donations.pending.count %></td>
         </tr>
-        <% if @donor.gift.present? %>
-        <tr>
-            <td class="small p1 border-bottom align-left">GIFTED BY</td>
-            <td class="small p1 border-bottom align-left"><%= @donor.gift.giver_name %> ON <%= @donor.gift.start_on.to_s(:short_name) %></td>
-        </tr>
-        <% end %>
         <tr>
             <td class="small p1 border-bottom align-left">NAME</td>
             <td class="small p1 border-bottom align-left"><%= @donor.public_name %></td>
@@ -79,5 +73,3 @@
 
   </section>
 </article>
-
-

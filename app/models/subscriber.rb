@@ -1,6 +1,5 @@
 class Subscriber < ActiveRecord::Base
   has_one  :donor # inseparable from the subscriber -- don't delete or deatch
-  has_many :given_gifts, class_name: "Gift", foreign_key: "giver_subscriber_id"
   has_many :emails
 
   has_many :favorites,
@@ -13,7 +12,7 @@ class Subscriber < ActiveRecord::Base
   validates :name, length: { minimum: 1, maximum: 100, allow_blank: true }
   validates :auth_token, presence: true, uniqueness: true
   validates :ip_address, presence: true
-  validates :name, presence: { if: "donor.try(:gift).present?" } # require gift subscriber name to be there
+  validates :name, presence: true
 
   scope :active,   -> { where(unsubscribed_at: nil) }
   scope :inactive, -> { where.not(unsubscribed_at: nil) }
@@ -44,9 +43,6 @@ class Subscriber < ActiveRecord::Base
     donor.try(:active?)
   end
 
-  # This would be the case when we create a Subscriber as Gift#giver_subscriber...
-  # we just need the record so they can manage their Status Page, but not necessarily
-  # get the newsletter.
   def never_subscribed?
     subscribed_at && unsubscribed_at && subscribed_at.change(sec: 0) == unsubscribed_at.change(sec: 0)
   end

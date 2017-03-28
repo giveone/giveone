@@ -7,7 +7,7 @@ class NewsletterTest < ActiveSupport::TestCase
       @newsletter = @nonprofit.newsletter
     end
 
-    context "with donors, gifts, and subscribers" do
+    context "with donors and subscribers" do
       setup do
         @donor = FactoryGirl.create(:stripe_donor)
         @active_cancelled_donor = FactoryGirl.create(:active_cancelled_donor)

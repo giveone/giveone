@@ -18,7 +18,7 @@ This is a Ruby 2.1.x Rails 4.1.13 app built on top of a lot of great services & 
 
 For development environments, just install ruby >=2 then setup your database:
 
-`bundle exec rake db:drop db:setup db:seed`
+`bundle exec rake db:drop db:create db:migrate db:seed`
 
 [Pow](http://pow.cx/) as development server and [rbenv](https://github.com/sstephenson/rbenv) as a Ruby version manager work great for running the webapp locally.
 
@@ -56,7 +56,6 @@ The app is built to run on the AWS Elastic Beanstalk service.  Deploying can be 
 
 * Subscriber-only newsletters
 * Donor-only newsletters
-* Gifting
 * Donations are batched and executed every 30 days to avoid paying fees for individual donations.
 * Intercom.io integration
 
@@ -66,6 +65,7 @@ NB: the `User` model is currently reserved for admin use, for which it uses Devi
 
 #### Testing
 
+`RAILS_ENV=test bundle exec rake db:drop db:create db:migrate db:seed`
 `bundle exec rspec test`
 
 ### Subscriber-only Scenario
@@ -101,38 +101,12 @@ DONOR
       -> ...
 ```
 
-### Gift Scenario
-
-```
-GIFT
-  |
-  -> GIVER_SUBSCRIBER
-  |
-  -> DONOR
-    |
-    -> SUBSCRIBER
-      |
-      -> EMAIL -> NEWSLETTER
-      -> EMAIL -> NEWSLETTER
-      -> EMAIL -> NEWSLETTER
-      -> ...
-    |
-    -> CARD
-      |
-      -> DONATIONS
-        |
-        -> DONATION-NONPROFIT -> NONPROFIT
-        -> DONATION-NONPROFIT -> NONPROFIT
-        -> DONATION-NONPROFIT -> NONPROFIT
-        -> ...
-```
-
 #### TODO
 
 * Fill out missing functional tests
 * Fill out missing unit tests
 * Cleanup auth code in controllers
-* A few models could benefit from a state machine: donation, donor, subscriber, & gift.
+* A few models could benefit from a state machine: donation, donor, & subscriber.
 * Update hashes to 1.9 hash syntax (ie replace hashrockets on symbol keys)
 * Auto-create an Email record after we deliver emails, instead of manually doing it each time
 * Other TODOs scattered around the app

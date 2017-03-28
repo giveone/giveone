@@ -3,7 +3,7 @@ class DonorsController < ApplicationController
   before_filter :admin_required, only: :index
 
   before_filter :require_donor, only: [:cancel, :uncancel, :edit, :update]
-  before_filter :initialize_donor, only: [:new, :create, :new_gift, :create_gift]
+  before_filter :initialize_donor, only: [:new, :create]
 
   respond_to :html, except: [:exists, :fetch_state_by_zip, :map]
   respond_to :json, only: [:exists, :fetch_state_by_zip, :map]
@@ -118,8 +118,7 @@ class DonorsController < ApplicationController
   def exists
     @donor = Subscriber.where(email: params[:email].to_s).first.try(:donor)
 
-    # TODO other way for gifts here
-    if @donor && (@donor.gift.nil? || @donor.gift.converted_to_recipient?)
+    if @donor
       if @donor.active?
         if @donor.cancelled?
           msg = "You've recently canceled. To start donating again, or otherwise manage your account,"

@@ -68,8 +68,6 @@ en:
     metrics:
       total_donors: Total Donors
       total_new_donors: New Donors
-      total_gifts: Total Gifts
-      total_new_gifts: Total New Gifts
       total_subscribers: Total Subscribers
       total_new_subscribers: New Subscribers
       total_unsubscribers: Total Unsubscribers

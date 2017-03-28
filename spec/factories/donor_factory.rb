@@ -17,12 +17,6 @@ FactoryGirl.define do
     guid { FactoryGirl.generate(:guid) }
   end
 
-
-  factory :gift_donor, parent: :stripe_donor do
-    # NB using :subscriber on purpose -- we pass in Subscriber#name/email thru controller intentionally.
-    association :subscriber, factory: :subscriber, strategy: :build
-  end
-
   factory :active_cancelled_donor, parent: :stripe_donor do
     after(:create) do |donor|
       executed_donation = FactoryGirl.create(:executed_donation, donor_card: donor.card, donor: donor, scheduled_at: 20.days.ago, executed_at: 20.days.ago)

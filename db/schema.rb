@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326220650) do
+ActiveRecord::Schema.define(version: 20170326205451) do
 
   create_table "audits", force: true do |t|
     t.integer  "auditable_id"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20170326220650) do
     t.string   "guid"
     t.integer  "donor_id"
     t.integer  "donor_card_id"
-    t.string   "stripe_charge_id"
     t.decimal  "amount",           precision: 8, scale: 2, default: 0.0
     t.decimal  "added_fee",        precision: 8, scale: 2, default: 0.0
     t.decimal  "total",            precision: 8, scale: 2
@@ -80,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170326220650) do
     t.datetime "refunded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stripe_charge_id"
   end
 
   create_table "donor_cards", force: true do |t|
@@ -96,8 +96,9 @@ ActiveRecord::Schema.define(version: 20170326220650) do
   create_table "donors", force: true do |t|
     t.string   "guid"
     t.integer  "subscriber_id"
-    t.integer  "gift_id"
+    t.integer  "user_id"
     t.string   "stripe_customer_id"
+    t.boolean  "is_recurring"
     t.boolean  "is_anonymous",       default: false
     t.boolean  "add_fee",            default: false
     t.string   "public_name"
@@ -108,7 +109,6 @@ ActiveRecord::Schema.define(version: 20170326220650) do
     t.datetime "uncancelled_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
   end
 
   create_table "emails", force: true do |t|
@@ -127,22 +127,6 @@ ActiveRecord::Schema.define(version: 20170326220650) do
     t.integer  "nonprofit_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "gifts", force: true do |t|
-    t.integer  "giver_subscriber_id"
-    t.string   "giver_email"
-    t.string   "giver_name"
-    t.string   "recipient_email"
-    t.string   "recipient_name"
-    t.string   "message"
-    t.integer  "original_months_remaining"
-    t.integer  "months_remaining"
-    t.date     "start_on"
-    t.date     "finish_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "converted_to_recipient",    default: false
   end
 
   create_table "metrics", force: true do |t|

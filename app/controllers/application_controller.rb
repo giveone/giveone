@@ -36,13 +36,6 @@ class ApplicationController < ActionController::Base
     @donor.started_on = Time.zone.now.to_date
   end
 
-  def initialize_gift
-    initialize_donor
-    @gift = Gift.new(donor: @donor)
-    @donor.gift = @gift # for some reason inverse_of wasn't triggering when donor is a form builder?
-    @gift.start_on = Time.zone.now.to_date
-  end
-
   # orz
   def extra_logging
     Rails.logger.info "  UA: #{request.user_agent}"

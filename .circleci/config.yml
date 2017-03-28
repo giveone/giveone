@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    machine:
+      enabled: true
+    working_directory: ~/giveone
+    steps:
+      - checkout
+      - run: sudo apt-get install python-dev
+      - run: sudo pip install --upgrade pip
+      - run: sudo pip install awsebcli --upgrade --ignore-installed six
+      - run: $(aws ecr get-login)
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "mincedmit/initial-cleanup" ];
+              then . ./build-and-deploy.sh integration;
+            fi

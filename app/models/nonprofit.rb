@@ -23,7 +23,6 @@ class Nonprofit < ActiveRecord::Base
     merge(Donation.executed)
   }
 
-
   audited
 
   has_attached_file :photo,

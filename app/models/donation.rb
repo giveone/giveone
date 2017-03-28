@@ -22,10 +22,6 @@ class Donation < ActiveRecord::Base
   # Just in case a Nonprofit opts-out and causes the donation to fail.
   class InvalidNonprofit < StandardError; end
 
-  # When a gift has expired, but for some reason there's a donation pending
-  # (shouldn't happen, we'll check-and-raise just as a safeguard).
-  class ExpiredGift < StandardError; end
-
   audited
 
   def self.denomination
@@ -110,8 +106,6 @@ class Donation < ActiveRecord::Base
     attach_donor_card
 
     raise DonationAlreadyCancelled.new if cancelled?
-    raise NoAvailableCOF.new unless stripe? || donor_card.cof_exists?
-    raise ExpiredGift.new if donor.gift && donor.gift.expired?
 
     add_scheduled_nonprofits
 
@@ -131,9 +125,6 @@ class Donation < ActiveRecord::Base
   rescue NoAvailableCOF => e
     ExceptionNotifier.notify_exception(e)
     fail!(e.message, notify_donor: true)
-  rescue ExpiredGift => e
-    ExceptionNotifier.notify_exception(e)
-    fail!(e.message, notify_donor: false)
   end
 
   def execute_via_stripe!
@@ -267,14 +258,6 @@ class Donation < ActiveRecord::Base
       # NB schedule at 12am, so the newsletter at 8am has a more accurate donor count
       donor.donations.create!(scheduled_at: 30.days.since(scheduled_at).beginning_of_day)
     end
-  end
-
-  # TODO test
-  after_update :decrement_gift
-  def decrement_gift
-    return unless donor.gift.try(:active?) && executed_at_was.nil? && executed_at.present?
-
-    donor.gift.decrement!
   end
 
   def add_scheduled_nonprofits

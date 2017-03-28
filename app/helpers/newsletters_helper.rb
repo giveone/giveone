@@ -17,32 +17,6 @@ module NewslettersHelper
     tweet_url(text: text, related: nonprofit.twitter)
   end
 
-  def newsletter_gift_tweet_link(nonprofit, double_escape=false, donor)
-    days_text = @gift.original_months_remaining.nil? ? "Somebody just signed me up for #{CONFIG[:twitter_username]}" : "Somebody just gave me #{ @days } days of #{CONFIG[:twitter_username]}"
-    tweet     = CGI.escape "#{days_text}. I can't wait to discover & support amazing nonprofits: #{CONFIG[:site]}"
-    tweet     = CGI.escape(tweet) if double_escape
-    tweet_url = URI.escape("#{root_url}share?url=https://twitter.com/intent/tweet?text=#{tweet}")
-
-    link_to "#{image_tag("#{root_url}images/email/icon-twitter-white.png", height: 14)} Tweet".html_safe, tweet_url, target: "_new", style: "background-color: #00aced; padding: 8px 15px; border-radius: 3px; color: #fff; display: inline-block; text-decoration: none; margin-right: 15px;"
-  end
-
-  def newsletter_gifter_tweet_link(double_escape=false)
-    tweet     = CGI.escape "I just gave the gift of #{CONFIG[:twitter_username]}! You can help others discover amazing nonprofits, too: #{CONFIG[:site]}/gifting"
-    tweet     = CGI.escape(tweet) if double_escape
-    tweet_url = URI.escape("#{root_url}share?url=https://twitter.com/intent/tweet?text=#{tweet}")
-
-    link_to "#{image_tag("#{root_url}images/email/icon-twitter-white.png", height: 14)} Tweet".html_safe, tweet_url, target: "_new", style: "background-color: #00aced; padding: 8px 15px; border-radius: 3px; color: #fff; display: inline-block; text-decoration: none; margin-right: 15px;"
-  end
-
-  def newsletter_fbshare_gifter(double_escape=false)
-    fbshare     = "<span style='display:none; display:none !important;'>I just gave the gift of #giveone! You can help others discover amazing nonprofits, too: #{CONFIG[:site]}/gifting</span>"
-    fbshare     = CGI.escape(fbshare) if double_escape
-    fbshare_url = "#{root_url}share?url=https://www.facebook.com/dialog/share?display=popup&app_id=#{FACEBOOK[:app_id]}&href=#{URI.escape(gift_page_url)}&redirect_uri=#{URI.escape(root_url)}&link=#{URI.escape(gift_page_url)}"
-
-
-    link_to "#{image_tag("#{root_url}images/email/icon-facebook-white.png", height: 14, style: "margin-right: 4px")} Share".html_safe, fbshare_url, target: "_new", style: "background-color: #3B5998; padding: 8px 15px; border-radius: 3px; color: #fff; display: inline-block; text-decoration: none;"
-  end
-
   def newsletter_facebook_url(nonprofit, double_escape=false)
     fb_params = {
       display:      'popup',

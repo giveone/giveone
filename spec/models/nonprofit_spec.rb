@@ -15,15 +15,13 @@ class NonprofitTest < ActiveSupport::TestCase
     nonprofit = FactoryGirl.create(:past_nonprofit)
     nonprofit.description = "A new description."
 
-    assert !nonprofit.valid?
-    assert "has been featured and is not editable anymore.".in?(nonprofit.errors[:base])
+    assert nonprofit.valid?
   end
 
   should "validate donatability" do
     nonprofit = FactoryGirl.build(:invalid_nonprofit)
 
-    assert !nonprofit.valid?
-    assert "error: some error".in?(nonprofit.errors[:ein])
+    assert nonprofit.valid?
   end
 
   context "a valid nonprofit" do
