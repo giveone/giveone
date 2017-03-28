@@ -6,6 +6,7 @@ jobs:
     working_directory: ~/giveone
     steps:
       - checkout
+      - run: apt-get -yqq update
       - run: apt-get install python
       - run: wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py
       - run: apt-get install libxslt-dev libxml2-dev
