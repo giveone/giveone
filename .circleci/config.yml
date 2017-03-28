@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/giveone
     steps:
       - checkout
-      - run: apt-get install python libxslt-dev libxml2-dev
+      - run: apt-get install python python-pip libxslt-dev libxml2-dev
       - run: pip install --upgrade pip
       - run: pip install awsebcli --upgrade --ignore-installed six
       - run: $(aws ecr get-login)
