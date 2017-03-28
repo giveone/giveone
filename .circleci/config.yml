@@ -1,8 +1,8 @@
 version: 2
 jobs:
   build:
-    machine:
-      enabled: true
+    docker:
+      - image: ruby:2.1
     working_directory: ~/giveone
     steps:
       - checkout
@@ -10,7 +10,8 @@ jobs:
       - run: sudo pip install --upgrade pip
       - run: sudo pip install awsebcli --upgrade --ignore-installed six
       - run: $(aws ecr get-login)
-      - run: bin/rspec
+      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3  # must pass to proceed
+      - run: bundle exec rspec
       - deploy:
           command: |
             if [ "${CIRCLE_BRANCH}" == "mincedmit/initial-cleanup" ];
