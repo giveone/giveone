@@ -11,12 +11,6 @@ machine:
 dependencies:
   pre:
     - $(aws ecr get-login)
-database:
-  override:
-    - /bin/true
-test:
-  override:
-    - /bin/true
 deployment:
   staging:
     branch: mincedmit/initial-cleanup
