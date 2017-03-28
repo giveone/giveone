@@ -10,7 +10,6 @@ jobs:
       - run: sudo pip install --upgrade pip
       - run: sudo pip install awsebcli --upgrade --ignore-installed six
       - run: $(aws ecr get-login)
-      - run: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3  # must pass to proceed
       - run: bin/rspec
       - deploy:
           command: |
