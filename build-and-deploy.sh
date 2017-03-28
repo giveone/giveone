@@ -9,7 +9,7 @@ function green_echo {
 }
 
 function build_docker_image {
-  green_echo "Building final docker image from source image base-$EB_ENV for EB env $EB_ENV"
+  green_echo "Building docker image from source for EB env $EB_ENV"
   docker build -q -t giveone:latest .
 }
 
