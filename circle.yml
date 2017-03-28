@@ -11,6 +11,9 @@ machine:
 dependencies:
   pre:
     - $(aws ecr get-login)
+test:
+  override:
+    - bundle exec rspec
 deployment:
   staging:
     branch: mincedmit/initial-cleanup
