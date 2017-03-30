@@ -13,10 +13,10 @@ dependencies:
     - $(aws ecr get-login)
 database:
   override:
-    - /bin/true
+    - bundle exec rake db:drop db:create db:migrate
 test:
   override:
-    - /bin/true
+    - bundle exec rspec
 deployment:
   staging:
     branch: mincedmit/initial-cleanup
