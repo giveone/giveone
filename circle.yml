@@ -13,13 +13,13 @@ dependencies:
     - $(aws ecr get-login)
 database:
   override:
-    - bundle exec rake db:drop db:create db:migrate
+    - bundle exec rake db:create db:migrate
 test:
   override:
     - bundle exec rspec
 deployment:
-  staging:
-    branch: mincedmit/initial-cleanup
+  integration:
+    branch: master
     commands:
       - . ./build-and-deploy.sh integration:
           timeout: 1800
