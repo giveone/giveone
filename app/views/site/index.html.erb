@@ -17,20 +17,12 @@
           <div class="mb4">
             <%= link_to "Donate with #{donor_count} others", donate_path(ref: default_ref_tag), class: "button-solid button-green button-big mobile-block donate-button" %>
 
-
             <span class="mobile-hide pl1 pr1">or</span>
             <span class="mobile-show">&nbsp;</span>
-
-
-            <%= link_to gift_page_url(ref: default_ref_tag), class: "button-outline button-grey button-big mobile-block" do %>
-              <%= image_tag "gift.svg", width: 15, class: "inline-block", style: "margin-right: 5px;" %>
-              <!-- Give as a gift -->
-            <% end %>
 
             <div class="small pt3 grey">
               100% US tax-deductible
             </div>
-
           </div>
         </div>
       </div>
@@ -128,7 +120,6 @@
         </div>
       </div>
       <div class="tablet-col tablet-col-4 mb4" data-600-top-top="opacity: 0;" data-600-top-bottom="opacity: 1;">
-        <%= image_tag "site/icon-nfg.svg", width: 100, class: "mb2" %>
         <h3>Anonymously processed.</h3>
         <div class="pl3 pr3 tablet-portrait-extra-padding">
           <p>To spare your inbox, your email isn’t shared with nonprofits. You can always sign up for more info on any nonprofit’s website.</p>

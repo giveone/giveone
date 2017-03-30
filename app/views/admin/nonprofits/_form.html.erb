@@ -14,7 +14,7 @@
 <%= f.text_field :name %>
 <br />
 <%= content_tag(:span, nonprofit.errors[:name].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if nonprofit.errors[:name].present? %>
-<%= content_tag(:span, "(name via NFG: \"#{nonprofit.nfg_name}\")", style: "font-size: 0.7em; font-style: italic") %>
+<%= content_tag(:span, "(name: \"#{nonprofit.name}\")", style: "font-size: 0.7em; font-style: italic") %>
 <br />
 <br />
 

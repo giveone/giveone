@@ -13,24 +13,6 @@ class Stats
       ).count
     },
 
-    total_gifts: -> (start_time: nil, end_time: Date.yesterday.end_of_day) {
-      Gift.where(
-        "created_at <= ?", end_time
-      ).count
-    },
-
-    total_new_gifts: -> (start_time: Date.yesterday.beginning_of_day, end_time: Date.yesterday.end_of_day) {
-      Gift.where(
-        "created_at > ? AND created_at <= ?", start_time, end_time
-      ).count
-    },
-
-    total_gift_conversions: -> (start_time: nil, end_time: Date.yesterday.end_of_day) {
-      Gift.converted.where(
-        "created_at <= ?", end_time
-      ).count
-    },
-
     total_subscribers: -> (start_time: nil, end_time: Date.yesterday.end_of_day) {
       Subscriber.where(
         'subscribed_at <= ?', end_time

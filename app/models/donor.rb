@@ -1,5 +1,4 @@
 class Donor < ActiveRecord::Base
-  belongs_to :gift
   belongs_to :subscriber, touch: true # (adding the 'validate' option causes a 2x :guid uniq validation in donor_test???) , validate: true # inseparable from the donor -- don't delete or detach
   has_many   :donations
 
@@ -11,7 +10,6 @@ class Donor < ActiveRecord::Base
              through: :donations,
              source: :donated_nonprofits
 
-  accepts_nested_attributes_for :gift
   accepts_nested_attributes_for :card
   accepts_nested_attributes_for :subscriber
 
@@ -37,7 +35,6 @@ class Donor < ActiveRecord::Base
   audited
 
   def stripe?; stripe_customer_id.present?; end
-  def nfg?; nfg_donor_token.present?; end
 
   # # Get all the donors that have a donation to this nonprofit
   scope :for_nonprofit, ->(n) {
@@ -65,10 +62,6 @@ class Donor < ActiveRecord::Base
 
   # Regularly check/nullify donors who have left their active period (>30 days
   # after their last charge, aka after their last daily $1 donation).
-  # TODO currently expired gifts will fail and the donors will be marked as "failed"
-  # so they shouldn't get the donor newsletter -- should we instead run a task
-  # like this one on finished gifts so they're marked as finished donors? We'd have
-  # to remember to re-"start" them too once Gift#convert_to_recipient! (similar to Donor#uncancel!).
   def self.finish_cancelled_donors
     Donor.active.cancelled.each do |donor|
       last_donation = donor.last_executed_donation
@@ -136,10 +129,6 @@ class Donor < ActiveRecord::Base
     end
   end
 
-  def nfg_history
-    NetworkForGood::CreditCard.get_donor_donation_history(self)
-  end
-
   private
 
   after_create :schedule_first_donation
@@ -151,28 +140,14 @@ class Donor < ActiveRecord::Base
   def preprocess
     self.started_on                 = Time.zone.now.to_date
     self.guid                       = guid.presence || SecureRandom.hex(16)
-
-    # If there's a subscriber that hasn't donated with the same email, attach
-    # them to this donor. (If there's a subscriber with a donor and the same email,
-    # then the subscriber's email uniqueness validation should fire, otherwise).
-    if gift.present?
-      if s = Subscriber.without_donor.where(email: subscriber.email).first
-        name = subscriber.name
-        self.subscriber = s
-        subscriber.name = name # if they aren't donating yet, they shouldn't have a name yet
-      end
-    else
-      if s = Subscriber.without_donor.where(email: card.email).first
-        self.subscriber = s
-      end
+    if s = Subscriber.without_donor.where(email: card.email).first
+      self.subscriber = s
     end
 
     build_subscriber if subscriber.blank?
 
-    if gift.blank?
-      subscriber.name                 = card.name       if subscriber.name.blank? # populate the subscriber's name (means they existed already)
-      subscriber.email                = card.email      if subscriber.email.blank?
-      subscriber.ip_address           = card.ip_address if subscriber.ip_address.blank?
-    end
+    subscriber.name                 = card.name       if subscriber.name.blank? # populate the subscriber's name (means they existed already)
+    subscriber.email                = card.email      if subscriber.email.blank?
+    subscriber.ip_address           = card.ip_address if subscriber.ip_address.blank?
   end
 end

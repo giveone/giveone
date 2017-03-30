@@ -37,9 +37,6 @@ class << Cron
   def daily_midnight
     logger.info "  daily_midnight"
     PersistStatsJob.create({})
-    Gift.send_expiration_reminders(5)
-    Gift.send_expiration_reminders(3)
-    Gift.send_expiration_reminders(1)
   end
 
   # run at 8am every morning

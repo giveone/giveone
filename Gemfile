@@ -24,6 +24,8 @@ gem 'rest-client', '~> 1.6.9'
 gem 'savon', '~> 2.5.1'
 gem 'stripe', '~> 1.22.0'
 gem 'unicorn'
+gem 'puma'
+gem 'intercom'
 
 # Assets
 gem 'autoprefixer-rails'
@@ -33,13 +35,12 @@ gem 'sass',       '~> 3.4.12'
 gem 'sass-rails', '~> 5.0.1'
 gem 'uglifier',   '>= 1.3.0'
 
-gem 'intercom'
-
 # Helpers
 gem 'nav_lynx'
 
 group :test, :development do
   gem 'byebug'
+  gem 'pry'
 end
 
 group :test do
@@ -51,6 +52,10 @@ group :test do
   gem 'timecop'
   gem 'simplecov', :require => false
   gem 'stripe-ruby-mock', require: 'stripe_mock'
+  gem 'rspec'
+  # @TODO: get working
+  # gem 'rails-perftest'
+  # gem 'ruby-prof'
 end
 
 group :development do

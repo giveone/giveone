@@ -9,7 +9,7 @@ class AddStripeColumns < ActiveRecord::Migration
     end
 
     change_table :donations do |t|
-      t.string :stripe_charge_id, after: :nfg_charge_id
+      t.string :stripe_charge_id
     end
   end
 end

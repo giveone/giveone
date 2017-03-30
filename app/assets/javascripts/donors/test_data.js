@@ -1,7 +1,5 @@
 $(function() {
-
-  $NS = $('body#donors_new, body#donors_create, \
-    body#gifts_new, body#gifts_create, body#gifts_convert');
+  $NS = $('body#donors_new, body#donors_create');
 
   $('#donate_test_data_button').click(function(e) {
     e.preventDefault();

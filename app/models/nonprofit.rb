@@ -23,7 +23,6 @@ class Nonprofit < ActiveRecord::Base
     merge(Donation.executed)
   }
 
-
   audited
 
   has_attached_file :photo,
@@ -36,7 +35,7 @@ class Nonprofit < ActiveRecord::Base
     }.merge(GiveOne::Application.config.paperclip_defaults)
 
   validates :name, presence: true
-  validates :ein, format: { with: /\A\d\d?-\d{7}\z/ } 
+  validates :ein, format: { with: /\A\d\d?-\d{7}\z/ }
   validates :slug, uniqueness: { message: "is already used by another Nonprofit", allow_nil: true }
   validates :featured_on, uniqueness: { message: "is already taken by another Nonprofit" }
   validates :blurb, presence: true
@@ -89,10 +88,10 @@ class Nonprofit < ActiveRecord::Base
   def details
     return @details if defined? @details
 
+    # @DMITRI cool when using multiple threads
     @details = {}
     [
       Thread.new { @details[:propublica] = propublica_details },
-      Thread.new { @details[:nfg] = nfg_details }
     ].map(&:join)
 
     @details
@@ -105,16 +104,6 @@ class Nonprofit < ActiveRecord::Base
     response['organization']
   rescue OpenURI::HTTPError
     "NOT FOUND"
-  end
-
-  # NB this endpoint requires a Guidestar agreement with NFG
-  def nfg_details
-    @nfg_details ||= begin
-      NetworkForGood::CreditCard.npo_detail_info(ein)
-    rescue NetworkForGood::Base::InvalidEIN => e
-      ExceptionNotifier.notify_exception(NetworkForGood::Base::UnexpectedResponse.new(resp), data: {nfg_response: e.response})
-      nil
-    end
   end
 
   # TODO could just migrate all of these to be uniform, and add a validation for the protocol
@@ -145,20 +134,7 @@ class Nonprofit < ActiveRecord::Base
   end
 
   def donatability
-    return if Rails.env.development? #or Rails.env.test?
-    return unless ein_changed?
-
-    # Call this endpoint to see if the Nonprofit is valid w/NFG.
-    begin
-      resp = NetworkForGood::CreditCard.get_fee(self)
-      if resp[:error_details] && resp[:error_details][:error_info][:err_code] == "NpoNotEligible"
-        errors.add(:ein, "NFG error: #{resp[:error_details][:error_info][:err_data]}")
-      end
-    rescue NetworkForGood::Base::UnexpectedResponse => e
-      errors.add(:ein, "NFG error: #{e.response[:error_details][:error_info][:err_data]}")
-    rescue Net::OpenTimeout => e
-      errors.add(:ein, "NFG timeout while looking up nonprofit!")
-    end
+    return
   end
 
   before_validation :attach_newsletter, on: :create
@@ -173,14 +149,4 @@ class Nonprofit < ActiveRecord::Base
     self.description = Nonprofit.description_sanitizer.sanitize(description.to_s)
     self.ein = ein.to_s.strip
   end
-
-  # Just a cross-check so we can to make sure the Nonprofits are matched to the proper EINs
-  before_save :update_nfg_name
-  def update_nfg_name
-    if ein_changed?
-      # self.nfg_name = nfg_details[:npo_name]
-    end
-  end
-
-
 end

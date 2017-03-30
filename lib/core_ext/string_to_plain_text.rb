@@ -49,6 +49,6 @@ class String
     # &nbsp;
     }.gsub('&nbsp;', ' ')
 
-    HTML::mediumSanitizer.new.sanitize(text).strip.html_safe
+    HTML::Sanitizer.new.sanitize(text).strip.html_safe
   end
 end

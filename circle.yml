@@ -1,0 +1,25 @@
+machine:
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+    - sudo apt-get install python-dev && sudo pip install packaging
+    - sudo python -m pip install appdirs
+    - sudo pip install awsebcli --upgrade --ignore-installed six
+  timezone:
+    America/New_York
+  services:
+    - docker
+dependencies:
+  pre:
+    - $(aws ecr get-login)
+database:
+  override:
+    - bundle exec rake db:create db:migrate
+test:
+  override:
+    - bundle exec rspec
+deployment:
+  integration:
+    branch: master
+    commands:
+      - . ./build-and-deploy.sh integration:
+          timeout: 1800

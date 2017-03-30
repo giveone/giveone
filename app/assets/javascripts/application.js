@@ -35,7 +35,6 @@
 
 // ** Views **
 //= require_directory ./donors
-//= require_directory ./gifts
 //= require main
 //= require site
 //= require nonprofits
