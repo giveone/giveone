@@ -26,6 +26,7 @@ gem 'stripe', '~> 1.22.0'
 gem 'unicorn'
 gem 'puma'
 gem 'intercom'
+gem 'pry' # @TODO: move into the test/development group when live
 
 # Assets
 gem 'autoprefixer-rails'
@@ -40,7 +41,6 @@ gem 'nav_lynx'
 
 group :test, :development do
   gem 'byebug'
-  gem 'pry'
 end
 
 group :test do

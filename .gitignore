@@ -5,6 +5,7 @@ log/*
 sinatra.log
 .DS_Store
 public/.DS_Store
+public/assets/*
 db/*.sqlite3
 .powenv
 .capistrano/metrics
@@ -23,3 +24,6 @@ AWS_SECRET_ACCESS_KEY
 
 # Extract docker_env from live environments
 docker_env
+
+# Local env vars
+.env

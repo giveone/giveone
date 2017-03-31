@@ -45,12 +45,14 @@ Rails.application.routes.draw do
   resources :newsletters do
     get :preview, on: :collection
   end
+
   devise_for :users, :skip => [:registrations]
   devise_scope :user do
     get "login"      => "devise/sessions#new"
     get 'users/edit' => 'devise/registrations#edit',   as: 'edit_user_registration'
     put 'users'      => 'devise/registrations#update', as: 'user_registration'
   end
+
   resources :users
 
   get  'about',            to: 'site#about'
@@ -70,6 +72,7 @@ Rails.application.routes.draw do
   # Admin
   get '/admin/mailers'         => "admin/mailers#index"
   get '/admin/mailers/*path'   => "admin/mailers#preview"
+
   namespace :admin do
     get 'delayed_jobs', to: 'base#delayed_jobs'
 
@@ -98,5 +101,4 @@ Rails.application.routes.draw do
   end
 
   get '/health' => 'application#health'
-
 end
