@@ -3,16 +3,15 @@
 <% end %>
 
 <section class="table full-height">
-  <div class="table-cell full-height bg-cover tablet-hide p6 centered" style="background-size: auto 120%; background-position: center center; background-image: url(<%= asset_path 'checkout/thanks.jpg' %>);">
-    <%= link_to image_tag("logo.png", width: "140", class: "dark"), root_path(ref: default_ref_tag), class: "mb2 close inline-block" %>
-    <h2 class="white">Thanks <%= @name %>, you're awesome!</h2>
+  <div class="table-cell full-height bg-cover tablet-hide p6 centered">
+    <h2 class="green-dark">Thanks <%= @name %>, you're awesome!</h2>
   </div>
   <div class="hide tablet-block bg-cover mobile-hide p6 centered" style="background-position: center center; background-image: url(<%= asset_path 'checkout/thanks.jpg' %>);">
     <%= link_to image_tag("logo.png", width: "140", class: "dark"), root_path(ref: default_ref_tag), class: "mb2 close inline-block" %>
-    <h2 class="white">Thanks <%= @name %>, you're awesome!</h2>
+    <h2 class="gree-dark">Thanks <%= @name %>, you're awesome!</h2>
   </div>
   <div class="table-cell min-height-100 bg-white p6">
-    <h3 class="green mb3">Can you spare a tweet?</h3>
+    <h3 class="green-dark mb3">Can you spare a tweet?</h3>
 
     <p>Thanks for becoming a donor!</p>
 

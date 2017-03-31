@@ -46,7 +46,6 @@ set :linked_files, %w{
   config/database.yml
   config/s3.yml
   config/secrets.yml
-  config/stripe.yml
   config/mail.yml
   config/mandrill.yml
   config/devise.yml
@@ -82,7 +81,6 @@ namespace :deploy do
       upload! "config/database.yml.example", "#{shared_path}/config/database.yml"
       upload! "config/secrets.yml.example", "#{shared_path}/config/secrets.yml"
       upload! "config/s3.yml.example", "#{shared_path}/config/s3.yml"
-      upload! "config/stripe.yml.example", "#{shared_path}/config/stripe.yml"
       upload! "config/mail.yml.example", "#{shared_path}/config/mail.yml"
       upload! "config/mandrill.yml.example", "#{shared_path}/config/mandrill.yml"
       upload! "config/devise.yml.example", "#{shared_path}/config/devise.yml"

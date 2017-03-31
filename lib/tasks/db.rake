@@ -3,7 +3,8 @@ namespace :db do
   task recreate: :environment do
     ENV['RAILS_ENV'] ||= Rails.env
 
-    throw "You're trying to reset db in production!!!" if ENV['RAILS_ENV'] == 'production'
+    # @TODO: remove this comment when going live
+    # throw "ERROR: You're trying to reset db in production!" if ENV['RAILS_ENV'] == 'production'
 
     puts "Dropping database..."
     Rake::Task["db:drop"].invoke

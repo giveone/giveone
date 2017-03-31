@@ -18,7 +18,7 @@ This is a Ruby 2.1.x Rails 4.1.13 app built on top of a lot of great services & 
 
 For development environments, just install ruby >=2 then setup your database:
 
-`bundle exec rake db:drop db:create db:migrate db:seed`
+`bundle exec rake db:recreate`
 
 [Pow](http://pow.cx/) as development server and [rbenv](https://github.com/sstephenson/rbenv) as a Ruby version manager work great for running the webapp locally.
 
@@ -26,7 +26,7 @@ For development environments, just install ruby >=2 then setup your database:
 
 This app supports Stripe as a payment method:
 
-* Stripe
+* *Stripe*
   * donors may donate a variable amount (predetermined from a set of small amounts) if they like a particular nonprofit, let a donor
     cancel a his or her donation if he or she doesn't wish to continue.
   * overhead: you'll need to be a 501c3 to offer tax deductions to US donors, but their dashboard is very useful for that accounting if you are
@@ -65,8 +65,10 @@ NB: the `User` model is currently reserved for admin use, for which it uses Devi
 
 #### Testing
 
-`RAILS_ENV=test bundle exec rake db:drop db:create db:migrate db:seed`
-`bundle exec rspec test`
+```
+RAILS_ENV=test bundle exec rake db:drop db:create db:migrate
+bundle exec rspec test
+```
 
 ### Subscriber-only Scenario
 
