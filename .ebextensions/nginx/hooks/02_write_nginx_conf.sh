@@ -1,6 +1,25 @@
 #!/bin/bash
 # .ebextensions/nginx/hooks/02_write_nginx_conf.sh
 FILE="/etc/nginx/sites-available/elasticbeanstalk-nginx-docker-proxy.conf"
+
+#----------------------------------------------------------------------
+# write out htpasswd file and setup auth configs for nginx conf
+#----------------------------------------------------------------------
+AUTH_CONFIG="";
+ENABLE_BASIC_AUTH=`/opt/elasticbeanstalk/lib/ruby/bin/get-config environment | jq '.["ENABLE_BASIC_AUTH"]'`;
+
+if [ "$ENABLE_BASIC_AUTH" == "\"true\"" ]; then
+  echo "giveone:\$apr1\$TmcMtS5h\$w2f9tLcBiA3Cu.b72jNXo." > /etc/nginx/.htpasswd;
+  chown nginx:nginx /etc/nginx/.htpasswd;
+  chmod 600 /etc/nginx/.htpasswd;
+
+read -r -d '' AUTH_CONFIG <<-'EOC'
+auth_basic "Restricted";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+EOC
+
+fi
+
 #----------------------------------------------------------------------
 # write out nginx config file
 #----------------------------------------------------------------------
@@ -23,11 +42,22 @@ server {
     set \$day \$3;
     set \$hour \$4;
   }
+
   access_log /var/log/nginx/healthd/application.log.\$year-\$month-\$day-\$hour healthd;
   access_log /var/log/nginx/access.log;
 
+  set \$is_production 1;
+
+  if (\$http_host ~ (integration) ) {
+    set \$is_production 0;
+  }
+
   location / {
     set \$should_redirect_to_https 0;
+
+    if (\$is_production = 1) {
+      rewrite ^ https://giveonelaunch.splashthat.com redirect;
+    }
 
     # Check if we need to redirect to https scheme
     if (\$http_x_forwarded_proto != 'https' ) {
@@ -59,6 +89,7 @@ server {
     proxy_set_header      X-Real-IP           \$remote_addr;
     proxy_set_header      X-Forwarded-Proto   \$http_x_forwarded_proto;
     proxy_set_header      X-Forwarded-For     \$proxy_add_x_forwarded_for;
+    $AUTH_CONFIG
   }
 
   location ~ ^/(health|apple-app-site-association|.well-known) {
@@ -82,7 +113,6 @@ server {
     add_header   Cache-Control public;
     add_header   Access-Control-Allow-Origin *;
   }
-
 }
 
 EOF
