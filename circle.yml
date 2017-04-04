@@ -23,8 +23,3 @@ deployment:
     commands:
       - . ./build-and-deploy.sh integration:
           timeout: 1800
-  production:
-    branch: mincedmit/production-environment
-    commands:
-      - . ./build-and-deploy.sh production:
-          timeout: 1800
