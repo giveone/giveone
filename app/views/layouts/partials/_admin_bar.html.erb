@@ -5,10 +5,22 @@
         Signed in as <%= link_to current_user.email, edit_user_registration_path, class: "white" %><br />
       </p>
       <nav class="links right">
+        <%= link_to_unless_current "Categories", admin_categories_url, class: "white" %>
+        &nbsp;&nbsp;&nbsp;
+        <% if @category and !@category.new_record? %>
+          <%= link_to "Edit Category", edit_admin_category_url(@category.id), class: "white" %>
+          &nbsp;&nbsp;&nbsp;
+        <% end %>
         <%= link_to_unless_current "Nonprofits", admin_nonprofits_url, class: "white" %>
         &nbsp;&nbsp;&nbsp;
         <% if @nonprofit and !@nonprofit.new_record? %>
           <%= link_to "Edit Nonprofit", edit_admin_nonprofit_url(@nonprofit.id), class: "white" %>
+          &nbsp;&nbsp;&nbsp;
+        <% end %>
+        <%= link_to_unless_current "Activations", admin_activations_url, class: "white" %>
+        &nbsp;&nbsp;&nbsp;
+        <% if @activation and !@activation.new_record? %>
+          <%= link_to "Edit Activation", edit_admin_activation_url(@activation.id), class: "white" %>
           &nbsp;&nbsp;&nbsp;
         <% end %>
         <%= link_to_unless_current "Stats", admin_stats_url, class: "white" %>

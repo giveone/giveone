@@ -4,11 +4,12 @@ class Admin::NonprofitsController < Admin::BaseController
   respond_to :html, :json
 
   def index
-    @month = (params[:month] || Time.zone.now.month).to_i
-    @year = (params[:year] || Time.zone.now.year).to_i
-    @date = Date.new(@year, @month)
     @nonprofits = Nonprofit.
-      where("MONTH(featured_on) = ? AND YEAR(featured_on) = ?", @month, @year).
+      order("id ASC")
+    @year = (params[:year] || Time.zone.now.year).to_i
+    @date = Date.new(@year)
+    @nonprofits = Nonprofit.
+      where("YEAR(featured_on) = ?", @year).
       order("featured_on ASC")
   end
 

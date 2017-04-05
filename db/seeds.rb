@@ -1,6 +1,6 @@
 # CLEAR DATABASE
 # @TODO: remove this comment when going live
-throw "ERROR: You're trying to truncate the database in production!" if ENV['RAILS_ENV'] == 'production'
+#throw "ERROR: You're trying to truncate the database in production!" if ENV['RAILS_ENV'] == 'production'
 
 ActiveRecord::Base.establish_connection
 ActiveRecord::Base.connection.tables.each do |table|

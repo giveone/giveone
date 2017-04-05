@@ -1,0 +1,33 @@
+<article id="site_admin_categories" class="bg-green pt4 pb4">
+  <section class="container p2">
+    <div class="pt4 pb4">
+      <%= link_to "Add an category", new_admin_category_url, class: "button-outline button-dark-green" %>
+    </div>
+
+    <table cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="bg-grey white p1">Name</th>
+          <th class="bg-grey white p1">Description</th>
+          <th class="bg-grey p1">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr style="font-size: 0.8em">
+            <td class="p1 border-bottom">
+              <p style="white-space: nowrap"><%= link_to category.name, edit_admin_category_url(category.id) %></p>
+              <sub style="white-space: nowrap; font-size: 0.8em; color: #AAA"><%= "(#{category.name})" if category.name %></sub>
+            </td>
+            <td class="p1 border-bottom" ><%= category.description %></td>
+            <td class="p1 border-bottom">
+              <% if category.destroyable? %>
+                <%= link_to "Delete", admin_category_url(category.id), method: :delete, confirm: "are you sure?" %>
+              <% end -%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</article>

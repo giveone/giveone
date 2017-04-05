@@ -1,7 +1,7 @@
-<article id="nonprofits_new">
+<article id="activations_new">
   <section class="content">
     <section class="interior p4">
-			<%= form_for(@nonprofit, url: admin_nonprofits_url, method: :post) do |f| %>
+			<%= form_for(@activation, url: admin_activations_url, method: :post) do |f| %>
 				<%= render "form", f: f %>
 				<%= f.submit :create %>
 			<% end %>

@@ -28,6 +28,10 @@ gem 'puma'
 gem 'intercom'
 gem 'pry' # @TODO: move into the test/development group when live
 
+# Emails
+gem 'mandrill-api'
+gem 'gibbon' # mailchimp
+
 # Assets
 gem 'autoprefixer-rails'
 gem 'coffee-rails'
