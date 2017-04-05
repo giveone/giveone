@@ -1,0 +1,104 @@
+<% activation = f.object %>
+<% if @activation.persisted? && @activation.related_activations.present? %>
+  <p>Also happened on: <%= @activation.related_activations.map { |_| link_to(_.happening_on.strftime("%-0m/%-0d/%Y"), edit_admin_activation_url(_.id)) }.join(", ").html_safe %><p>
+<% end %>
+
+<%= f.check_box :is_public %>
+<%= f.label :is_public, "Public? " %> <span style="font-size: 0.7em"><%= link_to(activation_url(@activation), activation_url(@activation)) if @activation.persisted? %></span>
+<br />
+<br />
+
+<%= f.label :name %>
+<br />
+<%= f.text_field :name %>
+<br />
+<%= content_tag(:span, activation.errors[:name].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:name].present? %>
+<%= content_tag(:span, "(name: \"#{activation.name}\")", style: "font-size: 0.7em; font-style: italic") %>
+<br />
+<br />
+
+<%= f.label :spots_available %>
+<br />
+<%= f.text_field :spots_available %>
+<br />
+<%= content_tag(:span, activation.errors[:spots_available].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:spots_available].present? %>
+<%= content_tag(:span, "(spots_available: \"#{activation.spots_available}\")", style: "font-size: 0.7em; font-style: italic") %>
+<br />
+<br />
+
+<%= f.label :slug %>
+<br />
+<%= f.text_field :slug, maxlength: 255, size: 25 %>
+<b class="left" style="line-height: 3em"><%= CONFIG[:host] %>/activations/</b>
+	&nbsp;<%= content_tag(:span, activation.errors[:website_url].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:slug].present? %>
+<br />
+<br />
+
+<%= f.label :sponsor %>
+<br />
+<%= f.text_field :sponsor %>
+<br />
+<%= content_tag(:span, activation.errors[:sponsor].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:sponsor].present? %>
+<%= content_tag(:span, "(sponsor: \"#{activation.sponsor}\")", style: "font-size: 0.7em; font-style: italic") %>
+<br />
+<br />
+
+<%= f.label :blurb %>
+<br />
+<%= f.text_field :blurb %>
+<br />
+<%= content_tag(:span, activation.errors[:blurb].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:blurb].present? %>
+<%= content_tag(:span, "(blurb: \"#{activation.blurb}\")", style: "font-size: 0.7em; font-style: italic") %>
+<br />
+<br />
+
+<br />
+<%= f.label :description %>
+<%= f.label :description, "(allowed html: #{Activation::ALLOWED_DESCRIPTION_TAGS.to_sentence})", style: "font-style: italic" %>
+<br />
+<%= f.text_area :description, style: "width: 100%; height: 150px" %>
+<%= content_tag(:span, activation.errors[:description].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:description].present? %>
+<br />
+
+<%= f.label :url %>
+<br />
+<%= f.text_field :url %>
+<br />
+<%= content_tag(:span, activation.errors[:url].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:url].present? %>
+<%= content_tag(:span, "(url: \"#{activation.url}\")", style: "font-size: 0.7em; font-style: italic") %>
+<br />
+<br />
+
+<%= f.label :happening_on, "Date of Activation (yyyy/mm/dd)" %>
+<br />
+<%= f.text_field :happening_on, maxlength: 12, size: 12 %>
+<%= content_tag(:span, @activation.errors[:happening_on].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if @activation.errors[:happening_on].present? %>
+<br />
+<br />
+
+<%= f.label :time_range %>
+<br />
+<%= f.text_field :time_range %>
+<br />
+<%= content_tag(:span, activation.errors[:time_range].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:time_range].present? %>
+<%= content_tag(:span, "(time_range: \"#{activation.time_range}\")", style: "font-size: 0.7em; font-style: italic") %>
+<br />
+<br />
+
+<%= f.label :photo %>
+<br />
+<%= image_tag activation.photo.url(:thumb) %>
+<br />
+<%= f.file_field :photo %>
+<%= content_tag(:span, @activation.errors[:photo].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if @activation.errors[:photo].present? %>
+<br />
+<br />
+
+<%= f.label :where %>
+<br />
+<%= f.text_field :where %>
+<br />
+<%= content_tag(:span, activation.errors[:where].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if activation.errors[:where].present? %>
+<%= content_tag(:span, "(where: \"#{activation.where}\")", style: "font-size: 0.7em; font-style: italic") %>
+<br />
+<br />

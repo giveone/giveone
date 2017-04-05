@@ -112,17 +112,23 @@ GEM
     exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
       activesupport (>= 3.0.4)
+    excon (0.55.0)
     execjs (2.0.2)
     factory_girl (4.1.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.1.0)
       factory_girl (~> 4.1.0)
       railties (>= 3.0.0)
+    faraday (0.12.0.1)
+      multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
     ffi (1.9.6)
     flot-rails (0.0.6)
       jquery-rails
     formatador (0.2.5)
+    gibbon (3.0.1)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     guard (2.12.4)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -172,6 +178,9 @@ GEM
       systemu (~> 2.6.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (1.25.1)
@@ -179,6 +188,7 @@ GEM
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     multi_json (1.11.2)
+    multipart-post (2.0.0)
     mysql2 (0.3.21)
     nav_lynx (1.1.1)
       rails (>= 3.1.0)
@@ -372,6 +382,7 @@ DEPENDENCIES
   factory_girl (~> 4.1.0)
   factory_girl_rails (~> 4.1.0)
   flot-rails
+  gibbon
   guard
   guard-livereload
   guard-pow
@@ -379,6 +390,7 @@ DEPENDENCIES
   intercom
   jquery-rails
   kaminari (~> 0.14.1)
+  mandrill-api
   mocha
   mysql2 (~> 0.3.20)
   nav_lynx

@@ -2,23 +2,18 @@
   <section class="container p2">
       <h5>Legend:</h5>
       <dl>
-        <dt style="display: inline; font-family: 'Lucida Console', Monaco, monospace;">NO PHOTO:</dt><dd style="display: inline; margin: 0; padding: 0;"> Nonprofit doesn't have a picture yet.</dd>
+        <dt style="display: inline; font-family: 'Lucida Console', Monaco, monospace;">Photo missing:</dt><dd style="display: inline; margin: 0; padding: 0;"> Nonprofit doesn't have a picture yet.</dd>
         <br />
-        <dt style="display: inline; font-family: 'Lucida Console', Monaco, monospace;">HOLIDAYS:</dt><dd style="display: inline; margin: 0; padding: 0;"> There are holidays that fall on this day (hover over link to see).</dd>
+        <dt style="display: inline; font-family: 'Lucida Console', Monaco, monospace;">Holidays:</dt><dd style="display: inline; margin: 0; padding: 0;"> There are holidays that fall on this day (hover over link to see).</dd>
         <br />
-        <dt style="display: inline; font-family: 'Lucida Console', Monaco, monospace;">PRIVATE!:</dt><dd style="display: inline; margin: 0; padding: 0;"> This Nonprofit is private, won't be visible to public, and won't be used in donations.</dd>
+        <dt style="display: inline; font-family: 'Lucida Console', Monaco, monospace;">Private:</dt><dd style="display: inline; margin: 0; padding: 0;"> This Nonprofit is private, won't be visible to public, and won't be used in donations.</dd>
       </dl>
 
+    <br />
 
     <div class="row">
-      <div class="col col-4">
-        <%= render 'monthly', month_date: @date.prev_month %>
-      </div>
-      <div class="col col-4">
-        <%= render 'monthly', month_date: @date %>
-      </div>
-      <div class="col col-4">
-        <%= render 'monthly', month_date: @date.next_month %>
+      <div class="col">
+        <%= render 'monthly', year_date: @date, month_date: @date %>
       </div>
     </div>
 
@@ -31,9 +26,9 @@
         <tr>
           <th class="bg-grey white p1">Featured On</th>
           <th class="bg-grey white p1">Public?</th>
-          <th class="bg-grey white p1">Sent At (Subscribers / Donors)</th>
+          <th class="bg-grey white p1">Sent At<br /><span style="font-size: 0.8em">(Subscribers / Donors)</span></th>
           <th class="bg-grey white p1">Donors</th>
-          <th class="bg-grey white p1">Name<br /><span style="font-size: 0.8em">Name</span></th>
+          <th class="bg-grey white p1">Name</th>
           <th class="bg-grey white p1">Twitter</th>
           <th class="bg-grey white p1">Blurb</th>
           <th class="bg-grey white p1">Photo</th>

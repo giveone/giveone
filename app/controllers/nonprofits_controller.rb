@@ -6,7 +6,8 @@ class NonprofitsController < ApplicationController
   respond_to :json, only: [:upcoming_report]
 
   def index
-    redirect_to calendar_url
+    @nonprofits = Nonprofit.
+      order("id ASC")
   end
 
   def show
@@ -17,7 +18,6 @@ class NonprofitsController < ApplicationController
     @hide_header = true
     if current_subscriber?
       @nonprofit_is_favorite = current_subscriber.favorite_nonprofits.exists?(@nonprofit)
-      @hide_plane = true
     else
       @hide_footer = true
     end
@@ -34,7 +34,6 @@ class NonprofitsController < ApplicationController
     @meta_tags["og:image"]            = @nonprofit.photo.url(:medium)
     @meta_tags["og:url"]              = nonprofit_url(@nonprofit)
     @meta_tags["og:description"]      = @nonprofit.blurb
-
     @meta_tags["twitter:card"]        = "summary_large_image"
     @meta_tags["twitter:title"]       = "#{CONFIG[:name]} Nonprofit for #{@nonprofit.featured_on.try(:to_s, :short_name)}: #{@nonprofit.name}"
     @meta_tags["twitter:image:src"]   = "#{@nonprofit.photo.url(:medium).gsub(/https/, 'http')}"

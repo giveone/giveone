@@ -1,0 +1,51 @@
+<article id="site_admin_activations" class="bg-green pt4 pb4">
+  <section class="container p2">
+    <div class="pt4 pb4">
+      <%= link_to "Add an activation", new_admin_activation_url, class: "button-outline button-dark-green" %>
+    </div>
+
+    <table cellpadding="0" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="bg-grey white p1">Happening On</th>
+          <th class="bg-grey white p1">Public?</th>
+          <th class="bg-grey white p1">Name</th>
+          <th class="bg-grey white p1">Spots Available</th>
+          <th class="bg-grey white p1">URL</th>
+          <th class="bg-grey white p1">Sponsor</th>
+          <th class="bg-grey white p1">Blurb</th>
+          <th class="bg-grey white p1">Description</th>
+          <th class="bg-grey white p1">Time Range</th>
+          <th class="bg-grey white p1">Where</th>
+          <th class="bg-grey white p1">Photo</th>
+          <th class="bg-grey p1">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @activations.each do |activation| %>
+          <tr style="<%= activation.happening_on == Time.zone.now.to_date ? 'background-color: lemonchiffon' : '' %>; font-size: 0.8em">
+            <td class="p1 border-bottom"><%= activation.happening_on.to_s :short %></td>
+            <td class="p1 border-bottom"><%= "x" if activation.is_public? %></td>
+            <td class="p1 border-bottom">
+              <p style="white-space: nowrap"><%= link_to activation.name, edit_admin_activation_url(activation.id) %></p>
+              <sub style="white-space: nowrap; font-size: 0.8em; color: #AAA"><%= "(#{activation.name})" if activation.name %></sub>
+            </td>
+            <td class="p1 border-bottom" ><%= activation.spots_available %></td>
+            <td class="p1 border-bottom" ><%= activation.url %></td>
+            <td class="p1 border-bottom" ><%= activation.sponsor %></td>
+            <td class="p1 border-bottom" ><%= activation.blurb %></td>
+            <td class="p1 border-bottom" ><%= activation.description %></td>
+            <td class="p1 border-bottom" ><%= activation.time_range %></td>
+            <td class="p1 border-bottom" ><%= activation.where %></td>
+            <td class="p1 border-bottom"><%= image_tag(activation.photo.url(:thumb), width: "50px") %></td>
+            <td class="p1 border-bottom">
+              <% if activation.destroyable? %>
+                <%= link_to "Delete", admin_activation_url(activation.id), method: :delete, confirm: "are you sure?" %>
+              <% end -%>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</article>

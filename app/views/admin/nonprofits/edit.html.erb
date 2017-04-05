@@ -1,7 +1,6 @@
 <%
   executed_count = @nonprofit.donations.executed.count
   failed_count = @nonprofit.donations.failed.count
-
   stripe_donations = @nonprofit.donations.via_stripe.all
 %>
 
@@ -27,5 +26,3 @@
 
   </section>
 </article>
-
-

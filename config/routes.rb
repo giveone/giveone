@@ -76,11 +76,13 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'delayed_jobs', to: 'base#delayed_jobs'
 
+    resources :categories
     resources :nonprofits do
       collection do
         get :lookup_ein
       end
     end
+    resources :activations
     resources :donors, except: [:new, :create]
     resources :donations
     resources :subscribers do

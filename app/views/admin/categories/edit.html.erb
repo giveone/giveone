@@ -1,0 +1,14 @@
+<article id="admin_categories_edit" class="pt4 pb4 bg-green">
+  <section class="container p4">
+    <%= form_for(@category, url: admin_category_url(@category.id), method: :put) do |f| %>
+      <%= render "form", f: f %>
+      <br />
+      <%= f.submit :save, class: "button-solid button-green" %>
+      <% if @category.destroyable? %>
+        <span class="small ml1">
+          or <%= link_to "Delete", admin_category_url(@category.id), :method => :delete, :confirm => "are you sure?" %>
+        </span>
+      <% end -%>
+    <% end %>
+  </section>
+</article>

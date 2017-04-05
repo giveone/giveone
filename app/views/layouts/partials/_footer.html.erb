@@ -1,11 +1,4 @@
 <footer class="main bg-green clip"><div class="container p2">
-
-  <%- if !@hide_plane -%>
-  <div class="py4">
-    <!-- <%= image_tag "plane.svg", width: 281, class: "fit relative", "data-800-top" => "left: 0px;", "data-200-top" => "left: 800px" %> -->
-  </div>
-  <%- end -%>
-
   <div class="links tablet-center row">
     <div class="tablet-col grey"><span class="small mobile-block py1">&copy; <%= Time.zone.now.year %> <%= CONFIG[:name] %></span></div>
     <div class="tablet-col-right">
@@ -34,5 +27,4 @@
 <% if current_user.try(:is_admin?) %>
   <div class="footer_prop"></div>
 <% end %>
-
 <%= render 'donors/authenticate_form' %>

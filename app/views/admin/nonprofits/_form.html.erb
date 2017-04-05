@@ -21,7 +21,7 @@
 <%= f.label :slug %>
 <br />
 <%= f.text_field :slug, maxlength: 255, size: 25 %>
-<b class="left" style="line-height: 3em">http://<%= CONFIG[:host] %>/nonprofits/</b>
+<b class="left" style="line-height: 3em"><%= CONFIG[:host] %>/nonprofits/</b>
 	&nbsp;<%= content_tag(:span, nonprofit.errors[:website_url].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if nonprofit.errors[:slug].present? %>
 <br />
 <br />

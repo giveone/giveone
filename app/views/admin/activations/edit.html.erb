@@ -1,0 +1,14 @@
+<article id="admin_activations_edit" class="pt4 pb4 bg-green">
+  <section class="container p4">
+    <%= form_for(@activation, url: admin_activation_url(@activation.id), method: :put) do |f| %>
+      <%= render "form", f: f %>
+      <br />
+      <%= f.submit :save, class: "button-solid button-green" %>
+      <% if @activation.destroyable? %>
+        <span class="small ml1">
+          or <%= link_to "Delete", admin_activation_url(@activation.id), :method => :delete, :confirm => "are you sure?" %>
+        </span>
+      <% end -%>
+    <% end %>
+  </section>
+</article>

@@ -1,0 +1,26 @@
+<% category = f.object %>
+
+<%= f.label :name %>
+<br />
+<%= f.text_field :name %>
+<br />
+<%= content_tag(:span, category.errors[:name].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if category.errors[:name].present? %>
+<%= content_tag(:span, "(name: \"#{category.name}\")", style: "font-size: 0.7em; font-style: italic") %>
+<br />
+<br />
+
+<%= f.label :slug %>
+<br />
+<%= f.text_field :slug, maxlength: 255, size: 25 %>
+<b class="left" style="line-height: 3em"><%= CONFIG[:host] %>/categories/</b>
+	&nbsp;<%= content_tag(:span, category.errors[:name].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if category.errors[:slug].present? %>
+<br />
+<br />
+
+<br />
+<%= f.label :description %>
+<%= f.label :description, "(allowed html: #{Category::ALLOWED_DESCRIPTION_TAGS.to_sentence})", style: "font-style: italic" %>
+<br />
+<%= f.text_area :description, style: "width: 100%; height: 150px" %>
+<%= content_tag(:span, category.errors[:description].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if category.errors[:description].present? %>
+<br />

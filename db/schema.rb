@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326205451) do
+ActiveRecord::Schema.define(version: 20170405050513) do
+
+  create_table "activations", force: true do |t|
+    t.integer  "category_id"
+    t.string   "name"
+    t.string   "slug"
+    t.string   "sponsor"
+    t.string   "blurb"
+    t.string   "description"
+    t.string   "url"
+    t.integer  "spots_available"
+    t.string   "time_range"
+    t.date     "happening_on"
+    t.string   "where"
+    t.boolean  "is_public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "activations", ["slug"], name: "index_activations_on_slug", using: :btree
 
   create_table "audits", force: true do |t|
     t.integer  "auditable_id"
@@ -33,6 +56,16 @@ ActiveRecord::Schema.define(version: 20170326205451) do
   add_index "audits", ["auditable_id", "auditable_type"], name: "auditable_index", using: :btree
   add_index "audits", ["created_at"], name: "index_audits_on_created_at", using: :btree
   add_index "audits", ["user_id", "user_type"], name: "user_index", using: :btree
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["slug"], name: "index_categories_on_slug", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0
@@ -147,6 +180,7 @@ ActiveRecord::Schema.define(version: 20170326205451) do
   end
 
   create_table "nonprofits", force: true do |t|
+    t.integer  "category_id"
     t.string   "name"
     t.text     "description"
     t.string   "blurb"

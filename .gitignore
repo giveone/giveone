@@ -26,4 +26,4 @@ AWS_SECRET_ACCESS_KEY
 docker_env
 
 # Local env vars
-.env
+.*env
