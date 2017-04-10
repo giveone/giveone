@@ -1,6 +1,6 @@
 <footer class="main bg-green clip"><div class="container p2">
   <div class="links tablet-center row">
-    <div class="tablet-col grey"><span class="small mobile-block py1">&copy; <%= Time.zone.now.year %> <%= CONFIG[:name] %></span></div>
+    <div class="tablet-col grey"><span class="small mobile-block py1">&copy; <%= Time.zone.now.year %> <%= Rails.application.secrets.name %></span></div>
     <div class="tablet-col-right">
       <span class="mobile-block py1">
         <%= link_to "Home", root_path(ref: "footer"), class: "small inline-block pr1 pl1 pb1 grey #{'hide' if controller.controller_name == 'site' and controller.action_name == 'index'}" %>
@@ -14,12 +14,12 @@
         <%- end -%>
       </span>
       <span class="mobile-show big py1">
-        <a href="https://twitter.com/<%= CONFIG[:twitter_username] %>" target="_blank" class="inline-block grey no-decoration color-twitter-hover"><span class="ss-icon ss-social-circle ss-twitter transition-all"></span></a>
-        <a href="https://www.facebook.com/<%= CONFIG[:facebook_username] %>" target="_blank" class="inline-block grey no-decoration color-facebook-hover"><span class="ss-icon ss-social-circle ss-facebook transition-all"></span></a>
+        <a href="https://twitter.com/<%= Rails.application.secrets.twitter_username %>" target="_blank" class="inline-block grey no-decoration color-twitter-hover"><span class="ss-icon ss-social-circle ss-twitter transition-all"></span></a>
+        <a href="https://www.facebook.com/<%= Rails.application.secrets.facebook_username %>" target="_blank" class="inline-block grey no-decoration color-facebook-hover"><span class="ss-icon ss-social-circle ss-facebook transition-all"></span></a>
       </span>
       <span class="mobile-hide py1">
-        <a href="https://twitter.com/<%= CONFIG[:twitter_username] %>" target="_blank" class="inline-block grey no-decoration color-twitter-hover"><span class="ss-icon ss-social-circle ss-twitter transition-all"></span></a>
-        <a href="https://www.facebook.com/<%= CONFIG[:facebook_username] %>" target="_blank" class="inline-block grey no-decoration color-facebook-hover"><span class="ss-icon ss-social-circle ss-facebook transition-all"></span></a>
+        <a href="https://twitter.com/<%= Rails.application.secrets.twitter_username %>" target="_blank" class="inline-block grey no-decoration color-twitter-hover"><span class="ss-icon ss-social-circle ss-twitter transition-all"></span></a>
+        <a href="https://www.facebook.com/<%= Rails.application.secrets.facebook_username %>" target="_blank" class="inline-block grey no-decoration color-facebook-hover"><span class="ss-icon ss-social-circle ss-facebook transition-all"></span></a>
       </span>
     </div>
   </div>

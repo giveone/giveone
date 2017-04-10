@@ -12,7 +12,7 @@ module NonprofitsHelper
       html_options = (args[2] ||= {})
     end
 
-    text = ERB::Util.url_encode("I just found an amazing nonprofit #{nonprofit.twitter_or_name} on #{CONFIG[:twitter_username]}. Learn more: #{nonprofit_url(nonprofit)}")
+    text = ERB::Util.url_encode("I just found an amazing nonprofit #{nonprofit.twitter_or_name} on #{Rails.application.secrets.twitter_username}. Learn more: #{nonprofit_url(nonprofit)}")
     html_options[:href] = URI.escape("#{root_url}share?url=https://twitter.com/intent/tweet?text=#{text}")
     html_options[:rel] = 'nofollow'
 
@@ -34,14 +34,14 @@ module NonprofitsHelper
 
     url = ERB::Util.url_encode(nonprofit_url(nonprofit))
     title = ERB::Util.url_encode(nonprofit.name)
-    actions = "[{'link':'#{url}','name':'#{CONFIG[:name]}'}]"
+    actions = "[{'link':'#{url}','name':'#{Rails.application.secrets.name}'}]"
     html_options[:href] = "#{root_url}share?url=https://www.facebook.com/dialog/feed?"\
                           "display=popup"\
-                          "&app_id=#{FACEBOOK[:app_id]}"\
+                          "&app_id=#{Rails.application.secrets.facebook_app_id}"\
                           "&redirect_uri=#{root_url}"\
                           "&link=#{url}"\
-                          "&caption=#{title} on #{CONFIG[:name]}"\
-                          "&name=#{title} on #{CONFIG[:name]}"\
+                          "&caption=#{title} on #{Rails.application.secrets.name}"\
+                          "&name=#{title} on #{Rails.application.secrets.name}"\
                           "&actions=#{actions}"
     html_options[:rel] = 'nofollow'
 

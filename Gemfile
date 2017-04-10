@@ -22,7 +22,7 @@ gem 'ransack', '~> 1.3.0'
 gem 'redis-objects', '~> 0.5.3'
 gem 'rest-client', '~> 1.6.9'
 gem 'savon', '~> 2.5.1'
-gem 'stripe', '~> 1.22.0'
+gem 'stripe', '~> 1.58.0'
 gem 'unicorn'
 gem 'puma'
 gem 'intercom'
@@ -72,6 +72,7 @@ group :development do
   gem 'guard'
   gem 'guard-livereload', require: false
   gem 'guard-pow', require: false
+  gem "letter_opener"
 end
 
 group :development, :staging do

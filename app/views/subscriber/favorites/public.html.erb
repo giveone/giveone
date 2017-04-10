@@ -4,7 +4,7 @@
   else
     @page_title = "My Favorite Nonprofits"
   end
-  meta_tag "og:title", "#{@page_title} on #{CONFIG[:name]}"
+  meta_tag "og:title", "#{@page_title} on #{Rails.application.secrets.name}"
   meta_tag "og:url", subscriber_favorites_url(@subscriber)
 -%>
 

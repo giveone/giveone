@@ -9,7 +9,7 @@
 
           <p class="big mb4">
             <span class="big">
-              <%= CONFIG[:name] %> is a simple new way to discover and support amazing nonprofits. We feature 6 great organizations every 3 months, everyone automatically donates an amount of their choosing.
+              <%= Rails.application.secrets.name %> is a simple new way to discover and support amazing nonprofits. We feature 6 great organizations every 3 months, everyone automatically donates an amount of their choosing.
               <u class="pointer no-wrap js-hero-down">Learn more</u>.
             </span>
           </p>
@@ -129,7 +129,7 @@
         <%= image_tag "site/icon-nonprofit-too.svg", width: 100, class: "mb2" %>
         <h3>We’re a nonprofit too!</h3>
         <div class="pl3 pr3 tablet-portrait-extra-padding">
-          <p><%= CONFIG[:name] %> makes no money, in any way, from donations on this site. <%= CONFIG[:name] %> was built by a team of (almost entirely) volunteers.</p>
+          <p><%= Rails.application.secrets.name %> makes no money, in any way, from donations on this site. <%= Rails.application.secrets.name %> was built by a team of (almost entirely) volunteers.</p>
         </div>
       </div>
     </div>

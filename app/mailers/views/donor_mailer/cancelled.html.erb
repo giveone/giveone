@@ -4,4 +4,4 @@
 
 <p>If this was a mistake or you change your mind, just <%= link_to "click here", email_login_subscriber_url(@donor.subscriber, @donor.subscriber.auth_token), style: "color: #999" %>.</p>
 
-<p>&mdash;<%= CONFIG[:name] %></p>
+<p>&mdash;<%= Rails.application.secrets.name %></p>

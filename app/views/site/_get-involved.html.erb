@@ -1,6 +1,6 @@
 <section id="get-involved" class="section">
   <div class="clearfix centered">
-    <p class="big_type">Learning about amazing nonprofits isn’t easy.<br/><b class="green"><%= CONFIG[:name] %> makes is simple.</b></p>
+    <p class="big_type">Learning about amazing nonprofits isn’t easy.<br/><b class="green"><%= Rails.application.secrets.name %> makes is simple.</b></p>
     <div class="col col-6 pt2 pb2">
       <p><b>Get the email for free</b></p>
       <p class="mb2">Get our awesome tiny daily newsletter for free, no strings attached. The more awesome nonprofits you know about, the better. Knowledge is power! Signup in 10 seconds.</p>
@@ -18,7 +18,7 @@
 
     <% if controller.controller_name != "site" %>
       <div class="clear"></div>
-      <p class="pt4 centered">Want to learn more about <%= CONFIG[:name] %>? <%= link_to "Click Here", root_url %>.</p>
+      <p class="pt4 centered">Want to learn more about <%= Rails.application.secrets.name %>? <%= link_to "Click Here", root_url %>.</p>
     <% end %>
   </div>
 </section>

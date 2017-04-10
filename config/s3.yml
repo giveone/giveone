@@ -1,19 +1,19 @@
+development:
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  bucket: <%= ENV["PAPERCLIP_BUCKET"] %>
+
 test:
   access_key_id: "***"
   secret_access_key: "***"
   bucket: "your-s3-bucket-test"
 
-development:
-  access_key_id: "***"
-  secret_access_key: "***"
-  bucket: "your-s3-bucket-dev"
-
 staging:
-  access_key_id: "***"
-  secret_access_key: "***"
-  bucket: "your-s3-bucket-staging"
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  bucket: <%= ENV["PAPERCLIP_BUCKET"] %>
 
 production:
-  access_key_id: "***"
-  secret_access_key: "***"
-  bucket: "your-s3-bucket-production"
+  access_key_id: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  secret_access_key: <%= ENV["AWS_ACCESS_KEY_ID"] %>
+  bucket: <%= ENV["PAPERCLIP_BUCKET"] %>

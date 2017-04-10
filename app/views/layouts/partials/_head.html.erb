@@ -1,6 +1,6 @@
 <script src="//cdn.optimizely.com/js/2495470497.js"></script>
 <title>
-  <%= (@page_title ? "#{@page_title} — #{CONFIG[:name]}": CONFIG[:name]) %>
+  <%= (@page_title ? "#{@page_title} — #{Rails.application.secrets.name}": Rails.application.secrets.name) %>
 </title>
 <link href="/favicon.png" type="image/png" rel="icon" />
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -24,9 +24,7 @@
 
 <%= stylesheet_link_tag    "application", media: "all" %>
 <%= javascript_include_tag "application", async: !true %>
-<!-- <%= javascript_include_tag "donor_test",  async: !true unless Rails.env.production? %> -->
 <%= javascript_include_tag "admin", async: !true if current_user.try(:is_admin?) %>
-
 
 <% if @require_stripe_js %>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>

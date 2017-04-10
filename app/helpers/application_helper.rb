@@ -83,7 +83,7 @@ module ApplicationHelper
 
   def facebook_share_dialog_url(url: root_url, redirect: root_url)
     fb_params = {
-      app_id:       FACEBOOK[:app_id],
+      app_id:       Rails.application.secrets.facebook_app_id,
       display:      'popup',
       href:         url,
       redirect_uri: redirect

@@ -105,6 +105,7 @@ class Donation < ActiveRecord::Base
     # Make sure we're using the current active card.
     attach_donor_card
 
+
     raise DonationAlreadyCancelled.new if cancelled?
 
     add_scheduled_nonprofits
@@ -204,7 +205,7 @@ class Donation < ActiveRecord::Base
   end
 
   def calculate_amount
-    nonprofits.size * Donation.denomination
+    self.amount
   end
 
   def calculate_added_fee

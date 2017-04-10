@@ -19,7 +19,6 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-
 en:
   datetime:
     distance_in_words:
@@ -80,11 +79,11 @@ en:
   nonprofit:
     show:
       share:
-        twitter: "I just found %{nonprofit}, an amazing nonprofit on #{CONFIG[:twitter_username]}:"
+        twitter: "I just found %{nonprofit}, an amazing nonprofit on #{Rails.application.secrets.twitter_username}:"
 
   newsletter:
     subject:
-      first: "Welcome to #{CONFIG[:name]}. Today's nonprofit %{nonprofit}"
+      first: "Welcome to #{Rails.application.secrets.name}. Today's nonprofit %{nonprofit}"
       subsequent: "Today's nonprofit is %{nonprofit}"
     favorite:
       action: "Add to Favorites"
@@ -93,13 +92,13 @@ en:
         learn_more: "Learn more"
     share:
       facebook:
-        text: "%{donors} donors are giving to %{nonprofit} on #{CONFIG[:name]}"
+        text: "%{donors} donors are giving to %{nonprofit} on #{Rails.application.secrets.name}"
         action: "Share"
       twitter:
         action: "Tweet"
         text:
-          subscriber: "Have you heard about %{nonprofit}? Learn more about this amazing nonprofit on #{CONFIG[:twitter_username]}: %{nonprofit_url}"
-          donor: "Today %{donors} donors are giving to %{nonprofit} on #{CONFIG[:twitter_username]}. Join us in supporting great nonprofits like this one. #{CONFIG[:hostname]}"
+          subscriber: "Have you heard about %{nonprofit}? Learn more about this amazing nonprofit on #{Rails.application.secrets.twitter_username}: %{nonprofit_url}"
+          donor: "Today %{donors} donors are giving to %{nonprofit} on #{Rails.application.secrets.twitter_username}. Join us in supporting great nonprofits like this one. #{Rails.application.secrets.hostname}"
 
   favoriting:
     add:
@@ -124,6 +123,6 @@ en:
           disclaimer: "(Don’t worry, none of your private information will be made public)"
         twitter:
           action: "Share on Twitter"
-          text: "Check out my favorite nonprofits on #{CONFIG[:twitter_username]}: %{url}"
+          text: "Check out my favorite nonprofits on #{Rails.application.secrets.twitter_username}: %{url}"
         facebook:
           action: "Share on Facebook"

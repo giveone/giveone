@@ -15,7 +15,7 @@
 
     <p>Thanks for becoming a donor!</p>
 
-    <p><%= CONFIG[:name] %> is fueled by the support of its community, so tell the world:</p>
+    <p><%= Rails.application.secrets.name %> is fueled by the support of its community, so tell the world:</p>
 
     <div class="border-left-3px-green p2 mb4">
       <p class="quote no-margin">I just joined <%= donor_count %> donors giving a small amount a day to amazing nonprofits!</p>
@@ -30,7 +30,7 @@
         <% end %>
       </li>
       <li class="inline-block ml1 mobile-no-margin mobile-block">
-        <%= link_to(share_url(url: "http://www.facebook.com/dialog/feed?display=popup&redirect_uri=#{URI.escape(root_url)}&app_id=#{FACEBOOK[:app_id]}&link=#{URI.escape(root_url)}"), target: "_blank",class: "facebook button-solid button-big mobile-block button-facebook centered") do %>
+        <%= link_to(share_url(url: "http://www.facebook.com/dialog/feed?display=popup&redirect_uri=#{URI.escape(root_url)}&app_id=#{Rails.application.secrets.facebook_app_id}&link=#{URI.escape(root_url)}"), target: "_blank",class: "facebook button-solid button-big mobile-block button-facebook centered") do %>
           <span class="ss-icon ss-social ss-facebook"></span>
           Share
         <% end %>

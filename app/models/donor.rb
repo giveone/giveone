@@ -1,5 +1,5 @@
 class Donor < ActiveRecord::Base
-  belongs_to :subscriber, touch: true # (adding the 'validate' option causes a 2x :guid uniq validation in donor_test???) , validate: true # inseparable from the donor -- don't delete or detach
+  belongs_to :subscriber, touch: true
   has_many   :donations
 
   has_many   :cards, class_name: 'DonorCard'

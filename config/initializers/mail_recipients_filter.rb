@@ -1,6 +1,6 @@
 # Allowed emails for transactional and batch delivery
 # Special emails (don't remove):
-#   %recipient% — for Mailgun batch delivery
+#   %recipient% — for Mandrill batch delivery
 #   @emailtests.com — for Litmus testing
 
 ALLOWED_EMAILS = %w(

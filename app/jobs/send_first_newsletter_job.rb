@@ -8,7 +8,7 @@ class SendFirstNewsletterJob < GiveOneJob.new(:subscriber_id)
 
     type = subscriber.active_donor? ? "donor" : "subscriber"
 
-    NewsletterMailer.batched_daily(type, newsletter.id, subscriber.to_mailgun_recipient, is_first: true)
+    NewsletterMailer.batched_daily(type, newsletter.id, subscriber.to_mandrill_recipient, is_first: true)
 
     Email.create(to: subscriber.email, newsletter: newsletter, subscriber: subscriber, sent_at: Time.now, mailer: "NewsletterMailer", mailer_method: "daily_#{type}")
   rescue MailRecipientsFilter::NoRemainingRecipients => e
