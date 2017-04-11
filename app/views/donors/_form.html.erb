@@ -1,3 +1,8 @@
+<form class='col col-12 flex py1 flex-column'>
+  <input class='email-enter h5 my1 py1 border bg-notwhite sofiabold velure' type="text" name="email" placeholder="Your email address">
+  <input class='email-next h6 my1 mb4 py2 sofiabold white bg-velure' type="submit" value="Next">
+</form>
+
 <p id="existing_donor_message" style="display: none;">
   <span class="highlight"></span>&nbsp;<%= link_to "click here", "#authenticate-overlay", class: "js-modal-overlay-open inline-block mr1 grey" -%>
 </p>
@@ -14,5 +19,7 @@
       <a class="tooltip tooltop-offset tablet-hide" title="<div style='width: 300px'>Stripe charges a processing fee. Adding <%= "$%0.2f" % stripe_fee_amount %> per month to your donation allows a full $30 to go to nonprofits.</div>"><span class="ss-icon ss-help"></span></a>
     <% end %>
   </div>
-  <%= form_builder.submit "Donate!", class: "button-solid button-green button-big full-width", tabindex: 13 %>
+  <%= form_builder.submit "Donate!", class: "h6 my1 mb4 py2 sofiabold white bg-velure", tabindex: 13 %>
 </section>
+
+

@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   get  'faq',              to: 'site#faq'
   get  'subscribe',        to: 'subscribers#new',    as: :subscribe
   get  'donate',           to: 'donors#info',        as: :donate
+  get  'donate/:id',       to: 'donors#new',         as: :new_donation
   get  'account',          to: 'donors#new',         as: :account
   post 'donate',           to: 'donors#create'
   get  'legal',            to: 'site#legal'
