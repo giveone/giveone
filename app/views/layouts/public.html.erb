@@ -14,6 +14,9 @@
     <% end %>
   </head>
   <body data-theme="<%= (@public_theme || 'blue') %>">
+    <% if flash[:notice].present? %><p class="flash"><%= flash[:notice] %></p><% end -%>
+    <% if flash[:alert].present? %><p class="alert"><%= flash[:alert] %></p> <% end -%>
+
     <% unless @hide_header %>
       <%= render "layouts/public/partials/header" %>
       <%= render "layouts/public/partials/mobile_header" %>

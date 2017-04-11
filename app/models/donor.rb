@@ -1,4 +1,12 @@
 class Donor < ActiveRecord::Base
+
+  belongs_to :user
+  NEW_USER_FIELDS = [
+    :password,
+    :password_confirmation
+  ]
+  attr_accessor *NEW_USER_FIELDS
+
   belongs_to :subscriber, touch: true
   has_many   :donations
 
@@ -13,6 +21,7 @@ class Donor < ActiveRecord::Base
   accepts_nested_attributes_for :card
   accepts_nested_attributes_for :subscriber
 
+  validates :user, uniqueness: true, presence: true
   validates :subscriber, uniqueness: true, presence: true
   validates :guid, uniqueness: true, if: :guid_changed?
 

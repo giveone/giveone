@@ -19,6 +19,10 @@ class SiteController < ApplicationController
     @public_theme = "orange"
   end
 
+  def account
+    @current_user = current_user
+  end
+
   def donate
   end
 

@@ -7,7 +7,7 @@
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %>&nbsp;&nbsp;&nbsp;
+  <%= link_to "Forgot your password?", new_password_path(resource_name), class: "MuseoSans300" %>&nbsp;&nbsp;&nbsp;
 <% end -%>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>

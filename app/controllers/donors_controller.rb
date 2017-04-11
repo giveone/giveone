@@ -14,8 +14,8 @@ class DonorsController < ApplicationController
   end
 
   def new
+    redirect_to account_path and return if current_user.present?
     @require_stripe_js = true
-    @hide_header = true
     @hide_footer = true
 
     if params[:email].present?
@@ -54,6 +54,13 @@ class DonorsController < ApplicationController
     @donor.card.stripe_token = params[:stripeToken] if params["stripeToken"].present?
 
     Donor.transaction do
+      @new_user = User.create!({
+        email: @donor.card.email,
+        name: @donor.card.name,
+        password: donor_params[:password],
+      })
+      sign_in @new_user
+      @donor.user = @new_user
       @donor.save!
       # Have the first donation execute immediately (instead of the 15-minute
       # cron interval) so it seems more immediate.
@@ -62,7 +69,8 @@ class DonorsController < ApplicationController
       session[:thanks] = @donor.subscriber.first_name
       redirect_to thanks_donors_url
     end
- rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
+    flash[:notice] = e.message
     render :new, layout: "public"
   end
 
@@ -201,7 +209,7 @@ class DonorsController < ApplicationController
   private
   def donor_params
     params.require(:donor).permit(
-      :add_fee, :public_name, {card_attributes: [:name, :email, :amount]}
+      :add_fee, :password, :public_name, {card_attributes: [:name, :email, :amount]}
     )
   end
 
