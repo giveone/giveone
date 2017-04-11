@@ -58,7 +58,7 @@
             <img class='faq-img fit absolute mx4 pt4 xs-hide sm-hide left-0' src="<%= image_path('public/Homeless.png') %>" />
             <p class='faq-subheading sofiabold h4 dgray'>Build a connection</p>
             <p class='faq-text h5'>
-              Give One is about getting involved on a recurring basis. Our goal is to foster intimate connections between neighbors of all walks, beliefs, ages, and income.
+              <%= Rails.application.secrets.name %> is about getting involved on a recurring basis. Our goal is to foster intimate connections between neighbors of all walks, beliefs, ages, and income.
             </p>
             <p class='faq-text h5'>
               A neighborhood is built on diversity and helping each other.
@@ -124,13 +124,13 @@
             <p class='sub-heading sofiabold dgray'>The fine print</p>
             <p class='faq-subheading sofiabold dgray h4'>How we operate</p>
             <p class='faq-text h5'>
-              Give One is a non-profit federal tax-exempt organization under section 501(c)(3) of the Internal Revenue Code, EIN 81-4924613, so all of your donations are tax deductible.
+              <%= Rails.application.secrets.name %> is a non-profit federal tax-exempt organization under section 501(c)(3) of the Internal Revenue Code, EIN 81-4924613, so all of your donations are tax deductible.
             </p>
             <p class='faq-text h5'>
-              While volunteering doesn’t cost any money, some activations might require tools and supplies, most of which Give One aims to provide. Interested in donating supplies? Email us at <a class="accent-color text-decoration-none" href="mailto:hello@give-one.org">hello@give-one.org↳</a>.
+              While volunteering doesn’t cost any money, some activations might require tools and supplies, most of which <%= Rails.application.secrets.name %> aims to provide. Interested in donating supplies? Email us at <a class="accent-color text-decoration-none" href="mailto:hello@<%= Rails.application.secrets.host %>">hello@<%= Rails.application.secrets.host %>↳</a>.
             </p>
             <p class='faq-text h5'>
-              We’re run by a team of volunteers, and all of our administrative costs are supported by private philanthropy which enables us to ensure every dollar raised goes directly to supporting the causes you care about most. Interested in supporting the platform? You can reach us at <a class="accent-color text-decoration-none" href="mailto:hello@give-one.org">hello@give-one.org↳</a>. We’d love to continue the conversation!
+              We’re run by a team of volunteers, and all of our administrative costs are supported by private philanthropy which enables us to ensure every dollar raised goes directly to supporting the causes you care about most. Interested in supporting the platform? You can reach us at <a class="accent-color text-decoration-none" href="mailto:hello@<%= Rails.application.secrets.host %>">hello@<%= Rails.application.secrets.host %>↳</a>. We’d love to continue the conversation!
             </p>
           </div>
           <div class='faq-text-box'>
@@ -139,7 +139,7 @@
               Our goal is to connect willing and able volunteers directly with credible community organizations.
             </p>
             <p class='faq-text h5'>
-              Give One is not liable for any personal damages, injury, or lost property during participant’s activation. Before an activation, each volunteer is required to fill out a waiver.
+              <%= Rails.application.secrets.name %> is not liable for any personal damages, injury, or lost property during participant’s activation. Before an activation, each volunteer is required to fill out a waiver.
             </p>
             <p class='faq-text h5'>
               While we help coordinate the activations, you’ll be dealing directly with the organizations who may have their own requirements and paperwork for you to fill out.
