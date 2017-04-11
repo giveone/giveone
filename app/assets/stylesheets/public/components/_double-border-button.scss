@@ -1,0 +1,50 @@
+$dbb-hover-speed: 100ms;
+.double-border-button{
+  cursor: pointer;
+  width: 166px;
+  height: 72px;
+  position: relative;
+  border: 2px solid color('dgray');
+  background: white;
+  transition: $dbb-hover-speed ease-in-out;
+  top: 0;
+  left: 0;
+
+  &:after {
+    transition: $dbb-hover-speed ease-in-out;
+    content: '';
+    position: absolute;
+    right: -6px;
+    bottom: -6px;
+    top: 2px;
+    left: 2px;
+    border: 2px solid color('dgray');
+    z-index: -1;
+  }
+
+  &:hover{
+    top:-4px;
+    left:-4px;
+    color: color('nectarine');
+    &:after {
+      background-color: white;
+      right: -10px;
+      bottom: -10px;
+      top: 6px;
+      left: 6px;
+    }
+  }
+
+  &.active{
+    top: 0px;
+    left: 0px;
+    color: white;
+    &:after {
+      background-color: white;
+      right: -6px;
+      bottom: -6px;
+      top: 2px;
+      left: 2px;
+    }
+  }
+}

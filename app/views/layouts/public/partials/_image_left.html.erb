@@ -1,0 +1,12 @@
+<div class='col col-12 py4 bg-money min-panel-height'>
+  <div class='column-img-left clearfix py4 px2 flex items-center mx-auto max-width-4'>
+    <div class='img-left col md-col-6 sm-col-12 py2'>
+      <img class='m0 fit block' src="<%= image_path locals[:img] %>"/>
+    </div>
+    <div class='col md-col-6 sm-col-12 py2 panel-text sofiasemibold dgray'>
+      <p class='sofiabold h2 pb3 dgray my0'><%= locals[:headline] %><span class='algae'><%= locals[:headline_accent] %></span></p>
+      <p class='MuseoSans300 h5 pb3 lgray'><%= locals[:copy] %></p>
+      <a href='/donate' class='donate-volunteer-button text-decoration-none nowrap p2 mx-auto sofiabold bg-algae h6 white'><%= locals[:cta] %></a>
+    </div>
+  </div>
+</div>

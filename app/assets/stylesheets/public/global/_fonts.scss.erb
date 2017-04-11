@@ -1,0 +1,170 @@
+@font-face {
+  font-family: 'Sofia Black';
+  src: url("<%= asset_path('public/SofiaProBlack.otf') %>") format('otf'),
+       url("<%= asset_path('public/sofiaproblack-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/sofiaproblack-webfont.woff') %>") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sofia Bold';
+  src: url("<%= asset_path('public/SofiaProBold.otf') %>") format('otf'),
+       url("<%= asset_path('public/sofiaprobold-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/sofiaprobold-webfont.woff') %>") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sofia XLight';
+  src: url("<%= asset_path('public/SofiaProExtraLight.otf') %>") format('otf'),
+       url("<%= asset_path('public/sofiaproextralight-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/sofiaproextralight-webfont.woff') %>") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sofia Light';
+  src: url("<%= asset_path('public/SofiaProLight.otf') %>") format('otf'),
+       url("<%= asset_path('public/sofiaprolight-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/sofiaprolight-webfont.woff') %>") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sofia Medium';
+  src: url("<%= asset_path('public/SofiaProMedium.otf') %>") format('otf'),
+       url("<%= asset_path('public/sofiapromedium-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/sofiapromedium-webfont.woff') %>") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sofia Regular';
+  src: url("<%= asset_path('public/SofiaProRegular.otf') %>") format('otf'),
+       url("<%= asset_path('public/sofiaproregular-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/sofiaproregular-webfont.woff') %>") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sofia SemiBold';
+  src: url("<%= asset_path('public/SofiaProSemiBold.otf') %>") format('otf'),
+       url("<%= asset_path('public/sofiaproregular-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/sofiaproregular-webfont.woff') %>") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sofia UltraLight';
+  src: url("<%= asset_path('public/SofiaProUltraLight.otf') %>") format('otf'),
+       url("<%= asset_path('public/sofiaproultralight-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/sofiaproultralight-webfont.woff') %>") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+//
+
+@font-face {
+  font-family: 'MuseoSans';
+  src: url("<%= asset_path('public/museosans_300-webfont.otf') %>") format('otf'),
+       url("<%= asset_path('public/museosans_300-webfont.woff2') %>") format('woff2'),
+       url("<%= asset_path('public/museosans_300-webfont.woff') %>") format('woff');
+  font-weight: 100;
+  font-style: normal;
+}
+
+//
+.MuseoSans300 {
+  font-family: "MuseoSans", sans-serif;
+  font-weight: 300;
+}
+
+.sofiablack{
+  font-family: "Sofia Black", sans-serif;
+}
+.sofiabold{
+  font-family: "Sofia Bold", sans-serif;
+}
+.sofiaxlight{
+  font-family: "Sofia XLight", sans-serif;
+}
+.sofialight{
+  font-family: "Sofia Light", sans-serif;
+}
+.sofiamedium{
+  font-family: "Sofia Medium", sans-serif;
+}
+.sofiaregular{
+  font-family: "Sofia Regular", sans-serif;
+}
+.sofiasemibold{
+  font-family: "Sofia SemiBold", sans-serif;
+}
+.sofiaultralight{
+  font-family: "Sofia UltraLight", sans-serif;
+}
+$h1:80px;
+$h1-mobile:40px;
+$h1-line-height-mobile:48px;
+$h2:64px;
+$h2-line-height:72px;
+$h3-mobile: 24px;
+$h3: 48px;
+$h4: 32px;
+$h5:20px;
+$h5-mobile:18px;
+$h6:16px;
+h1, .h1{
+  font-size: $h1-mobile;
+  line-height: $h1-line-height-mobile;
+  @media #{$small-break} {
+    font-size: $h1;
+    line-height: $h1;
+  }
+}
+h2, .h2{
+  font-size: $h4;
+  line-height: $h1-mobile;
+  @media #{$small-break} {
+    font-size: $h2;
+    line-height: $h2-line-height;
+  }
+}
+h3, .h3{
+  font-size: $h3-mobile;
+  @media #{$small-break} {
+    font-size: $h3;
+  }
+}
+h4, .h4{
+  font-size: $h5;
+  line-height: $h4;
+  @media #{$small-break} {
+    font-size: $h4;
+    line-height: $h1-mobile;
+  }
+}
+h5,.h5{
+  font-size: $h5-mobile;
+  line-height: $h4;
+  @media #{$small-break} {
+    font-size: $h5;
+    line-height: $h4;
+  }
+}
+h6, .h6{
+  font-size: $h6;
+  line-height: $h3-mobile;
+}
+.xsmall-font{
+  font-size:14px;
+}
+.sub-heading{
+  font-size: $h1-mobile;
+  line-height: $h1-line-height-mobile;
+  @media #{$small-break} {
+    font-size: 56px;
+    line-height: $h2;
+  }
+}

@@ -1,142 +1,71 @@
-<%= render "nonprofits/newsletter_preview" %>
+<div class='clearfix'>
 
-<section id="hero" class="hero-home bg-green table py4 relative clip">
-  <div class="table-cell full-width">
-    <div class="container py4 relative centered">
-      <div class="col-pre-1 col-post-1 pl2 pr2">
-        <div class="pl8 pr8 mobile-no-padding">
-          <%= image_tag "logo.png", width: "140", class: "block mb4 margin-auto mobile-hide" %>
+  <div class='col col-12 py4 border-first-panel bc-white bg-svelte min-panel-height'>
+    <div class='clearfix py4 px2 flex items-center mx-auto max-width-3'>
+      <div class='col col-12 py4 flex flex-column center'>
+        <p class='mx-auto h1 my0 sofiabold pb3 dgray'>Give One makes giving back to your community<span class='velure'> easy.</span></p>
+        <p class='mx-auto h5 MuseoSans300 px2 pb3 lgray'>Connect with the charities and organizations you want to support - online with your wallet, and on the ground with your time.</p>
+        <a href='/account'class="pulsate donate-volunteer-button text-decoration-none p2 nowrap mx-auto sofiabold bg-velure h6 white">Give Now</a>
+      </div>
+    </div>
+  </div>
 
-          <p class="big mb4">
-            <span class="big">
-              <%= Rails.application.secrets.name %> is a simple new way to discover and support amazing nonprofits. We feature 6 great organizations every 3 months, everyone automatically donates an amount of their choosing.
-              <u class="pointer no-wrap js-hero-down">Learn more</u>.
-            </span>
+  <%= render "layouts/public/partials/image_left", locals: {
+    img: "public/Hero-Give.png",
+    headline: "Donate a small amount to causes ",
+    headline_accent: "everyday.",
+    copy: "Donate a small amount to causes everyday. Support and subscribe to the causes you believe in by making a small donation each day.",
+    cta: "Donate now!"
+  } %>
+
+  <%= render "layouts/public/partials/image_right", locals: {
+    img: "public/Volunteer.png",
+    headline: "Go make a difference by ",
+    headline_accent: "volunteering.",
+    copy: "Join the NYC beta initiative of volunteering opportunities with local, credible community organizations.",
+    cta: "Volunteer now!"
+  } %>
+
+  <div class='faq-panel col col-12 pb4 min-panel-height'>
+    <div class='clearfix pb4 px2 mx-auto max-width-4'>
+      <div class='double-border-box-faq biggest-box index-page-box p1 sofiasemibold'>
+        <p class='box-inner-text sofiabold h4 dgray'>A platform for activisim</p>
+        <p class='box-inner-text sofiabold h2 velure'>Give One is about getting involved in your community one day, and one cause at a time.</p>
+      </div>
+      <div class='faq-container'>
+        <div class='faq-text-box'>
+          <p class='faq-subheading sofiabold h4 dgray'>One is greater than one million</p>
+          <p class='faq-text h5 lgray pt1'>
+            "In the fundraising business, there’s an old axiom that 'one is greater than one million.' This isn’t bad math; it is a reminder that when it comes to people in need, one million is a statistic, while one is a human story.”
+            <br/><span class='velure'>- Arthur C. Brooks</span>
           </p>
-
-          <div class="mb4">
-            <%= link_to "Donate with #{donor_count} others", donate_path(ref: default_ref_tag), class: "button-solid button-green button-big mobile-block donate-button" %>
-
-            <span class="mobile-hide pl1 pr1">or</span>
-            <span class="mobile-show">&nbsp;</span>
-
-            <div class="small pt3 grey">
-              100% US tax-deductible
-            </div>
-          </div>
+          <p class='faq-text h5 lgray pt1'>
+            Towards the end of last year, a group of friends from different walks of life came together over a shared sense of wanting to give back.
+          </p>
+          <p class='faq-text h5 lgray pt1'>
+            Consistent with Brooks’ idea, we wanted to focus on helping the individuals who make up our own community; however, we found it challenging to identify, connect to, and participate with the organizations around us in a meaningful and reoccurring way.
+          </p>
         </div>
-      </div>
-    </div>
-    <%= image_tag "hero.png", width: "1200px", class: "js-hero-image  mobile-hide relative", :'data-0' => "top: 0px;", :'data-600' => "top: -40px;" %>
-  </div>
-</section>
-
-<section id="support" class="js-learn-more-scroll-to table bg-grey pt8">
-  <div class="table-cell pb8">
-    <div class="py4 px6 white">
-      <h1>Support</h1>
-      <p class="big">Every day, we all give a small amount of our choosing to one of the featured nonprofits. No daily actions &mdash; it's automatic.</p>
-      <p class="big">Our (tiny) daily email will tell you about the nonprofit we’re all supporting together that day.</p>
-      <a href="#email-preview" class="js-modal-overlay-open bold white">Preview today's email</a>
-    </div>
-  </div>
-  <div class="table-cell align-bottom mobile-hide">
-    <div class="iphone relative clip">
-      <%= image_tag "iphone-cropped.png", class: "block margin-auto js-iphone-image", width: "640" %>
-    </div>
-  </div>
-</section>
-
-<section id="selection" class="bg-green table">
-  <div class="table-cell calendar-bg">
-    <div class="hide tablet-block">
-      <div class="mobile-table full-height bg-black-40 p6">
-        <div class="mobile-table-cell pt8 pb8">
-          <h1 class="white">Amazing nonprofits</h1>
-          <p class="big mb0">Our team hand picks each nonprofit we feature. We select innovative, high impact organizations that are well-rated by trusted, publicly available resources like Guidestar and Charity Navigator.</p>
-          <p class="big mb0">These nonprofits are doing great work all over the world. We think you’ll love learning about them.</p>
-          <%= link_to calendar_path(ref: default_ref_tag), class: "bold white no-decoration" do %>
-            <span class="ss-icon ss-calendar"></span>
-            <u>See our calendar</u>
-          <% end %>
+        <div class='faq-text-box'>
+          <p class='faq-subheading sofiabold h4 dgray'>Team Give One</p>
+          <p class='faq-text h5 lgray pt1'>
+            Gin Lane, Bond Street Hospitality, The Setting, Lola New York, Samantha Orley, AGW Group, Dmitri Vassilev, Sanctuary Computer & <span class='velure'>You.</span>
+          </p>
+        </div>
+        <div class='faq-text-box'>
+          <p class='faq-subheading sofiabold h4 dgray'>How we operate</p>
+          <p class='faq-text h5 lgray pt1'>
+            Give One is a non-profit federal tax-exempt organization under section 501(c)(3) of the Internal Revenue Code, EIN 81-4924613, so all of your donations are tax deductible.
+          </p>
+          <p class='faq-text h5 lgray pt1'>
+            The money you donate goes directly to the selected charities. We don’t take a penny.
+          </p>
+          <p class='faq-text h5 lgray pt1'>
+            We’re run by a team of volunteers, and all of our administrative costs are supported by private philanthropy which enables us to ensure every dollar raised goes directly to supporting the causes you care about most. Interested in supporting the platform? You can reach us at <span class='velure'>hello@give-one.org↳.</span> We’d love to continue the conversation!
+          </p>
         </div>
       </div>
     </div>
   </div>
-  <div class="table-cell tablet-hide p6">
-    <div class="pt8 pb8">
-      <h1>Amazing nonprofits</h1>
-      <p class="big mb0">Our team hand picks each nonprofit we feature. We select innovative, high impact organizations that are well-rated by trusted, publicly available resources like Guidestar and Charity Navigator.</p>
-      <p class="big mb0">These nonprofits are doing great work all over the world. We think you’ll love learning about them.</p>
-      <%= link_to calendar_path(ref: default_ref_tag), class: "bold no-decoration" do %>
-        <span class="ss-icon ss-calendar"></span>
-        <u>See our calendar</u>
-      <% end %>
-    </div>
-  </div>
-</section>
 
-<section class="table bg-white js-add-dropshadow">
-  <div class="table-cell p6">
-    <div class="pt8 pb8">
-      <h1>Discover</h1>
-      <p class="big">
-        <%= link_to "Anyone can get our daily emails for free!", "#subscribe-overlay", class: "js-modal-overlay-open" %>
-        Why? They can be a gateway for all of us to learn more about great nonprofits, inspiring us to support and engage with these organizations further.
-      </p>
-    </div>
-  </div>
-  <div class="table-cell bg-black mobile-hide">
-    <div class="mobile-table full-height">
-      <% @nonprofits.in_groups_of(4, false).each_with_index do |nonprofit_row, index| %>
-        <div class="mobile-table-row">
-          <% nonprofit_row.each do |nonprofit| %>
-            <div class="mobile-table-cell bg-cover bg-center opacity-50" style="height: 170px; background-image: url(<%= nonprofit.photo.url(:medium)%>)">&nbsp;</div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</section>
-
-<section id="power-of-the-masses" class="bg-green" data-200-top-top="background-color: rgb(102,102,102);" data-300-top-bottom="background-color: rgb(79,187,126);">
-  <div class="container centered pl2 pr2 pt8 pb8">
-    <div class="col-center col-10 tablet-full-width mobile-no-padding">
-      <div class="pt8 pb8">
-        <h2 class="white no-margin">A small amount a day can really help.</h2>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="pt8 pb4 centered bg-green">
-  <div class="container p2">
-    <div class="row">
-      <div class="tablet-col tablet-col-4 mb4" data-650-top-top="opacity: 0;" data-650-top-bottom="opacity: 1;">
-        <%= image_tag "site/icon-30-days.svg", width: 100, class: "mb2" %>
-        <h3>$### monthly, US tax-deductible.</h3>
-        <div class="pl2 pr2 tablet-portrait-extra-padding">
-          <p>Donors are charged $### every 30 days. We make it easy to cancel, and all donations are 100% US tax-deductible.</p>
-        </div>
-      </div>
-      <div class="tablet-col tablet-col-4 mb4" data-600-top-top="opacity: 0;" data-600-top-bottom="opacity: 1;">
-        <h3>Anonymously processed.</h3>
-        <div class="pl3 pr3 tablet-portrait-extra-padding">
-          <p>To spare your inbox, your email isn’t shared with nonprofits. You can always sign up for more info on any nonprofit’s website.</p>
-        </div>
-      </div>
-      <div class="tablet-col tablet-col-4 mb4" data-550-top-top="opacity: 0;" data-550-top-bottom="opacity: 1;">
-        <%= image_tag "site/icon-nonprofit-too.svg", width: 100, class: "mb2" %>
-        <h3>We’re a nonprofit too!</h3>
-        <div class="pl3 pr3 tablet-portrait-extra-padding">
-          <p><%= Rails.application.secrets.name %> makes no money, in any way, from donations on this site. <%= Rails.application.secrets.name %> was built by a team of (almost entirely) volunteers.</p>
-        </div>
-      </div>
-    </div>
-    <div class="pt4 pb2">
-      <%= link_to "Become a donor!", donate_path(ref: default_ref_tag), class: "button-solid button-green button-big mobile-block mb1" %>
-      <span class="inline-block pl2 pr2 mobile-hide">or</span>
-      <%= link_to "Learn more", faq_path(ref: default_ref_tag), class: "button-outline button-grey button-big mobile-block mb1" %>
-    </div>
-  </div>
-</section>
+</div>

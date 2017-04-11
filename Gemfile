@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.10'
 
 gem 'aws-sdk', '~> 1.14.1'
 gem 'area', '~> 0.10.0'

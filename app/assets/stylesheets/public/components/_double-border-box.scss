@@ -1,0 +1,31 @@
+.double-border-box{
+  position: relative;
+  border: 2px solid color('dgray');
+  background-color: white;
+  .box-inner-text{
+    padding: 0rem 2rem 0rem 1rem;
+    margin: 0rem;
+    @media #{$small-break} {
+      padding: 1rem 6rem 0rem 2rem;
+    }
+    @media #{$medium-break} {
+      padding: 1rem 12rem 0rem 4rem;
+    }
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: -8px;
+    bottom: -8px;
+    background: white;
+    border: 2px solid color('dgray');
+    z-index: -1;
+  }
+  &.active{
+    &:before {
+      background: white;
+    }
+  }
+}

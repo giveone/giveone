@@ -1,0 +1,12 @@
+.donate-card {
+  .nonprofit-name {
+    @media #{$small-break} {
+      font-size: 56px;
+    }
+  }
+  .description {
+    @media #{$small-break} {
+      font-size: 18px;
+    }
+  }
+}

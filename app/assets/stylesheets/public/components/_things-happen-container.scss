@@ -1,0 +1,12 @@
+.things-happen-container{
+  .things-happen-arrow-mobile{
+     transform: scaleX(-1);
+     filter: FlipH;
+  }
+  .things-happen-text{
+    padding:0rem;
+    @media #{$small-break} {
+      padding:0rem 2rem 0rem 2rem;
+    }
+  }
+}
