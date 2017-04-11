@@ -8,7 +8,7 @@
     <div class='contact-us mt2 py4'>
       <h6 class='sofiasemibold dgray pb3 mb2'>Contact us</h5>
       <div class='flex'>
-        <a class='MuseoSans300 text-decoration-none accent-color pr1' target="_blank" href="mailto:hello@give-one.org"><h6>hello@give-one.org</h6></a>
+        <a class='MuseoSans300 text-decoration-none accent-color pr1' target="_blank" href="mailto:hello@<%= Rails.application.secrets[:host] %>"><h6>hello@<%= Rails.application.secrets[:host] %></h6></a>
         <p class='arrow accent-color'>↳</p>
       </div>
     </div>
@@ -16,15 +16,15 @@
       <h6 class='sofiasemibold dgray pb3 mb2'>Follow us</h5>
       <div class='accent-color flex flex-column justify-between'>
         <div class='flex justify-between'>
-          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://instagram.com/giveone"><h6>Instagram</h6></a>
+          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://instagram.com/<%= Rails.application.secrets[:instagram_username] %>"><h6>Instagram</h6></a>
           <p class='arrow'>↳</p>
         </div>
         <div class='flex justify-between'>
-          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://twitter.com/giveoneorg"><h6>Twitter</h6></a>
+          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://twitter.com/<%= Rails.application.secrets[:twitter_username] %>"><h6>Twitter</h6></a>
           <p class='arrow'>↳</p>
         </div>
         <div class='flex justify-between'>
-          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://facebook.com/giveoneorg"><h6>Facebook</h6></a>
+          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://facebook.com/<%= Rails.application.secrets[:facebook_username] %>"><h6>Facebook</h6></a>
           <p class='arrow'>↳</p>
         </div>
       </div>
