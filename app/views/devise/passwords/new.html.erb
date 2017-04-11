@@ -10,7 +10,7 @@
         </p>
         <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }, :class => "col col-12 flex py2 flex-column") do |f| %>
           <%= f.email_field :email, :autofocus => true, :placeholder => "Your email address",  :class => "email-enter col col-12 h5 my1 py1 border bg-notwhite sofiabold dgray" %>
-          <input class='email-next h6 my1 py2 sofiabold white bg-velure full-width' type="submit" value="Send reset link">
+          <%= f.submit "Send reset link", class: 'email-next h6 my1 py2 sofiabold white bg-velure full-width' %>
         <% end %>
         <p class='h6 sofiasemibold pb3 lgray'>
           <a class='accent-color' href="/donate">No account? Donate here↳</a>
