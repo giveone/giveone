@@ -1,0 +1,33 @@
+<div class='volunteer-cards double-border-box sofiasemibold panel-text bg-accent-color m2 dgray'>
+  <img class='fit' src='http://placehold.it/800x300'/>
+  <div class='volunteer-card-text my2 mr2 px2'>
+    <p class='accent-color sofiasemibold h6 mt1'><%= activation.category.name %></p>
+    <p class='volunteer-card-title sofiabold h4 dgray max-width-1 mr4 pr3 mb1'><%= activation.name %></p>
+    <p class='sofiaxlight h6 mb2 dgray'>Brought to you by <span class='sofiasemibold accent-color'><%= activation.sponsor %></span></p>
+    <p class='sofiasemibold h5 my1 dgray'><%= activation.description %></p>
+    <a class='text-decoration-none' href="<%= activation.url %>" target='_blank'>
+      <div class='flex pb3 mb1'>
+        <p class='lets-go sofiabold pr1 h6 accent-color'>LET’S GO</p>
+        <img class='fit' src="<%= image_path('public/Carat.svg') %>" />
+      </div>
+    </a>
+    <div class='volunteer-card-info-box-gray bg-notwhite mt2 py3 px3 flex flex-wrap justify-between'>
+      <div class='flex col col-6 py1'>
+        <img class='fit px1' src="<%= image_path('public/People.svg') %>" />
+        <p class='MuseoSans300 h6 my1 dgray'><%= activation.spots_available %> spots available</p>
+      </div>
+      <div class='flex col col-6 py1'>
+        <img class='fit px1' src="<%= image_path('public/Time.svg') %>" />
+        <p class='MuseoSans300 h6 my1 dgray'><%= activation.time_range %></p>
+      </div>
+      <div class='flex col col-6 py1'>
+        <img class='fit px1' src="<%= image_path('public/Date.svg') %>" />
+        <p class='MuseoSans300 h6 my1 dgray'><%= activation.happening_on %></p>
+      </div>
+      <div class='flex col col-6 py1'>
+        <img class='fit px1' src="<%= image_path('public/Location.svg') %>" />
+        <p class='MuseoSans300 h6 my1 dgray'><%= activation.where %></p>
+      </div>
+    </div>
+  </div>
+</div>

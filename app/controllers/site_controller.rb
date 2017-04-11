@@ -1,6 +1,6 @@
 class SiteController < ApplicationController
-
-  before_filter :authenticate_user!, except: [:index]
+  layout "public"
+  before_filter :authenticate_user!, except: [:index, :volunteer]
 
   def index
     #TODO: Hugh - Scrub this controller - none of these
@@ -19,7 +19,12 @@ class SiteController < ApplicationController
     #  @todays_nonprofit = Nonprofit.is_public.for_next_possible_day.first || Nonprofit.new(name: "No Nonprofit for Today", blurb: "n/a", description: "n/a", newsletter: Newsletter.new)
     #end
     #@subscriber = Subscriber.new
-    render :index, layout: "public"
+  end
+
+  def volunteer
+    @categories   = Category.all
+    @activations  = Activation.all
+    @public_theme = "orange"
   end
 
   def donate

@@ -15,7 +15,7 @@
     </script>
   <% end %>
 </head>
-<body>
+<body data-theme="<%= (@public_theme || 'blue') %>">
   <%= render "layouts/public/partials/header" unless @hide_header %>
   <section class='content'>
     <%= yield %>

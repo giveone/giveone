@@ -1,7 +1,7 @@
 class Activation < ActiveRecord::Base
   ALLOWED_DESCRIPTION_TAGS = %w(b i a br p)
 
-  belongs_to :categories
+  belongs_to :category
 
   scope :is_public, -> { where(is_public: true) }
 
