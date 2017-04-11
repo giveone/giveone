@@ -1,6 +1,6 @@
 <div class='header my2 flex justify-between dgray sofiabold'>
   <a class='text-decoration-none dgray flex items-center mx1' href="/">
-    <p class='logo h4 nowrap'> Give One</p>
+    <p class='logo h4 nowrap'><%= Rails.application.secrets[:name] %></p>
   </a>
   <div class='nav-links flex max-width-2'>
     <a class='text-decoration-none dgray flex items-center mx2' href="/donate">
