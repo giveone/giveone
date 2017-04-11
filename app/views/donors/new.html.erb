@@ -1,10 +1,73 @@
-<%
-  days_left = (@donor.started_on - Time.zone.now.end_of_month.to_date).to_i.abs
-  this_month = Date::MONTHNAMES[Time.zone.now.month]
-  next_month = Date::MONTHNAMES[Time.zone.now.next_month.month]
+<%# render 'donors/form_container' %>
 
-%>
+<div class='clearfix'>
+    <div class='col col-12 py4 border-first-panel relative bc-white bg-dewy min-panel-height' style='z-index:1'>
+      <div class='clearfix py4 px2 flex items-center mx-auto'>
+        <div class='col col-12 py4 flex flex-column center'>
+          <div class='max-width-3 mx-auto'>
+            <p class='h1 mx-auto my0 sofiabold pb1 dgray'>You're three easy steps away from<span class='accent-color'> donating.</span></p>
+            <p class='h5 mx-auto MuseoSans300 py3 lgray'>You’re 3 easy steps away from donating. Give one minute and make a lifetime of a difference. Select a cause once to subscribe and support it everyday.</p>
+          </div>
 
-<% @page_title = "Become a donor today" %>
+          <%= render "layouts/public/partials/category_cards", locals: @categories %>
 
-<%= render 'donors/form_container' %>
+        </div>
+      </div>
+    </div>
+
+    <%= render "layouts/public/partials/donate_cards", nonprofits: @nonprofits %>
+
+    <div class='faq-panel col col-12 pb4 min-panel-height'>
+      <div class='clearfix pb4 px2 mx-auto max-width-4'>
+        <div class='double-border-box-faq biggest-box index-page-box p1'>
+          <p class='box-inner-text h4 sofiabold dgray'>A platform for activisim</p>
+          <p class='box-inner-text h2 sofiabold accent-color'>Give One is about getting involved in your community one day, and one cause at a time.</p>
+        </div>
+        <div class='faq-container'>
+          <div class='faq-text-box'>
+            <p class='faq-subheading sofiabold h4 dgray'>How we operate</p>
+            <p class='faq-text h5'>
+              Give One is a non-profit federal tax-exempt organization under section 501(c)(3) of the Internal Revenue Code, EIN 81-4924613, so all of your donations are tax deductible.
+            </p>
+            <p class='faq-text h5'>
+              The money you donate goes directly to the selected charities. We don’t take a penny.
+            </p>
+            <p class='faq-text h5'>
+              We’re run by a team of volunteers, and all of our administrative costs are supported by private philanthropy which enables us to ensure every dollar raised goes directly to supporting the causes you care about most. Interested in supporting the platform? Reach out to <a class="accent-color text-decoration-none" href="mailto:hello@give-one.org">hello@give-one.org↳</a>, and thanks!
+            </p>
+          </div>
+          <div class='faq-text-box'>
+            <p class='faq-subheading sofiabold h4 dgray'>How this works</p>
+            <p class='faq-text h5'>
+              We process your credit card payments through Stripe. Stripe takes a 2.2% + $0.30 processing fee, or 3.5% if you use an American Express.
+            </p>
+            <p class='faq-text h5'>
+              Due to this processing fee, we process donations on the 1st of every month, instead of charging you each day. Signed up mid-month? Your donations will be prorated.
+            </p>
+            <p class='faq-text h5'>
+              If you’d like to change any of your information, select a different cause to support, adjust your donation amount, or cancel your donation, just log in to your account <a class="accent-color text-decoration-none" href="/account">login here↳</a>. Any changes made to your donation amount or the cause you are supporting will take effect on the 1st of the next month.
+            </p>
+          </div>
+          <div class='faq-text-box my3'>
+            <p class='faq-subheading sofiabold h4 dgray'>How we choose</p>
+            <p class='faq-text h5'>
+              For each cause, we select a different non-profit to support
+            </p>
+            <p class='faq-text h5'>
+              Do you have a non-profit or want to recommend one for us to feature? Email us at <a class="accent-color text-decoration-none" href="mailto:hello@give-one.org">hello@give-one.org↳</a>.
+            </p>
+          </div>
+          <div class='faq-text-box my3'>
+            <p class='faq-subheading sofiabold h4 dgray'>Where we're going</p>
+            <p class='faq-text h5'>
+              Give One is built off of the open-sourced code of <a class="accent-color text-decoration-none" href="http://dollaraday.co/">Dollar A Day↳</a>.In that same spirit, we’ve open sourced our code along with all the features we’d love to include down
+            </p>
+            <p class='accent-color h5'>
+              Thank you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+<% nonprofits.each_with_index do |nonprofit, index| %>
+  <% if index.odd? %>
+    <div class='donate-card col col-12 py4 bg-money min-panel-height <% if (nonprofit == nonprofits.last)%>before-faq-panel<% end %>'>
+      <div class='column-img-left clearfix py4 px2 flex items-center mx-auto max-width-4'>
+        <div class='img-left col md-col-6 sm-col-12 py2'>
+          <img class='m0 fit block' src="<%= nonprofit.photo.url %>"/>
+        </div>
+        <div class='col md-col-6 sm-col-12 py2 panel-text sofiasemibold dgray'>
+          <p class='sofiabold h6 pb1 accent-color my0'><%= nonprofit.category.name %></p>
+          <p class='nonprofit-name sofiabold h2 pb3 dgray my0'><%= nonprofit.name %></p>
+          <p class='description MuseoSans300 h5 pb3 lgray'>
+            <%= nonprofit.description %>
+            <a class="accent-color text-decoration-none" href="<%= nonprofit.website_url %>" target='_blank'><%= nonprofit.website_url %>↳</a>.
+            <br/><br/>
+            <span class='accent-color'><%= nonprofit.blurb %></span>
+          </p>
+          <a href='/account' class='donate-volunteer-button p2 mx-auto text-decoration-none sofiabold bg-algae h6 white'>Donate now!</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if index.even? %>
+    <div class='donate-card col col-12 py4 bg-dewy min-panel-height <% if (nonprofit == nonprofits.last)%>before-faq-panel<% end %>'>
+      <div class='column-img-right clearfix pt4 pb4 mb4 px2 flex items-center mx-auto max-width-4'>
+        <div class='col md-col-6 sm-col-12 panel-text sofiasemibold dgray'>
+          <p class='sofiabold h6 pb1 accent-color my0'><%= nonprofit.category.name %></p>
+          <p class='nonprofit-name sofiabold h2 dgray pb2'><%= nonprofit.name %></p>
+          <p class='description MuseoSans300 h5 pb3 lgray'>
+            <%= nonprofit.description %>
+            <a class="accent-color text-decoration-none" href="<%= nonprofit.website_url %>" target='_blank'><%= nonprofit.website_url %>↳.</a>
+            <br/><br/>
+            <span class='accent-color'><%= nonprofit.blurb %></span>
+          </p>
+          <a href='/account' class='donate-volunteer-button text-decoration-none sofiabold bg-algae h6 white p2 mx-auto'>Donate now!</a>
+        </div>
+        <div class='img-right pb4 col md-col-6 sm-col-12 '>
+          <img class='m0 fit block' src="<%= nonprofit.photo.url %>"/>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
