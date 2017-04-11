@@ -10,7 +10,10 @@ Rails.application.config.assets.version = '4.0'
 Rails.application.config.assets.precompile += %w(admin.js share.js)
 
 # Mailer stylesheet
-Rails.application.config.assets.precompile += %w(mailer.css)
+Rails.application.config.assets.precompile += %w(mailer.css public.css)
 
 # this was recommended by devise setup?
 Rails.application.config.assets.initialize_on_precompile = false
+
+Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+Rails.application.config.assets.precompile += %w( .otf .woff .woff2 )

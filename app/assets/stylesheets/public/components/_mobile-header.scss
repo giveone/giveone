@@ -1,0 +1,34 @@
+.mobile-header{
+  height: $nav-height;
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  z-index: 10;
+  @media #{$small-break} {
+    display:none;
+  }
+  .mobile-menu-graphic {
+    height: 40px;
+    width: 40px;
+    transform: scale(0.65);
+    .bar{
+      transform: translateY(1rem);
+      width: 100%;
+      height: 5px;
+      background: color('dgray');
+      &:after,&:before{
+        position: absolute;
+        background: color('dgray');
+        width: 100%;
+        height: 5px;
+        content: '';
+      }
+      &:before {
+        top: -13px;
+      }
+      &:after {
+        top: 13px;
+      }
+    }
+  }
+}

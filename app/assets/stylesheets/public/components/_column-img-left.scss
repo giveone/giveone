@@ -1,0 +1,14 @@
+.column-img-left{
+  flex-direction: column;
+  @media #{$small-break} {
+    flex-direction: row;
+  }
+  .img-left{
+    padding-right:50px;
+    padding-left:50px;
+    @media #{$small-break} {
+      padding-right:150px;
+      padding-left:0px;
+    }
+  }
+}

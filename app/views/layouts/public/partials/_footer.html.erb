@@ -1,0 +1,49 @@
+<div class='footer clearfix'>
+  <div class='footer-first-box col col-12 bg-svelte flex justify-between items-start px2 py4'>
+    <div class='col md-col-4 sm-col-12 py4 clearfix'>
+      <div class='give-footer-title sofiabold accent-color pb4'><p><%= Rails.application.secrets[:name] %></p></div>
+      <h6 class='MuseoSans300 lgray pb2'>Give One is a non-profit federal tax-exempt organization under section 501(c)(3) of the Internal Revenue Code, EIN 81-4924613.</h6>
+      <h6 class='MuseoSans300 lgray '>Made in NYC.</h6>
+    </div>
+    <div class='contact-us mt2 py4'>
+      <h6 class='sofiasemibold dgray pb3 mb2'>Contact us</h5>
+      <div class='flex'>
+        <a class='MuseoSans300 text-decoration-none accent-color pr1' target="_blank" href="mailto:hello@<%= Rails.application.secrets[:host] %>"><h6>hello@<%= Rails.application.secrets[:host] %></h6></a>
+        <p class='arrow accent-color'>↳</p>
+      </div>
+    </div>
+    <div class='follow-us mt2 py4'>
+      <h6 class='sofiasemibold dgray pb3 mb2'>Follow us</h5>
+      <div class='accent-color flex flex-column justify-between'>
+        <div class='flex justify-between'>
+          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://instagram.com/<%= Rails.application.secrets[:instagram_username] %>"><h6>Instagram</h6></a>
+          <p class='arrow'>↳</p>
+        </div>
+        <div class='flex justify-between'>
+          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://twitter.com/<%= Rails.application.secrets[:twitter_username] %>"><h6>Twitter</h6></a>
+          <p class='arrow'>↳</p>
+        </div>
+        <div class='flex justify-between'>
+          <a class='accent-color MuseoSans300 text-decoration-none pr1' target="_blank" href="https://facebook.com/<%= Rails.application.secrets[:facebook_username] %>"><h6>Facebook</h6></a>
+          <p class='arrow'>↳</p>
+        </div>
+      </div>
+    </div>
+    <form class='email-sign-up mailchimp-form flex flex-column mt2 py4'>
+     <h6 class='sofiasemibold dgray pb3 mb2'>Sign up for our newsletters</h5>
+     <div class='email-input mb2'>
+       <input id='email' class='px2' placeholder='Your email address' type='email'>
+     </div>
+     <button type='submit' class='email-submit-button sofiabold button-bg-color white py2 mt1 h6'>I'm in</button>
+    </form>
+  </div>
+
+  <div class='footer-second-box col col-12 clearfix flex justify-between llgray xsmall-font MuseoSans300 p2'>
+    <div class='col col-6 '>
+      <p>© 2017 <%= Rails.application.secrets[:name] %></p>
+    </div>
+    <div class='right-aligned-text col sm-col-12 md-col-6'>
+      <p>All Rights Reserved. Terms / Privacy Policy.</p>
+    </div>
+  </div>
+</div>

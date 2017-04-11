@@ -1,0 +1,15 @@
+.column-img-right{
+  flex-direction: column-reverse;
+  @media #{$small-break} {
+    flex-direction: row;
+  }
+  .img-right{
+    z-index:0;
+    padding-right:50px;
+    padding-left:50px;
+    @media #{$small-break} {
+      padding-right:0px;
+      padding-left:100px;
+    }
+  }
+}

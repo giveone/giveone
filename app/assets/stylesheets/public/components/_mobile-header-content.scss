@@ -1,0 +1,29 @@
+.mobile-header-content{
+  width:100%;
+  height:0%;
+  opacity:0;
+  transition: .250s;
+  position: fixed;
+  &.active{
+    z-index:9;
+    height:100%;
+    opacity: 1;
+  }
+
+  .icons{
+    width:30px;
+    height:30px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  #money-mobile{
+    background-image: url('/static/images/$-icon.svg');
+  }
+  #volunteer-mobile{
+    background-image: url('/static/images/volunteer-icon.svg');
+  }
+  #account-mobile{
+    background-image: url('/static/images/account-icon.svg');
+  }
+}
