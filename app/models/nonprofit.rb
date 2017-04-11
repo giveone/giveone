@@ -1,6 +1,6 @@
 class Nonprofit < ActiveRecord::Base
   ALLOWED_DESCRIPTION_TAGS = %w(b i a br p)
-
+  belongs_to :category
   has_many :favorites
   has_many :fans, through: :favorites,
                   class_name: 'Subscriber',
@@ -31,8 +31,9 @@ class Nonprofit < ActiveRecord::Base
         full: {geometry: "960x540>", format: :png},
         medium: {geometry: "480x270>", format: :png},
         thumb: {geometry: "100x100>" , format: :png}
-      }
-    }.merge(GiveOne::Application.config.paperclip_defaults)
+      },
+      default_url: "http://placehold.it/600x800"
+    }.reverse_merge(GiveOne::Application.config.paperclip_defaults)
 
   validates :name, presence: true
   validates :ein, format: { with: /\A\d\d?-\d{7}\z/ }

@@ -15,16 +15,19 @@ class DonorsController < ApplicationController
 
   def new
     @require_stripe_js = true
-    @hide_header = true
-    @hide_footer = true
+    @public_theme      = "green"
+    @categories        = Category.all
 
+    # TODO: Unsure if this is needed
     if params[:email].present?
       @subscriber = Subscriber.where(email: params[:email].to_s).first_or_initialize
       @donor.subscriber = @subscriber
       @donor.build_card(email: @subscriber.email)
     end
 
-    respond_with(@donor)
+    @nonprofits = Nonprofit.all
+
+    respond_with(@donor, layout: "public")
   end
 
   def create
