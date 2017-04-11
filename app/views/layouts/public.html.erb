@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#">
-<head>
-  <link href="/favicon.png" type="image/png" rel="icon" />
+  <head>
+    <link href="/favicon.png" type="image/png" rel="icon" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
+    <link href="//unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag "public", media: "all" %>
+    <% if @require_stripe_js %>
+      <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+      <script type="text/javascript">
+        // This identifies your website in the createToken call below
+        Stripe.setPublishableKey("<%= Rails.application.secrets.stripe_publishable_key %>");
+      </script>
+    <% end %>
+  </head>
+  <body data-theme="<%= (@public_theme || 'blue') %>">
+    <% unless @hide_header %>
+      <%= render "layouts/public/partials/header" %>
+      <%= render "layouts/public/partials/mobile_header" %>
+      <%= render "layouts/public/partials/mobile_header_content" %>
+    <% end %>
 
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
-  <link href="//unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
-  <%= stylesheet_link_tag "public", media: "all" %>
-
-  <% if @require_stripe_js %>
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script type="text/javascript">
-      // This identifies your website in the createToken call below
-      Stripe.setPublishableKey("<%= Rails.application.secrets[:publishable_key] %>");
-    </script>
-  <% end %>
-</head>
-<body data-theme="<%= (@public_theme || 'blue') %>">
-  <% unless @hide_header %>
-    <%= render "layouts/public/partials/header" %>
-    <%= render "layouts/public/partials/mobile_header" %>
-    <%= render "layouts/public/partials/mobile_header_content" %>
-  <% end %>
-
-  <section class='content'>
-    <%= yield %>
-  </section>
-  <%= render "layouts/public/partials/footer" unless @hide_footer %>
-
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-</body>
+    <section class='content'>
+      <%= yield %>
+    </section>
+    <%= render "layouts/public/partials/footer" unless @hide_footer %>
+    <%= render "layouts/partials/admin_bar" if current_user.try(:is_admin?) %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+    <%= javascript_include_tag "public", async: !true %>
+    <%= javascript_include_tag "admin", async: !true if current_user.try(:is_admin?) %>
+  </body>
 </html>

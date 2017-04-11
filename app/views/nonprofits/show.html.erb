@@ -68,7 +68,7 @@
             </div>
             <div class="c-native-share__button c-native-share__button--twitter">
               <%= link_to "Tweet",
-                    tweet(text: t("nonprofit.show.share.twitter", nonprofit: @nonprofit.twitter_or_name), related: @nonprofit.twitter),
+                    tweet(text: t("nonprofit.twitter", nonprofit: @nonprofit.twitter_or_name), related: @nonprofit.twitter),
                     class: "twitter-share-button",
                     data: {
                       dnt: "true",

@@ -1,6 +1,7 @@
+//= require jquery_ujs
+//= require ./library/throttle
 //= require_tree ./admin/donors
 //= require_tree ./admin/subscribers
-
 
 $(function() {
 	// nonprofits#edit
@@ -46,5 +47,4 @@ $(function() {
       }
     });
   });
-
 });

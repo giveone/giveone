@@ -73,6 +73,6 @@ non_profits = [
     is_public: true,
     ein: "5#{index}-5555555",
     category: categories[index],
-    featured_on: index.day.from_now.to_date) #TODO: I dont think we need this attr
-  })
+    featured_on: index.day.from_now.to_date #TODO: I dont think we need this attr
+  }))
 end

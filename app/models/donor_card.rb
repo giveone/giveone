@@ -73,6 +73,7 @@ class DonorCard < ActiveRecord::Base
           description: self.name,
           source: stripe_token # create the COF while we're at it
         })
+
         Stripe.logger.info "Stripe::Customer.create\n#{customer.pretty_inspect}\n"
 
         if donor.new_record?
@@ -93,7 +94,7 @@ class DonorCard < ActiveRecord::Base
           id: plan_id,
           interval: "month",
           currency: "usd",
-          amount: self.amount.to_i * 100
+          amount: self.amount.to_i
         )
 
         subscription = Stripe::Subscription.create(

@@ -1,6 +1,5 @@
 $(function() {
-
-  $NS = $('body#donors_new, body#donors_create');
+  $NS = $('#new_donor, #edit_donor');
 
   if (!$NS.length) {
     return false;

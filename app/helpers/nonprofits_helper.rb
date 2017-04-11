@@ -19,7 +19,6 @@ module NonprofitsHelper
     link_to(*args, &block)
   end
 
-
   # DOC: https://developers.facebook.com/docs/sharing/reference/feed-dialog/v2.2?locale=en_IN
   def share_facebook_link_to(*args, &block)
     if block_given?

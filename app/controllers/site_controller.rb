@@ -4,21 +4,13 @@ class SiteController < ApplicationController
 
   def index
     #TODO: Hugh - Scrub this controller - none of these
-    #
-    #today = Time.zone.now
-    #@dates = {
-    #  "Today" => today.strftime("%Y-%m-%d"),
-    #  "Tomorrow" => (today + (3600 * 24)).strftime("%Y-%m-%d"),
-    #  "Day After Tomorrow" => (today + (3600 * 24 * 2)).strftime("%Y-%m-%d")
-    #}
-    #@nonprofits = Nonprofit.is_public.featured_from(Time.zone.now.to_date + 1.day).limit(16)
+    @nonprofits = Nonprofit.is_public.featured_from(Time.zone.now.to_date + 1.day).limit(16)
+    @subscriber = Subscriber.new
+  end
 
-    #if Nonprofit.is_public.for_today.present?
-    #  @todays_nonprofit = Nonprofit.is_public.for_today
-    #else
-    #  @todays_nonprofit = Nonprofit.is_public.for_next_possible_day.first || Nonprofit.new(name: "No Nonprofit for Today", blurb: "n/a", description: "n/a", newsletter: Newsletter.new)
-    #end
-    #@subscriber = Subscriber.new
+  def login
+    @nonprofits = Nonprofit.all
+    @subscriber = Subscriber.new
   end
 
   def volunteer
@@ -59,16 +51,6 @@ class SiteController < ApplicationController
     end
   end
 
-  def calendar
-    @page_title = "Calendar"
-
-    # TODO better solution than a rescue fallback here
-    @date = Date.parse(params[:date]) rescue Date.today
-    @future_nonprofits = Nonprofit.is_public.featured_from(@date).limit(31)
-    @past_nonprofits = Nonprofit.is_public.featured_reverse_from(@date).limit(1)
-
-    @subscriber = Subscriber.new
-  end
 
   def share
     @full_url = params[:url]

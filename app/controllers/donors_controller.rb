@@ -15,6 +15,20 @@ class DonorsController < ApplicationController
 
   def new
     @require_stripe_js = true
+    @hide_header = true
+    @hide_footer = true
+
+    if params[:email].present?
+      @subscriber = Subscriber.where(email: params[:email].to_s).first_or_initialize
+      @donor.subscriber = @subscriber
+      @donor.build_card(email: @subscriber.email)
+    end
+
+    respond_with(@donor, layout: "public")
+  end
+
+  def info
+    @require_stripe_js = true
     @public_theme      = "green"
     @categories        = Category.all
 
@@ -49,7 +63,7 @@ class DonorsController < ApplicationController
       redirect_to thanks_donors_url
     end
  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
-    render :new
+    render :new, layout: "public"
   end
 
   # "Change Billing Details"

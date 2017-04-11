@@ -6,8 +6,8 @@ Rails.application.config.paperclip_defaults = {
   s3_permissions: :public_read,
   s3_credentials: {
     :bucket => Rails.application.secrets.paperclip_bucket,
-    :access_key_id => S3[:access_key_id],
-    :secret_access_key => S3[:secret_access_key]
+    :access_key_id => Rails.application.secrets.aws_access_key_id,
+    :secret_access_key => Rails.application.secrets.aws_secret_access_key
   },
   bucket: Rails.application.secrets.paperclip_bucket
 }

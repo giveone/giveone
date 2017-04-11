@@ -5,7 +5,7 @@ set :application, 'my_app_name'
 set :repo_url, 'git@github.com:giveone/giveone.git'
 set :branch, 'master'
 set :keep_releases, 5
-# set :rbenv_ruby, '2.1.2'
+# set :rbenv_ruby, '2.1.10'
 set :delayed_job_server_role, :jobs # Re: https://github.com/collectiveidea/delayed_job/wiki/Delayed-Job-tasks-for-Capistrano-3
 set :delayed_job_args, "-n 1"
 
