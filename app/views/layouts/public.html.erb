@@ -16,7 +16,12 @@
   <% end %>
 </head>
 <body data-theme="<%= (@public_theme || 'blue') %>">
-  <%= render "layouts/public/partials/header" unless @hide_header %>
+  <% unless @hide_header %>
+    <%= render "layouts/public/partials/header" %>
+    <%= render "layouts/public/partials/mobile_header" %>
+    <%= render "layouts/public/partials/mobile_header_content" %>
+  <% end %>
+
   <section class='content'>
     <%= yield %>
   </section>
