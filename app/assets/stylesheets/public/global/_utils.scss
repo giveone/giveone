@@ -2,8 +2,20 @@
   min-height: $min-panel-height;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .text-right {
   text-align: right;
+}
+
+.no-border {
+  border: 0;
+}
+
+.no-outline {
+  outline: none;
 }
 
 .header-offset {
