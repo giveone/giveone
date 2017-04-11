@@ -62,7 +62,7 @@ class DonorsController < ApplicationController
       session[:thanks] = @donor.subscriber.first_name
       redirect_to thanks_donors_url
     end
- rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
     render :new, layout: "public"
   end
 

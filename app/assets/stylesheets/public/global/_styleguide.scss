@@ -2,7 +2,7 @@ input {
   outline: none;
 }
 
-#existing_donor_message {
+p.alert, p.notice, #existing_donor_message {
   position: fixed;
   bottom: 0;
   left: 0;

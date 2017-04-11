@@ -57,9 +57,9 @@ Rails.application.routes.draw do
 
   # These were added by hugh
   get  'volunteer', to: 'site#volunteer'
+  get  'account',          to: 'site#account',       as: :account
   get  'donate',           to: 'donors#info',        as: :donate
   get  'donate/:id',       to: 'donors#new',         as: :new_donation
-  get  'account',          to: 'donors#show',        as: :account
 
   #TODO: Scrub below routes
   get  'about',            to: 'site#about'
