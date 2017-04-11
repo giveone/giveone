@@ -5,6 +5,12 @@ $(function() {
     return false;
   }
 
+  // Allow data-amount p tags to change the amount input
+  var $amountInput = $('input[data-stripe="amount"]');
+  $('p[data-amount]').on('click', function() {
+    $amountInput.val($(this).attr('data-amount'));
+  });
+
   window.checking_for_existing_donors = false;
 
   // Donor Form Step 1: check if donor exists

@@ -2,6 +2,33 @@
   <span class="highlight"></span>&nbsp;<%= link_to "click here", "#authenticate-overlay", class: "js-modal-overlay-open inline-block mr1 grey" -%>
 </p>
 
+<div class='account-first-page-options-container flex flex-wrap justify-center bg-accent-color dgray mb4'>
+  <div class='account-first-page-options double-border-box col-4 m1'>
+    <p class='sofiabold h6 py5 center dgray' data-amount="0.25">$.25 a day</p>
+  </div>
+  <div class='account-first-page-options double-border-box col-4 m1'>
+    <p class='sofiabold h6 py5 center dgray' data-amount="0.50">$.50 a day</p>
+  </div>
+  <div class='account-first-page-options double-border-box col-4 m1'>
+    <p class='sofiabold h6 py5 center dgray' data-amount="1.00">$1.00 a day</p>
+  </div>
+  <div class='account-first-page-options double-border-box col-4 m1'>
+    <p class='sofiabold h6 py5 center dgray' data-amount="2.00">$2.00 a day</p>
+  </div>
+</div>
+
+
+<h6 class='dgray sofiasemibold caps'>Step 3 of 3</h6>
+<p class='sub-heading sofiabold pt3 pb2 dgray'>
+  Enter your billing info
+</p>
+<p class='h6 MuseoSans300 pb3 lgray'>
+  Choose an amount you are comfortable with donating each day towards your cause of choice.
+</p>
+<p class='h6 MuseoSans300 pb3 lgray'>
+  We will transfer your money at the end of each month.
+</p>
+
 <section id="other">
   <%= render "donors/stripe_card_fields", form_builder: form_builder %>
 </section>
@@ -9,10 +36,10 @@
 <section id="form_footer" class="clear">
   <div class="checkbox pt1 pb3 relative">
     <%= form_builder.check_box :add_fee, {tabindex: 12}, "1", "0" %>
-    <%= form_builder.label(:add_fee, class: "clearfix") do %>
+    <%= form_builder.label(:add_fee, class: "clearfix MuseoSans300 inline-block") do %>
       <%= "Give an extra $%0.2f per month to cover credit card fees." % stripe_fee_amount  %>
       <a class="tooltip tooltop-offset tablet-hide" title="<div style='width: 300px'>Stripe charges a processing fee. Adding <%= "$%0.2f" % stripe_fee_amount %> per month to your donation allows a full $30 to go to nonprofits.</div>"><span class="ss-icon ss-help"></span></a>
     <% end %>
   </div>
-  <%= form_builder.submit "Donate!", class: "button-solid button-green button-big full-width", tabindex: 13 %>
+  <%= form_builder.submit "Donate!", class: "h6 my1 mb4 py2 sofiabold white bg-velure full-width no-border no-outline", tabindex: 13 %>
 </section>

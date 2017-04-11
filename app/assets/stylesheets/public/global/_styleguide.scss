@@ -1,0 +1,16 @@
+input {
+  outline: none;
+}
+
+#existing_donor_message {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: color('velure');
+  color: color('notwhite');
+  font-family: 'Sofia Medium';
+  padding: 10px;
+  width: 100%;
+  z-index: 10;
+  text-align: center;
+}

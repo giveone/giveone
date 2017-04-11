@@ -14,7 +14,10 @@
             <br/><br/>
             <span class='accent-color'><%= nonprofit.blurb %></span>
           </p>
-          <a href='/account' class='donate-volunteer-button p2 mx-auto text-decoration-none sofiabold bg-algae h6 white'>Donate now!</a>
+
+          <%= link_to "Donate now!", new_donation_path(nonprofit), {
+            class: "donate-volunteer-button p2 mx-auto text-decoration-none sofiabold bg-algae h6 white"
+          } %>
         </div>
       </div>
     </div>
@@ -32,7 +35,9 @@
             <br/><br/>
             <span class='accent-color'><%= nonprofit.blurb %></span>
           </p>
-          <a href='/account' class='donate-volunteer-button text-decoration-none sofiabold bg-algae h6 white p2 mx-auto'>Donate now!</a>
+          <%= link_to "Donate now!", new_donation_path(nonprofit), {
+            class: "donate-volunteer-button p2 mx-auto text-decoration-none sofiabold bg-algae h6 white"
+          } %>
         </div>
         <div class='img-right pb4 col md-col-6 sm-col-12 '>
           <img class='m0 fit block' src="<%= nonprofit.photo.url %>"/>
