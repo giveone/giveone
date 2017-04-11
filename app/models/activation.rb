@@ -1,7 +1,7 @@
 class Activation < ActiveRecord::Base
   ALLOWED_DESCRIPTION_TAGS = %w(b i a br p)
 
-  belongs_to :categories
+  belongs_to :category
 
   scope :is_public, -> { where(is_public: true) }
 
@@ -13,8 +13,9 @@ class Activation < ActiveRecord::Base
         full: {geometry: "960x540>", format: :png},
         medium: {geometry: "480x270>", format: :png},
         thumb: {geometry: "100x100>" , format: :png}
-      }
-    }.merge(GiveOne::Application.config.paperclip_defaults)
+      },
+      default_url: "http://placehold.it/800x300"
+    }.reverse_merge(GiveOne::Application.config.paperclip_defaults)
 
   validates :name, presence: true
   validates :happening_on, presence: true

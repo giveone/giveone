@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html prefix="og: http://ogp.me/ns#">
-<head>
-  <%# Head %>
-  <%= render "layouts/partials/head" %>
-  <%# Extra Head %>
-  <%= yield :extra_head %>
-</head>
-<body id="<%= page_id %>" class="<%= @theme %> max-width-wrapper bg-green full-height">
-  
-  <%# 3rd Party Scripts %>
-  <%= render "layouts/partials/scripts" %>
+  <head>
+    <link href="/favicon.png" type="image/png" rel="icon" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
+    <link href="//unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag "public", media: "all" %>
+    <% if @require_stripe_js %>
+      <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+      <script type="text/javascript">
+        // This identifies your website in the createToken call below
+        Stripe.setPublishableKey("<%= Rails.application.secrets.stripe_publishable_key %>");
+      </script>
+    <% end %>
+  </head>
+  <body data-theme="<%= (@public_theme || 'blue') %>">
+    <% unless @hide_header %>
+      <%= render "layouts/public/partials/header" %>
+      <%= render "layouts/public/partials/mobile_header" %>
+      <%= render "layouts/public/partials/mobile_header_content" %>
+    <% end %>
 
-  <%# Page header %>
-  <%= render "layouts/partials/header" unless @hide_header %>
-  
-  <%# Content %>
-  <%= yield %>
-
-  <%= render "layouts/partials/cta_know_more" %>
-
-  <%# Footer %>
-  <%= render "layouts/partials/footer" unless @hide_footer %>
-  
-  <%# Extra JS %>
-  <%= yield :javascripts %>
-</body>
+    <section class='content'>
+      <%= yield %>
+    </section>
+    <%= render "layouts/public/partials/footer" unless @hide_footer %>
+    <%= render "layouts/partials/admin_bar" if current_user.try(:is_admin?) %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+    <%= javascript_include_tag "public", async: !true %>
+    <%= javascript_include_tag "admin", async: !true if current_user.try(:is_admin?) %>
+  </body>
 </html>

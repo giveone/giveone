@@ -4,11 +4,11 @@
 
       <h2>Hi<%= ", #{@donor.subscriber.name.given_name}" if @donor.subscriber.name.present? %>!</h2>
 
-      <p>On behalf of your favorite charities and <%= CONFIG[:name] %>, we thank you for your generous support!</p>
+      <p>On behalf of your favorite charities and <%= Rails.application.secrets.name %>, we thank you for your generous support!</p>
 
-      <p>Your donation is being made to <%= CONFIG[:name] %>, a 501(c)(3) public charity (tax ID <%= CONFIG[:ein] %>), which processes donations made through <%= CONFIG[:name] %> and distributes them to a list of pre-determined charities. All donations are final and may not be refunded.</p>
+      <p>Your donation is being made to <%= Rails.application.secrets.name %>, a 501(c)(3) public charity (tax ID <%= Rails.application.secrets.ein %>), which processes donations made through <%= Rails.application.secrets.name %> and distributes them to a list of pre-determined charities. All donations are final and may not be refunded.</p>
 
-      <p>Thank you again for visiting <%= CONFIG[:name] %>!</p>
+      <p>Thank you again for visiting <%= Rails.application.secrets.name %>!</p>
 
       <h2>Donation Record</h2>
 
@@ -18,8 +18,8 @@
         <li><strong>Name:</strong> <%= @donor.subscriber.name %></li>
         <li><strong>E-mail:</strong> <%= @donor.subscriber.email %></li>
         <li><strong>Total Donation Amount:</strong> $<%= '%.02f' % @donation.total %></li>
-        <li><strong>Organization:</strong>  <%= CONFIG[:name]%></li>
-        <li><strong>Address:</strong>  <%= CONFIG[:address] %></li>
+        <li><strong>Organization:</strong>  <%= Rails.application.secrets.name%></li>
+        <li><strong>Address:</strong>  <%= Rails.application.secrets.address %></li>
         <li><strong>Method of Payment:</strong> <%= @charge.source.brand %></li>
         <li><strong>Credit Card Last 4 Digits:</strong> <%= @charge.source.last4 %></li>
         <li><strong>Date:</strong> <%= @donation.executed_at.strftime '%A, %B %e, %Y' %></li>

@@ -12,8 +12,8 @@ class ImageMailer < BaseMailer
   # end
   def image(to, subject, campaign, tag)
     subject = subject # "Thanks" email
-    headers['X-Mailgun-Campaign-Id'] = campaign
-    headers['X-Mailgun-Tag']         = tag
+    headers['X-Mandrill-Campaign-Id'] = campaign
+    headers['X-Mandrill-Tag']         = tag
 
     mail(to: to, subject: subject) do |format|
       format.html

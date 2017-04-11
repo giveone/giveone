@@ -35,7 +35,7 @@ class NonprofitsController < ApplicationController
     @meta_tags["og:url"]              = nonprofit_url(@nonprofit)
     @meta_tags["og:description"]      = @nonprofit.blurb
     @meta_tags["twitter:card"]        = "summary_large_image"
-    @meta_tags["twitter:title"]       = "#{CONFIG[:name]} Nonprofit for #{@nonprofit.featured_on.try(:to_s, :short_name)}: #{@nonprofit.name}"
+    @meta_tags["twitter:title"]       = "#{Rails.application.secrets.name} Nonprofit for #{@nonprofit.featured_on.try(:to_s, :short_name)}: #{@nonprofit.name}"
     @meta_tags["twitter:image:src"]   = "#{@nonprofit.photo.url(:medium).gsub(/https/, 'http')}"
     @meta_tags["twitter:description"] = @nonprofit.blurb
   end

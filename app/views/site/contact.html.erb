@@ -5,7 +5,7 @@
       <div class="p4">
         <h2 class="no-margin mb4">How can we help?</h2>
         <p class="mb4">If you want to cancel, <%= link_to "Manage account", "#authenticate-overlay", class: "js-modal-overlay-open" %><br/>
-        Have general questions about <%= CONFIG[:name] %>, please read our <%= link_to "FAQ", faq_path %>.<br/>
+        Have general questions about <%= Rails.application.secrets.name %>, please read our <%= link_to "FAQ", faq_path %>.<br/>
         Other questions, press inquiries, or feedback? Please get in touch below.</p>
         <%= form_tag send_feedback_url, method: :post do -%>
           <div class="field <%= 'field_with_errors' if params[:email] %>">

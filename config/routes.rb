@@ -55,11 +55,17 @@ Rails.application.routes.draw do
 
   resources :users
 
+  # These were added by hugh
+  get  'volunteer', to: 'site#volunteer'
+  get  'donate',           to: 'donors#info',        as: :donate
+  get  'donate/:id',       to: 'donors#new',         as: :new_donation
+  get  'account',          to: 'donors#show',        as: :account
+
+  #TODO: Scrub below routes
   get  'about',            to: 'site#about'
   get  'calendar',         to: 'site#calendar'
   get  'faq',              to: 'site#faq'
   get  'subscribe',        to: 'subscribers#new',    as: :subscribe
-  get  'donate',           to: 'donors#new',         as: :donate
   post 'donate',           to: 'donors#create'
   get  'legal',            to: 'site#legal'
   get  'contact',          to: 'site#contact'

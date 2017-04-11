@@ -25,7 +25,7 @@
               <%- if not current_subscriber? -%>
               <div class="flag-img no-wrap align-right">
                 <%= link_to root_path(ref: default_ref_tag), class: "close button-outline button-green button-small mobile-hide" do %>
-                  What's <%= CONFIG[:name] %>?
+                  What's <%= Rails.application.secrets.name %>?
                 <% end %>
               </div>
               <%- end -%>
@@ -68,7 +68,7 @@
             </div>
             <div class="c-native-share__button c-native-share__button--twitter">
               <%= link_to "Tweet",
-                    tweet(text: t("nonprofit.show.share.twitter", nonprofit: @nonprofit.twitter_or_name), related: @nonprofit.twitter),
+                    tweet(text: t("nonprofit.twitter", nonprofit: @nonprofit.twitter_or_name), related: @nonprofit.twitter),
                     class: "twitter-share-button",
                     data: {
                       dnt: "true",
@@ -83,7 +83,7 @@
       <aside class="bg-pattern white mt4 px-gutter py3 centered">
         <div class="big">
           <p class="mb0 bold">Want to discover and support amazing nonprofits?</p>
-          <p class="mb2">Join <%= donor_count %> others on <span class="no-wrap"><%= CONFIG[:name] %>!</span></p>
+          <p class="mb2">Join <%= donor_count %> others on <span class="no-wrap"><%= Rails.application.secrets.name %>!</span></p>
         </div>
         <p class="mb0"><%= link_to "Learn More", root_path(ref: default_ref_tag), class: "button-outline button-white button-hover-black" %></p>
       </aside>

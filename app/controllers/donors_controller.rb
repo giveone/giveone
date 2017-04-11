@@ -24,7 +24,24 @@ class DonorsController < ApplicationController
       @donor.build_card(email: @subscriber.email)
     end
 
-    respond_with(@donor)
+    respond_with(@donor, layout: "public")
+  end
+
+  def info
+    @require_stripe_js = true
+    @public_theme      = "green"
+    @categories        = Category.all
+
+    # TODO: Unsure if this is needed
+    if params[:email].present?
+      @subscriber = Subscriber.where(email: params[:email].to_s).first_or_initialize
+      @donor.subscriber = @subscriber
+      @donor.build_card(email: @subscriber.email)
+    end
+
+    @nonprofits = Nonprofit.all
+
+    respond_with(@donor, layout: "public")
   end
 
   def create
@@ -34,20 +51,19 @@ class DonorsController < ApplicationController
 
     @donor.attributes      = donor_params
     @donor.card.ip_address = request.ip
-
     @donor.card.stripe_token = params[:stripeToken] if params["stripeToken"].present?
 
     Donor.transaction do
       @donor.save!
-
       # Have the first donation execute immediately (instead of the 15-minute
       # cron interval) so it seems more immediate.
+      # Execute right away for testing purposes @TODO: remove
       @donor.donations.pending.first.lock_and_execute!
       session[:thanks] = @donor.subscriber.first_name
       redirect_to thanks_donors_url
     end
  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
-    render :new
+    render :new, layout: "public"
   end
 
   # "Change Billing Details"
@@ -185,7 +201,7 @@ class DonorsController < ApplicationController
   private
   def donor_params
     params.require(:donor).permit(
-      :add_fee, :public_name, {card_attributes: [:name, :email]}
+      :add_fee, :public_name, {card_attributes: [:name, :email, :amount]}
     )
   end
 

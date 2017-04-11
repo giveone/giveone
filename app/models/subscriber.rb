@@ -99,7 +99,7 @@ class Subscriber < ActiveRecord::Base
     self.save!
   end
 
-  def to_mailgun_recipient
+  def to_mandrill_recipient
     return { self.email => self.slice(:guid, :auth_token).merge(name: self.first_name) }
   end
 

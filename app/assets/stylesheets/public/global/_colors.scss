@@ -1,0 +1,42 @@
+$colors: (
+  'velure':    #6060E1,
+  'svelte':    #F8F8F6,
+  'money':     #EEF7EF,
+  'algae':     #61BB9B,
+  'dewy':     #F6FAF6,
+  'mandarine': #FFF4EB,
+  'nectarine': #E5715E,
+  'white': #ffffff,
+  'dgray': #4A4A4A,
+  'lgray': #706E6C,
+  'llgray': rgba(0,0,0,0.72),
+  'notwhite': #F9F9F9,
+);
+
+/* Use color: color('dark-red'); in SCSS */
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+/* Generate Composable Color Classes */
+@each $color-name, $value in $colors  {
+  /* Text Colors */
+  .#{$color-name} {
+    color: $value;
+  }
+
+  /* Background Colors */
+  .bg-#{$color-name} {
+    background-color: $value;
+  }
+
+  /* Border Colors */
+  .bc-#{$color-name} {
+    border-color: $value;
+  }
+
+  /* SVG Colors */
+  .f-#{$color-name} {
+    fill: $value;
+  }
+}

@@ -1,0 +1,78 @@
+.min-panel-height {
+  min-height: $min-panel-height;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.no-border {
+  border: 0;
+}
+
+.no-outline {
+  outline: none;
+}
+
+.header-offset {
+  padding-top: $nav-height;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+$xsmall-break: "(min-width: 24em)";
+$small-break: "(min-width: 40em)";
+$medium-break: "(min-width: 52em)";
+$large-break: "(min-width: 64em)";
+$double-border-spacing: 200px;
+
+.donate-activation-button {
+  width:135px;
+  border: none;
+}
+.border-first-panel{
+  border-bottom: 15px white solid;
+  @media #{$small-break} {
+    border:15px white solid;
+  }
+}
+.index-page-box {
+  padding: 2rem 1rem 2rem 1rem;
+  @media #{$small-break} {
+    padding: 5rem 3rem 5rem 3rem;
+  }
+}
+.activation-cards{
+  max-width: 566px;
+  min-width: 300px;
+}
+
+.py5 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.pulsate {
+  -webkit-animation: pulsate 1.2s infinite alternate;
+  -moz-animation: pulsate 1.2s infinite alternate;
+  -animation: pulsate 1.2s infinite alternate;
+}
+
+@-webkit-keyframes pulsate {
+  from { background-color: #6060e1; }
+  to { background-color: rgba(96, 96, 255, 0.75) }
+}
+@-moz-keyframes pulsate {
+  from { background-color: #6060e1; }
+  to { background-color: rgba(96, 96, 255, 0.75) }
+}
+@keyframes pulsate {
+  from { background-color: #6060e1; }
+  to { background-color: rgba(96, 96, 255, 0.75) }
+}

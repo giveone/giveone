@@ -4,7 +4,7 @@ class BaseMailer < ActionMailer::Base
   prepend_view_path Rails.root.join('app/mailers/views')
   layout "base"
 
-  FROM = "#{CONFIG[:name]} <hello@#{CONFIG[:host]}>"
+  FROM = "#{Rails.application.secrets.name} <hello@#{Rails.application.secrets.host}>"
 
   default from: FROM
 

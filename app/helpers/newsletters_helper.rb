@@ -20,13 +20,13 @@ module NewslettersHelper
   def newsletter_facebook_url(nonprofit, double_escape=false)
     fb_params = {
       display:      'popup',
-      app_id:       FACEBOOK[:app_id],
+      app_id:       Rails.application.secrets.facebook_app_id,
       redirect_uri: root_url,
       link:         nonprofit_url(nonprofit),
       name:         nonprofit.name,
       description:  t("newsletter.share.facebook.text", donors: nonprofit.donations.executed.count, nonprofit: nonprofit.name),
       catption:     root_url,
-      actions:      "[{'link':'#{nonprofit_url(nonprofit)}','name':'#{CONFIG[:name]}'}]"
+      actions:      "[{'link':'#{nonprofit_url(nonprofit)}','name':'#{Rails.application.secrets.name}'}]"
     }
     share_url(url: "https://www.facebook.com/dialog/feed?#{fb_params.to_query}")
   end

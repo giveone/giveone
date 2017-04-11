@@ -1,37 +1,23 @@
 <% @donor ||= Donor.new.tap { |d| d.started_on = Time.zone.now.to_date } %>
 
-<%= render 'donors/authenticate_form' %>
+<%# render 'donors/authenticate_form' %>
 
-<section class="donate-form bg-cover bg-grey">
-
-  <div class="pt2 pb2 mobile-hide"></div>
-
-  <div class="centered-container margin-auto py6 pl4 pr4 bg-white">
-    <div class="table mb2">
-      <div class="table-cell">
-        <%= render "modules/logo_link", theme: :dark %>
-      </div>
+<div class='clearfix account-page'>
+  <div class='col col-12 py4 px3 flex flex-column items-center border-first-panel relative bc-white bg-notwhite min-panel-height' style='z-index:1'>
+    <div class='py4 max-width-2'>
+      <h6 class='dgray sofiasemibold caps'>Step 2 of 3</h6>
+      <p class='sub-heading sofiabold pt3 pb2 dgray'>
+        Choose your amount
+      </p>
+      <p class='h6 MuseoSans300 pb3 lgray'>
+        Choose an amount you are comfortable with donating each day towards your cause of choice.
+      </p>
+      <p class='h6 MuseoSans300 pb3 lgray'>
+        We will transfer your money at the end of each month.
+      </p>
+      <%= form_for @donor, as: :donor, url: "/donate", html: {autocomplete: "on"} do |d| %>
+        <%= render "donors/form", form_builder: d %>
+      <% end -%>
     </div>
-    <p class="mb1">
-      Donors are charged monthly, $30 every 30 days. It's easy to cancel, and 100% US tax-deductible.
-    </p>
-    <p class="mb1">
-      <b class="green-dark">Join <%= donor_count %> others!</b>
-    </p>
-
-    <%= form_for @donor, as: :donor, url: "/donate", html: {autocomplete: "on", class: "pt2 pb4"} do |d| %>
-      <%= render "donors/form", form_builder: d %>
-    <% end -%>
-
-    <footer>
-      <div class="flag">
-        <div class="flag-body small">
-          <%= link_to "Terms & Privacy", legal_path(ref: default_ref_tag), class: "mr1 inline-block" %>
-          <%= link_to "FAQ", faq_path(ref: default_ref_tag), class: "inline-block" %>
-        </div>
-    </footer>
   </div>
-
-  <div class="pt2 pb2 mobile-hide"></div>
-
-</section>
+</div>

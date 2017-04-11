@@ -1,0 +1,33 @@
+.faq-panel{
+  margin-top:-$double-border-spacing;
+  .faq-container{
+    padding: 1rem 0rem 2rem 0rem;
+    @media #{$small-break} {
+      padding: 3rem 1rem 3rem 1rem;
+    }
+    @media #{$medium-break} {
+      padding: 5rem 3rem 5rem 3rem;
+    }
+    .faq-text-box{
+      padding: 2rem 0rem 1rem 0rem;
+      @media #{$small-break} {
+        padding: 1rem 6rem 0rem 2rem;
+      }
+      @media #{$medium-break} {
+        padding: 1rem 10rem 1rem 4rem;
+      }
+      ul{
+        list-style-type:none;
+      }
+      .faq-subheading{
+        margin: 1rem 0rem 1rem 0rem;
+      }
+      .faq-text{
+        font-family: 'MuseoSans', sans-serif;
+        font-weight: 300;
+        padding-bottom: 2rem;
+        color: color('lgray');
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<div class='category-cards'>
+  <p class='cta mx-auto sofiabold px2 py3 xs-hide dgray'>STEP 1: SELECT A CAUSE</p>
+
+  <div class='steps flex flex-wrap xs-hide sofiabold dgray justify-center'>
+    <% locals.each do |category| %>
+      <div class='double-border-button flex items-center justify-center m2 p1'><%= category.name %></div>
+    <% end %>
+  </div>
+
+  <div class='double-border-button select m2 p2 mx-auto sofiabold flex items-center sm-hide md-hide lg-hide dgray h4'>
+    <select class='select'>
+      <option value='STEP 1: SELECT A CAUSE'>STEP 1: SELECT A CAUSE</option>
+      <% locals.each do |category| %>
+        <option value='<%= category.name %>'><%= category.name %></option>
+      <% end %>
+    </select>
+  </div>
+</div>

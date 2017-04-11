@@ -1,0 +1,7 @@
+#account {
+  .welcome {
+    @media #{$small-break} {
+      font-size: 56px;
+    }
+  }
+}

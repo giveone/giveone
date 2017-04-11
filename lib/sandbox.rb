@@ -10,7 +10,7 @@ class Sandbox
 
   CARD_ATTRIBUTES = {
     ip_address:      "0.0.0.0",
-    email:           CONFIG[:developer_email],
+    email:           Rails.application.secrets.developer_email,
     name:            "User"
   }
 

@@ -5,11 +5,11 @@ Rails.application.config.paperclip_defaults = {
   s3_protocol: Rails.env.development? ? :http : :https,
   s3_permissions: :public_read,
   s3_credentials: {
-    :bucket => S3[:bucket],
-    :access_key_id => S3[:access_key_id],
-    :secret_access_key => S3[:secret_access_key]
+    :bucket => Rails.application.secrets.paperclip_bucket,
+    :access_key_id => Rails.application.secrets.aws_access_key_id,
+    :secret_access_key => Rails.application.secrets.aws_secret_access_key
   },
-  bucket: S3[:bucket]
+  bucket: Rails.application.secrets.paperclip_bucket
 }
 
 # To use the CF hostname instead of S3

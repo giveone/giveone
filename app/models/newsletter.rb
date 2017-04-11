@@ -21,10 +21,9 @@ class Newsletter < ActiveRecord::Base
   end
 
   def send_subscriber!
-    # Mailgun allows 1000 at a time, but we'll be safe with 100
     todays_subscribers.in_groups_of(100, false).each do |subscriber_batch|
       recipients = subscriber_batch.each_with_object({}) { |subscriber, recipients|
-        recipients.merge!(subscriber.to_mailgun_recipient)
+        recipients.merge!(subscriber.to_mandrill_recipient)
       }
 
       unless recipients.blank?
@@ -44,10 +43,9 @@ class Newsletter < ActiveRecord::Base
   end
 
   def send_donor!
-    # Mailgun allows 1000 at a time, but we'll be safe with 100
     todays_donors.in_groups_of(100, false).each do |donor_batch|
       recipients = donor_batch.each_with_object({}) { |donor, recipients|
-        recipients.merge!(donor.subscriber.to_mailgun_recipient)
+        recipients.merge!(donor.subscriber.to_mandrill_recipient)
       }
 
       unless recipients.blank?

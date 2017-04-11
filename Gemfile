@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.10'
 
 gem 'aws-sdk', '~> 1.14.1'
 gem 'area', '~> 0.10.0'
@@ -22,7 +23,7 @@ gem 'ransack', '~> 1.3.0'
 gem 'redis-objects', '~> 0.5.3'
 gem 'rest-client', '~> 1.6.9'
 gem 'savon', '~> 2.5.1'
-gem 'stripe', '~> 1.22.0'
+gem 'stripe', '~> 1.58.0'
 gem 'unicorn'
 gem 'puma'
 gem 'intercom'
@@ -72,6 +73,7 @@ group :development do
   gem 'guard'
   gem 'guard-livereload', require: false
   gem 'guard-pow', require: false
+  gem "letter_opener"
 end
 
 group :development, :staging do

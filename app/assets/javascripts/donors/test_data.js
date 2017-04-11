@@ -9,11 +9,11 @@ $(function() {
     $('#donor_card_attributes_cvc').val("1234");
     $('#donor_card_attributes_card_type').val("amex");
     $('#donor_card_attributes_exp_month').val("12");
-    $('#donor_card_attributes_exp_year').val("2018");
+    $('#donor_card_attributes_exp_year').val("2020");
     $('#donor_card_attributes_address1').val("123 Test Street");
     $('#donor_card_attributes_city').val("New York");
     $('#donor_card_attributes_state').val("NY");
-    $('#donor_card_attributes_zip').val("10001").trigger("keyup");
+    $('#donor_card_attributes_zip').val("10002").trigger("keyup");
     $('#donor_card_attributes_name').focus();
   });
 
