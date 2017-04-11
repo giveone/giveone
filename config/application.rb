@@ -22,6 +22,7 @@ module GiveOne
 
     config.to_prepare do
       Devise::SessionsController.layout "public"
+      Devise::PasswordsController.layout "public"
     end
 
     config.action_mailer.preview_path = "#{Rails.root}/app/mailers/previews"
