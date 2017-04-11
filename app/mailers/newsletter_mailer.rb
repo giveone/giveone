@@ -11,9 +11,6 @@ class NewsletterMailer < BaseMailer
     key = is_first ? "first" : "subsequent"
     subject = t("newsletter.subject.#{key}", nonprofit: @newsletter.nonprofit.name)
 
-    headers['X-Mailgun-Campaign-Id'] = "daily_donor_newsletter"
-    headers['X-Mailgun-Tag']         = "daily_donor_newsletter_#{@newsletter.nonprofit.featured_on}"
-
     mail(to: Array.wrap(to), subject: subject) do |format|
       format.html
       format.text
@@ -26,8 +23,6 @@ class NewsletterMailer < BaseMailer
 
     key = is_first ? "first" : "subsequent"
     subject = t("newsletter.subject.#{key}", nonprofit: @newsletter.nonprofit.name)
-    headers['X-Mailgun-Campaign-Id'] = "daily_subscriber_newsletter"
-    headers['X-Mailgun-Tag']         = "daily_subscriber_newsletter_#{@newsletter.nonprofit.featured_on}"
 
     mail(to: Array.wrap(to), subject: subject) do |format|
       format.html
@@ -46,9 +41,7 @@ class NewsletterMailer < BaseMailer
     end
   end
 
-  # reference: http://documentation.mailgun.com/user_manual.html#batch-sending
   def self.batched_daily(type, newsletter_id, recipients={}, is_first=false)
-
     Rails.logger.info "Sending a daily newsletter batch to #{recipients.size} recipients..."
 
     @newsletter   = Newsletter.find(newsletter_id)
@@ -62,17 +55,14 @@ class NewsletterMailer < BaseMailer
     Rails.logger.info "Running interceptors on daily newsletter batch"
     mailer.inform_interceptors
 
-    raise "You may only send up to 1,000 recipients at once on the Mailgun API's batch send endpoint." if recipients.size > 1000
-
-
     if recipients.size.zero?
       # This is mostly for Staging
       Rails.logger.info "No recipients left to send! #{type}, #{newsletter_id}, #{is_first}"
       return
     end
 
-    response = RestClient.post "https://api:#{MAILGUN[:api_key]}@api.mailgun.net/v2/#{MAILGUN[:domain]}/messages",
-      'from'                => "#{CONFIG[:name]} <hello@#{CONFIG[:host]}>",
+    response = RestClient.post "https://api:#{Rails.application.secrets.mandrill_api_key}@api.mandrill.com/messages",
+      'from'                => "#{Rails.application.secrets.name} <hello@#{Rails.application.secrets.host}>",
       'to'                  => recipients.keys,
       'recipient-variables' => recipients.to_json,
       'subject'             => mailer.subject,
@@ -81,7 +71,7 @@ class NewsletterMailer < BaseMailer
       'o:campaign'          => "daily_#{type}_newsletter",
       'o:tag'               => "daily_#{type}_newsletter_#{@newsletter.nonprofit.featured_on}"
 
-    Rails.logger.info "Response from Mailgun: #{response}"
+    Rails.logger.info "Response from Mandrill: #{response}"
   rescue => e
     puts "\nERROR: #{e}\n"
     puts e.respond_to?(:response) ? "\n#{e.response.inspect}\n" : "\n#{e.inspect}\n"

@@ -74,17 +74,43 @@ class DonorCard < ActiveRecord::Base
           source: stripe_token # create the COF while we're at it
         })
         Stripe.logger.info "Stripe::Customer.create\n#{customer.pretty_inspect}\n"
+
         if donor.new_record?
           donor.stripe_customer_id = customer.id
         else
           donor.update_column(:stripe_customer_id, customer.id)
         end
+
         card = customer.sources.first
+        # check if plan exists first
+        plan_id = "#{self.amount}-recurring-plan"
+        plan = Stripe::Plan.all.data.find { |plan| plan.id == plan_id } if (Stripe::Plan.all.data.any? { |plan| plan.id == plan_id})
+
+        Stripe.logger.info "Stripe::Plan.create\n#{plan_id}\n" if plan.nil?
+
+        plan ||= Stripe::Plan.create(
+          name: "#{self.amount} Recurring Plan",
+          id: plan_id,
+          interval: "month",
+          currency: "usd",
+          amount: self.amount.to_i * 100
+        )
+
+        subscription = Stripe::Subscription.create(
+          customer: customer.id,
+          plan: plan_id,
+          metadata: {
+            donor_id: donor.id,
+            donor_card_name: self.name,
+            donor_card_email: self.email
+          }
+        )
+
+        Stripe.logger.info "Stripe::Subscription.create\n#{customer.pretty_inspect}-#{plan_id}\n"
       else # for fixing cards, when Customer already exists
         # UGH tempfix until this issue is fixed in stripe-ruby-mock: https://github.com/rebelidealist/stripe-ruby-mock/issues/209#issuecomment-104020177
         customer = Stripe::Customer.retrieve(donor.stripe_customer_id, {api_key: Stripe.api_key})
         Stripe.logger.info "Stripe::Card.create\n#{card.pretty_inspect}\n"
-
         # TODO deactivate the old card after this one is active (maybe an "after_activate" callback or something?)
         card = customer.sources.create(source: stripe_token)
       end

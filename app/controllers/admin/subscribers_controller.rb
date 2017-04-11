@@ -16,7 +16,7 @@ class Admin::SubscribersController < Admin::BaseController
     @nonprofit = Nonprofit.find(params[:nonprofit_id])
 
     type = @subscriber.active_donor? ? "donor" : "subscriber"
-    recipients = @subscriber.to_mailgun_recipient
+    recipients = @subscriber.to_mandrill_recipient
 
     NewsletterMailer.batched_daily(type, @nonprofit.newsletter.id, recipients)
     email = @subscriber.emails.new(to: @subscriber.email,  newsletter: @nonprofit.newsletter, sent_at: Time.now, mailer: "NewsletterMailer", mailer_method: "daily_#{type}")

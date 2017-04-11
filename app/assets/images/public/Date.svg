@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="23px" viewBox="0 0 22 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon/Date</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="1" y="2" width="22" height="21"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="22" height="21" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="1" y="2" width="22" height="10"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="22" height="10" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.560000002">
+        <g id="Module/Volunteer_D" transform="translate(-49.000000, -702.000000)" stroke="#444444">
+            <g id="information" transform="translate(24.000000, 622.000000)">
+                <g id="Group-7" transform="translate(24.000000, 32.000000)">
+                    <g id="Group-6" transform="translate(0.000000, 48.000000)">
+                        <g id="Icon/Date">
+                            <use id="Rectangle-3" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+                            <use id="Rectangle-3-Copy" mask="url(#mask-4)" stroke-width="4" xlink:href="#path-3"></use>
+                            <path d="M7,0 L7,7" id="Path-3" stroke-width="2"></path>
+                            <path d="M17,0 L17,7" id="Path-3-Copy" stroke-width="2"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

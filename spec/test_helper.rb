@@ -17,6 +17,8 @@ end
 class ActiveSupport::TestCase
   setup do
     Timecop.freeze(Time.now)
+    Stripe.api_key = Rails.application.secrets.stripe_secret_key
+    # binding.pry fix stripe api_key must be a string issue
     StripeMock.start
   end
 

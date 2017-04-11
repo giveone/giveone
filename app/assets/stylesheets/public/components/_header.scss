@@ -1,0 +1,35 @@
+.header {
+  display:none;
+  @media #{$small-break} {
+    display:flex;
+    height: $nav-height;
+    position: fixed;
+    background-color: transparent;
+    width: 100%;
+    z-index: 11;
+    padding: 2rem 5rem 0rem 5rem;
+  }
+  .logo {
+    transiton: $hover-speed ease-in-out;
+    &:hover {
+      color: color('lgray');
+    }
+  }
+  .nav-links{
+    .icons{
+      width:25px;
+      height:25px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    #money{
+      background-image: url('/static/images/$-icon.svg');
+    }
+    #activation{
+      background-image: url('/static/images/activation-icon.svg');
+    }
+    #account{
+      background-image: url('/static/images/account-icon.svg');
+    }
+  }
+}

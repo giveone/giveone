@@ -7,6 +7,10 @@
   </span>
 
   <div class="field mb1">
+    <%= c.text_field :amount, tabindex: "1", placeholder: "Recurring amount", data: { stripe: "amount" }, class: "full-width" %>
+  </div>
+
+  <div class="field mb1">
       <% unless Rails.env.production? -%>
         <span id="donate_test_data_button" style="text-decoration: underline; cursor: pointer;" class="right small">Use Test Data</span>
       <% end %>

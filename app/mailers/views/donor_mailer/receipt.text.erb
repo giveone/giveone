@@ -1,10 +1,10 @@
 Hi<%= ", #{@donor.subscriber.name.given_name}" if @donor.subscriber.name.present? %>!
 
-On behalf of your favorite charities and <%= CONFIG[:name] %>, we thank you for your generous support!
+On behalf of your favorite charities and <%= Rails.application.secrets.name %>, we thank you for your generous support!
 
-Your donation is being made to <%= CONFIG[:name] %>, a 501(c)(3) public charity (tax ID 46-2761482), which processes donations made through <%= CONFIG[:name] %> and distributes them to a list of pre-determined charities. All donations are final and may not be refunded.
+Your donation is being made to <%= Rails.application.secrets.name %>, a 501(c)(3) public charity (tax ID 46-2761482), which processes donations made through <%= Rails.application.secrets.name %> and distributes them to a list of pre-determined charities. All donations are final and may not be refunded.
 
-Thank you again for visiting <%= CONFIG[:name] %>!
+Thank you again for visiting <%= Rails.application.secrets.name %>!
 
 
 Donation Record
@@ -15,8 +15,8 @@ Your contribution is tax-deductible to the extent allowed by law. This email cer
 - Name: <%= @donor.subscriber.name %>
 - E-mail: <%= @donor.subscriber.email %>
 - Total Donation Amount: $<%= '%.02f' % @donation.amount %>
-- Organization:  <%= CONFIG[:name] %>
-- Address:  <%= CONFIG[:address] %>
+- Organization:  <%= Rails.application.secrets.name %>
+- Address:  <%= Rails.application.secrets.address %>
 - Method of Payment: <%= @charge.source.brand %>
 - Credit Card Last 4 Digits: <%= @charge.source.last4 %>
 - Date: <%= @donation.executed_at.strftime '%A, %B %e, %Y' %>

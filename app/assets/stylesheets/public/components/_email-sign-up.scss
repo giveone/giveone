@@ -1,0 +1,49 @@
+.email-sign-up{
+  z-index:1;
+  .email-input{
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: -5px;
+      bottom: -5px;
+      border: 2px solid color('dgray');
+      z-index: -1;
+    }
+    input{
+      width:260px;
+      height:72px;
+      border: 2px solid color('dgray');
+      @media #{$small-break} {
+        width:330px;
+        height:72px;
+      }
+    }
+  }
+  .email-submit-button{
+    width:100px;
+    border:none;
+  }
+  ::-webkit-input-placeholder {
+    color: color('dgray');
+    font-size: 16px;
+    font-family: "Sofia Bold", sans-serif;
+  }
+  :-moz-placeholder {
+    color: color('dgray');
+    font-size: 16px;
+    font-family: "Sofia Bold", sans-serif;
+  }
+  ::-moz-placeholder {
+    color: color('dgray');
+    font-size: 16px;
+    font-family: "Sofia Bold", sans-serif;
+  }
+  :-ms-input-placeholder {
+    color: color('dgray');
+    font-size: 16px;
+    font-family: "Sofia Bold", sans-serif;
+  }
+}

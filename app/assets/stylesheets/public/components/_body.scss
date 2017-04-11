@@ -1,0 +1,141 @@
+body{
+  &[data-theme="green"] {
+   .accent-color{
+     color: color('algae');
+    }
+    .button-bg-color{
+      background-color: color('algae');
+    }
+    .email-input{
+      &:before {
+        background-color: color('algae');
+      }
+    }
+    .donate{
+      color: color('algae');
+    }
+    #money{
+      background-image: url('/static/images/$-green-icon.svg');
+    }
+
+    .double-border-button{
+      &:after {
+        background-color: color('algae');
+      }
+      &:hover {
+        color: color('algae');
+      }
+      &.active{
+        &:hover {
+          color: color('white');
+        }
+        background-color: color('algae');
+        &:after {
+          background-color: white;
+        }
+      }
+    }
+  }
+  &[data-theme="orange"] {
+   .accent-color{
+     color: color('nectarine');
+    }
+    .button-bg-color{
+      background-color: color('nectarine');
+    }
+    .email-input{
+      &:before {
+        background-color: color('nectarine');
+      }
+    }
+    .activation {
+      color: color('nectarine');
+    }
+    #activation {
+      background-image: url('/static/images/activation-orange-icon.svg');
+    }
+    .activation-cards{
+      &.active{
+        .activation-card-title{
+          color:color('nectarine');
+        }
+      }
+    }
+
+    .double-border-button{
+      &:after {
+        background-color: color('nectarine');
+      }
+      &.active{
+        background-color: color('nectarine');
+        &:after {
+          background-color: white;
+        }
+      }
+    }
+    .double-border-box{
+      &:before {
+        background-color: color('nectarine');
+      }
+      &.active{
+        &:before {
+          background-color: transparent;
+          border:none;
+        }
+      }
+      &.biggest-box{
+        &:before {
+          background-color: white;
+        }
+      }
+    }
+  }
+  &[data-theme="blue"] {
+   .accent-color{
+     color: color('velure');
+    }
+    .button-bg-color{
+      background-color: color('velure');
+    }
+    .email-input{
+      &:before {
+        background-color: color('velure');
+      }
+    }
+    #account {
+      .account{
+        color: color('velure');
+      }
+      #account{
+        background-image: url('/static/images/purp-account-icon.svg');
+      }
+      .double-border-box{
+        &:before {
+          background-color: color('velure');
+        }
+        &.active{
+          background-color: color('velure');
+          &:before {
+            background-color: color('velure');
+          }
+          p{
+            color: white;
+          }
+          &:hover{
+            background-color: color('white');
+            p{
+              color: color('dgray');
+            }
+          }
+        }
+        &:hover{
+          background-color: color('white');
+          color: color('dgray');
+          &:before {
+            background-color: color('white');
+          }
+        }
+      }
+    }
+  }
+}

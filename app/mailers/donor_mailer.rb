@@ -8,7 +8,7 @@ class DonorMailer < BaseMailer
 
     @last_day = last_donation ? last_donation.executed_at.to_date + 30.days : Date.today
 
-    mail(to: @donor.subscriber.email, subject: "Your #{CONFIG[:name]} donations have been cancelled") do |format|
+    mail(to: @donor.subscriber.email, subject: "Your #{Rails.application.secrets.name} donations have been cancelled") do |format|
       format.html { render layout: 'base' }
     end
   end
@@ -16,7 +16,7 @@ class DonorMailer < BaseMailer
   def uncancelled(donor_id)
     @donor = Donor.find(donor_id)
 
-    mail(to: @donor.subscriber.email, subject: "Welcome back to #{CONFIG[:name]}!") do |format|
+    mail(to: @donor.subscriber.email, subject: "Welcome back to #{Rails.application.secrets.name}!") do |format|
       format.html { render layout: 'base' }
     end
   end
@@ -36,7 +36,7 @@ class DonorMailer < BaseMailer
     @nonprofits = @donation.nonprofits
     @charge = stripe_charge
 
-    mail(to: @subscriber.email, subject: "Your #{CONFIG[:name]} receipt [##{'%08d' % @donation.id}]")
+    mail(to: @subscriber.email, subject: "Your #{Rails.application.secrets.name} receipt [##{'%08d' % @donation.id}]")
   end
 
 end

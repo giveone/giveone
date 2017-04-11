@@ -1,5 +1,5 @@
 # Replaces URL-encoded %recipient.whatever% tags with non-encoded
-class MailMailgunVariablesFilter
+class MailMandrillVariablesFilter
 
   class << self
 
@@ -14,5 +14,5 @@ class MailMailgunVariablesFilter
     alias_method :previewing_email, :replace
 
   end
-  
+
 end

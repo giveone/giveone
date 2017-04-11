@@ -1,0 +1,2 @@
+ActionMailer::Base.register_interceptor(MailMandrillVariablesFilter)
+ActionMailer::Base.register_preview_interceptor(MailMandrillVariablesFilter)

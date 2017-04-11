@@ -37,9 +37,8 @@ working_directory APP_PATH # available in 0.94.0+
 # listen APP_PATH + '/pids/unicorn.sock', tcp_nopush: false
 listen ENV["UNICORN_LISTEN_PORT"].to_i, tcp_nopush: false
 
-
-# nuke workers after 30 seconds instead of 60 seconds (the default)
-timeout 430
+# nuke workers after 180 seconds instead of 60 seconds (the default)
+timeout 180
 
 # feel free to point this anywhere accessible on the filesystem
 pid APP_PATH + "/pids/unicorn-#{ENV["UNICORN_LISTEN_PORT"]}.pid"

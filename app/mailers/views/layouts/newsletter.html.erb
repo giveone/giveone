@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title><%= CONFIG[:name] %></title>
+  <title><%= Rails.application.secrets.name %></title>
   <meta name="format-detection" content="telephone=no">
   <%= stylesheet_link_tag "mailer", media: "all" %>
 </head>
@@ -15,8 +15,8 @@
           <tr>
             <td colspan="2" align="center" class="newsletter__footer">
               <div class="newsletter__footer__text">
-                <p>&copy;<%= Time.now.year %> <%= CONFIG[:name] %></p>
-                <p><%= CONFIG[:address] %></p>
+                <p>&copy;<%= Time.now.year %> <%= Rails.application.secrets.name %></p>
+                <p><%= Rails.application.secrets.address %></p>
                 <p>
                   <%= link_to "Unsubscribe",  login_and_goto(:unsubscribe_subscriber_path), class: "newsletter__footer__link", id: "unsubscribe_link" %>
                   <%= link_to "Account",      login_and_goto(:subscriber_path),             class: "newsletter__footer__link" %>

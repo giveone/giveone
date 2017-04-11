@@ -12,6 +12,11 @@
   </div>
 
   <div class="field mb1">
+    <%= c.label :amount, "Amount #{error_tooltip_for(c.object, :amount)}".html_safe %>
+    <%= c.text_field :amount, class: "full-width", tabindex: 2 %>
+  </div>
+
+  <div class="field mb1">
     <%= c.label :name, "Full name #{error_tooltip_for(c.object, :name)}".html_safe %>
     <%= c.text_field :name, autocompletetype: "given-name", class: "full-width", tabindex: 2 %>
   </div>

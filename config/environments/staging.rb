@@ -80,18 +80,17 @@ Rails.application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # To enable CORS for CF and S3: http://www.holovaty.com/writing/cors-ie-cloudfront/
-  config.action_controller.asset_host = CONFIG[:cloudfront_hostname]
-  config.action_mailer.asset_host = "https://#{CONFIG[:cloudfront_hostname]}"
+  config.action_controller.asset_host = Rails.application.secrets.loudfront_hostname
+  config.action_mailer.asset_host = "https://#{Rails.application.secrets.loudfront_hostname}"
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 
   GiveOne::Application.config.middleware.use ExceptionNotification::Rack,
     email: {
-      email_prefix: "[#{CONFIG[:name]} Staging] ",
-      sender_address: %{"#{CONFIG[:name]} Notifier" <#{CONFIG[:developer_email]}>},
-      exception_recipients: CONFIG[:developer_email],
-      email_headers: {"X-Mailgun-Track" => "no"}
+      email_prefix: "[#{Rails.application.secrets.name} Staging] ",
+      sender_address: %{"#{Rails.application.secrets.name} Notifier" <#{Rails.application.secrets.developer_email}>},
+      exception_recipients: Rails.application.secrets.developer_email
     }
 
   # Do not dump schema after migrations.

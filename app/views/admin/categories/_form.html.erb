@@ -12,7 +12,7 @@
 <%= f.label :slug %>
 <br />
 <%= f.text_field :slug, maxlength: 255, size: 25 %>
-<b class="left" style="line-height: 3em"><%= CONFIG[:host] %>/categories/</b>
+<b class="left" style="line-height: 3em"><%= Rails.application.secrets.host %>/categories/</b>
 	&nbsp;<%= content_tag(:span, category.errors[:name].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if category.errors[:slug].present? %>
 <br />
 <br />
