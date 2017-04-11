@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon/People</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="16" height="6"></rect>
+        <path d="M15,5 C15,1.13400675 11.8659932,-2 8,-2 C4.13400675,-2 1,1.13400675 1,5" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="14" height="7" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+        <circle id="path-5" cx="12" cy="12" r="12"></circle>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="24" height="24" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.560000002">
+        <g id="Module/Volunteer_D" transform="translate(-48.000000, -654.000000)">
+            <g id="information" transform="translate(24.000000, 622.000000)">
+                <g id="Group-7" transform="translate(24.000000, 32.000000)">
+                    <g id="Group-4">
+                        <g id="Icon/Account">
+                            <circle id="Oval-5" fill="#444444" fill-rule="evenodd" cx="8" cy="9" r="2"></circle>
+                            <circle id="Oval-5-Copy" fill="#444444" fill-rule="evenodd" cx="16" cy="9" r="2"></circle>
+                            <g id="Group-2" stroke-width="1" fill-rule="evenodd" transform="translate(4.000000, 15.000000)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="Mask" transform="translate(8.000000, 3.000000) scale(1, -1) translate(-8.000000, -3.000000) "></g>
+                                <g id="Oval-6" mask="url(#mask-2)" transform="translate(8.000000, 1.500000) rotate(-180.000000) translate(-8.000000, -1.500000) " stroke-width="4" stroke="#444444">
+                                    <use mask="url(#mask-4)" xlink:href="#path-3"></use>
+                                </g>
+                            </g>
+                            <use id="Oval-7" stroke="#444444" mask="url(#mask-6)" stroke-width="4" xlink:href="#path-5"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

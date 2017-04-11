@@ -48,15 +48,15 @@ body{
         background-color: color('nectarine');
       }
     }
-    .volunteer{
+    .activation {
       color: color('nectarine');
     }
-    #volunteer{
-      background-image: url('/static/images/volunteer-orange-icon.svg');
+    #activation {
+      background-image: url('/static/images/activation-orange-icon.svg');
     }
-    .volunteer-cards{
+    .activation-cards{
       &.active{
-        .volunteer-card-title{
+        .activation-card-title{
           color:color('nectarine');
         }
       }

@@ -3,9 +3,9 @@
   <div class='col col-12 py4 border-first-panel bc-white bg-svelte min-panel-height'>
     <div class='clearfix py4 px2 flex items-center mx-auto max-width-3'>
       <div class='col col-12 py4 flex flex-column center'>
-        <p class='mx-auto h1 my0 sofiabold pb3 dgray'>Give One makes giving back to your community<span class='velure'> easy.</span></p>
+        <p class='mx-auto h1 my0 sofiabold pb3 dgray'><%= Rails.application.secrets.name %> makes giving back to your community<span class='velure'> easy.</span></p>
         <p class='mx-auto h5 MuseoSans300 px2 pb3 lgray'>Connect with the charities and organizations you want to support - online with your wallet, and on the ground with your time.</p>
-        <a href='/account'class="pulsate donate-volunteer-button text-decoration-none p2 nowrap mx-auto sofiabold bg-velure h6 white">Give Now</a>
+        <a href='/account'class="pulsate donate-activation-button text-decoration-none p2 nowrap mx-auto sofiabold bg-velure h6 white">Give Now</a>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class='clearfix pb4 px2 mx-auto max-width-4'>
       <div class='double-border-box-faq biggest-box index-page-box p1 sofiasemibold'>
         <p class='box-inner-text sofiabold h4 dgray'>A platform for activisim</p>
-        <p class='box-inner-text sofiabold h2 velure'>Give One is about getting involved in your community one day, and one cause at a time.</p>
+        <p class='box-inner-text sofiabold h2 velure'><%= Rails.application.secrets.name %> is about getting involved in your community one day, and one cause at a time.</p>
       </div>
       <div class='faq-container'>
         <div class='faq-text-box'>
@@ -47,7 +47,7 @@
           </p>
         </div>
         <div class='faq-text-box'>
-          <p class='faq-subheading sofiabold h4 dgray'>Team Give One</p>
+          <p class='faq-subheading sofiabold h4 dgray'>Team <%= Rails.application.secrets.name %></p>
           <p class='faq-text h5 lgray pt1'>
             Gin Lane, Bond Street Hospitality, The Setting, Lola New York, Samantha Orley, AGW Group, Dmitri Vassilev, Sanctuary Computer & <span class='velure'>You.</span>
           </p>
@@ -55,7 +55,7 @@
         <div class='faq-text-box'>
           <p class='faq-subheading sofiabold h4 dgray'>How we operate</p>
           <p class='faq-text h5 lgray pt1'>
-            Give One is a non-profit federal tax-exempt organization under section 501(c)(3) of the Internal Revenue Code, EIN 81-4924613, so all of your donations are tax deductible.
+            <%= Rails.application.secrets.name %> is a non-profit federal tax-exempt organization under section 501(c)(3) of the Internal Revenue Code, EIN 81-4924613, so all of your donations are tax deductible.
           </p>
           <p class='faq-text h5 lgray pt1'>
             The money you donate goes directly to the selected charities. We don’t take a penny.

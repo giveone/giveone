@@ -55,6 +55,10 @@ Rails.application.routes.draw do
 
   resources :users
 
+  # These were added by hugh
+  get  'volunteer', to: 'site#volunteer'
+
+  #TODO: Scrub below routes
   get  'about',            to: 'site#about'
   get  'calendar',         to: 'site#calendar'
   get  'faq',              to: 'site#faq'
