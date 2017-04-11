@@ -1,0 +1,33 @@
+<div id='account' class='clearfix'>
+
+  <div class='col col-12 py4 border-first-panel relative bc-white bg-notwhite flex flex-column min-panel-height' style='z-index:1'>
+    <div class='col col-12 py4 flex flex-column'>
+      <div class='account-first-page-welcome-text col-8 mx-auto'>
+        <p class='welcome h2 sofiabold py3 dgray'>
+          Welcome, <%= @current_user.first_name %>.
+        </p>
+        <p class='h5 MuseoSans300 pb3 lgray'>
+          What would you like to do?
+        </p>
+      </div>
+      <div class='account-first-page-options-container flex flex-wrap justify-center bg-accent-color dgray'>
+        <div class='account-first-page-options double-border-box col-4 m1'>
+          <p class='sofiabold h6 py5 center dgray'>Change my daily amount</p>
+        </div>
+        <div class='account-first-page-options double-border-box col-4 m1'>
+          <p class='sofiabold h6 py5 center dgray'>Change support cause</p>
+        </div>
+        <div class='account-first-page-options double-border-box col-4 m1'>
+          <p class='sofiabold h6 py5 center dgray'>Stop donating</p>
+        </div>
+        <div class='account-first-page-options double-border-box col-4 m1'>
+          <%# TODO: This doesn't actually work %>
+          <%= link_to(destroy_user_session_path, method: :delete) do %>
+            <p class='sofiabold h6 py5 center dgray'>Sign out</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

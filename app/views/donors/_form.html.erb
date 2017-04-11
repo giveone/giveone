@@ -34,6 +34,10 @@
 </section>
 
 <section id="form_footer" class="clear">
+  <div class="field mb1">
+    <%= form_builder.text_field :password, tabindex: "2", placeholder: "Password", type: "password", autocorrect: "off", spellcheck: "off", autocapitalize: "off", class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter full-width" %>
+  </div>
+
   <div class="checkbox pt1 pb3 relative">
     <%= form_builder.check_box :add_fee, {tabindex: 12}, "1", "0" %>
     <%= form_builder.label(:add_fee, class: "clearfix MuseoSans300 inline-block") do %>

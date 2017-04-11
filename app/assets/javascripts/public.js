@@ -15,6 +15,7 @@
 //= require ./donors/new
 //= require ./donors/edit
 //= require ./donors/test_data
+//= require jquery_ujs
 
 $(function() {
 	if ($('.flash,.alert').length) {

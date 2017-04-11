@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # Overwriting the sign_out redirect path method
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
+  end
+
   def tweak_headers
     # Rails 4 added this by default, but it makes the site unembeddable in
     # StumbleUpon. Can't think of a reason to keep it for DaD.

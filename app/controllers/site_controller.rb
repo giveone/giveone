@@ -20,6 +20,7 @@ class SiteController < ApplicationController
   end
 
   def account
+    @current_user = current_user
   end
 
   def donate
