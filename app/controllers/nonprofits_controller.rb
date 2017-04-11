@@ -16,9 +16,7 @@ class NonprofitsController < ApplicationController
     @previous_day = Nonprofit.is_public.featured_reverse_from(@current_nonprofit.prev_day).first
 
     @hide_header = true
-    if current_subscriber?
-      @nonprofit_is_favorite = current_subscriber.favorite_nonprofits.exists?(@nonprofit)
-    else
+    unless current_subscriber?
       @hide_footer = true
     end
   end

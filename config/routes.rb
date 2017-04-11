@@ -26,19 +26,11 @@ Rails.application.routes.draw do
       put 'unsubscribe'
       put 'resubscribe'
       get 'donations',                  action: 'donations'
-      get 'add_favorite/:nonprofit_id', to: redirect('/subscribers/%{guid}/favorites/%{nonprofit_id}/add')
       get 'email_login/:auth_token',    action: 'email_login',  as: 'email_login'
       get 'logout',                     action: 'logout'
     end
     collection do
       get 'thanks'
-    end
-
-    resources :favorites,     controller: 'subscriber/favorites',
-                              as: :favorites,
-                              only: [:index, :destroy, :create] do
-
-      get 'add',          action: :create, as: :add, on: :member
     end
   end
 
@@ -56,7 +48,7 @@ Rails.application.routes.draw do
   resources :users
 
   # These were added by hugh
-  get  'volunteer', to: 'site#volunteer'
+  get  'volunteer',        to: 'site#volunteer'
   get  'account',          to: 'site#account',       as: :account
   get  'donate',           to: 'donors#info',        as: :donate
   get  'donate/:id',       to: 'donors#new',         as: :new_donation

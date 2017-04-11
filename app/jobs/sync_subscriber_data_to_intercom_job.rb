@@ -19,10 +19,7 @@ class SyncSubscriberDataToIntercomJob < GiveOneJob.new(:subscriber_id)
       user.custom_attributes['has_donated'] = false
     end
 
-    user.custom_attributes['favorites'] = subscriber.favorites.count
-
     intercom.users.save user
-
   end
 
   protected

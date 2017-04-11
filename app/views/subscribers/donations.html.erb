@@ -19,9 +19,6 @@
               </div>
               <div class="o-media__body">
                 <div class="o-media o-media--right">
-                  <div class="o-media__item ml1">
-                    <%= render_favoriting_button nonprofit.id, @favorite_nonprofits_ids.include?(nonprofit.id), class: 'c-np-text-list__item__favoriting' %>
-                  </div>
                   <div class="o-media__body">
                     <h5 class="reset c-np-text-list__item__name">
                       <%= link_to nonprofit.name, nonprofit, class: "c-np-text-list__item__name__link" %>

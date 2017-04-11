@@ -50,7 +50,6 @@ class Donor < ActiveRecord::Base
     joins(donations: [:nonprofits]).where("nonprofits.id = ?", n.id)
   }
 
-
   def to_param
     subscriber.try(:guid)
   end

@@ -36,7 +36,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # Cloudfront y'all! -- to enable CORS for CF and S3: http://www.holovaty.com/writing/cors-ie-cloudfront/
-  # config.action_controller.asset_host = Rails.application.secrets.host
-  # config.action_mailer.asset_host = "http://#{Rails.application.secrets.host}"
+  Rails.application.config.action_controller.asset_host = Rails.application.secrets.host
+  Rails.application.config.action_mailer.asset_host = "http://#{Rails.application.secrets.host}"
   config.action_mailer.delivery_method = :letter_opener
 end

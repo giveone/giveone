@@ -73,8 +73,8 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # To enable CORS for CF and S3: http://www.holovaty.com/writing/cors-ie-cloudfront/
-  # config.action_controller.asset_host = Rails.application.secrets.loudfront_hostname @DMITRI comment
-  # config.action_mailer.asset_host = "https://#{Rails.application.secrets.loudfront_hostname}" @DMITRI comment
+  # config.action_controller.asset_host = Rails.application.secrets.cloudfront_hostname @DMITRI comment
+  # config.action_mailer.asset_host = "https://#{Rails.application.secrets.cloudfront_hostname}" @DMITRI comment
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
@@ -86,7 +86,6 @@ Rails.application.configure do
       exception_recipients: Rails.application.secrets.developer_email,
       email_headers: {}
     }
-
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

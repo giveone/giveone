@@ -1,3 +1,4 @@
+<%= render "layouts/partials/admin_bar" if current_user.try(:is_admin?) %>
 <div class='header my2 flex justify-between dgray sofiabold'>
   <a class='text-decoration-none dgray flex items-center mx1' href="/">
     <p class='logo h4 nowrap'><%= Rails.application.secrets.name %></p>

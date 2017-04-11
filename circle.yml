@@ -21,7 +21,7 @@ test:
     - exit 0
 deployment:
   integration:
-    branch: master
+    branch: mincedmit/emails-and-stripe
     commands:
       - . ./build-and-deploy.sh integration:
           timeout: 1800

@@ -80,8 +80,8 @@ Rails.application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # To enable CORS for CF and S3: http://www.holovaty.com/writing/cors-ie-cloudfront/
-  config.action_controller.asset_host = Rails.application.secrets.loudfront_hostname
-  config.action_mailer.asset_host = "https://#{Rails.application.secrets.loudfront_hostname}"
+  config.action_controller.asset_host = Rails.application.secrets.host
+  config.action_mailer.asset_host = "https://#{Rails.application.secrets.host}"
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

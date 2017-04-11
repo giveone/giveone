@@ -2,4 +2,5 @@
 cd /app && \
 bundle exec rake assets:precompile && \
 bundle exec rake db:migrate && \
+bundle exec rake delayed_job:restart && \
 bundle exec unicorn -c /app/config/container/unicorn.rb

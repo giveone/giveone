@@ -85,11 +85,6 @@ en:
     subject:
       first: "Welcome to #{Rails.application.secrets.name}. Today's nonprofit %{nonprofit}"
       subsequent: "Today's nonprofit is %{nonprofit}"
-    favorite:
-      action: "Add to Favorites"
-      explainer:
-        text: "Favoriting lets you keep track of and share the nonprofits you love. %{learn_more}"
-        learn_more: "Learn more"
     share:
       facebook:
         text: "%{donors} donors are giving to %{nonprofit} on #{Rails.application.secrets.name}"
@@ -99,30 +94,3 @@ en:
         text:
           subscriber: "Have you heard about %{nonprofit}? Learn more about this amazing nonprofit on #{Rails.application.secrets.twitter_username}: %{nonprofit_url}"
           donor: "Today %{donors} donors are giving to %{nonprofit} on #{Rails.application.secrets.twitter_username}. Join us in supporting great nonprofits like this one. #{Rails.application.secrets.hostname}"
-
-  favoriting:
-    add:
-      action: "Add to Favorites"
-      flash:
-        success: "You added “%{name}” to your favorite nonprofits!"
-        redundant: "“%{name}” was already in your favorites."
-        error: "Couldn’t add nonprofit to favorites because the nonprofit doesn’t exist."
-    remove:
-      action: "Remove from Favorites"
-      flash:
-        success: "You removed “%{name}” from your favorite nonprofits!"
-        redundant: "“%{name}” wasn’t in your favorites."
-        error: "Couldn’t remove nonprofit from favorites because the nonprofit doesn’t exist."
-
-  account:
-    favorites:
-      share:
-        prompt:
-          heading: "Did you know? You can share this page!"
-          description: "It’s a great way to spread the word about these amazing organizations."
-          disclaimer: "(Don’t worry, none of your private information will be made public)"
-        twitter:
-          action: "Share on Twitter"
-          text: "Check out my favorite nonprofits on #{Rails.application.secrets.twitter_username}: %{url}"
-        facebook:
-          action: "Share on Facebook"

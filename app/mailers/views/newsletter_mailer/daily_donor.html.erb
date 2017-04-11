@@ -32,13 +32,6 @@
         Learn more about this amazing nonprofit: <%= link_to_nonprofit(@newsletter.nonprofit, target: "_blank") %>
       </p>
 
-      <div class="newsletter__buttons">
-        <div><%= render partial: "shared/button_favorite",  locals: { url: login_and_goto(:add_subscriber_favorite_path, @nonprofit.id) } %></div>
-        <div class="button-followup">
-          <%= raw t "newsletter.favorite.explainer.text", learn_more: link_to(t("newsletter.favorite.explainer.learn_more"), "http://....") %>
-        </div>
-      </div>
-
       <p class="newsletter__social">
         <%= render partial: "shared/button_tweet",     locals: { url: newsletter_tweet_url(@nonprofit, :donor) } %>
         <%= render partial: "shared/button_facebook",  locals: { url: newsletter_facebook_url(@newsletter.nonprofit) } %>

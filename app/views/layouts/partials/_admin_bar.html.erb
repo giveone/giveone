@@ -1,38 +1,33 @@
 
-<div class="container p2">
-  <div class="links tablet-center row">
-    <div class="tablet-col-right" style="color: black;">
-      <%= link_to_unless_current "Categories", admin_categories_url %>
-      &nbsp;&nbsp;&nbsp;
-      <% if @category and !@category.new_record? %>
-        <%= link_to "Edit Category", edit_admin_category_url(@category.id)  %>
+<% link_class = "MuseoSans300 text-decoration-none accent-color pr1" %>
+<div class='admin-header p2 flex justify-between dgray sofiabold'>
+  <div class='nav-links flex max-width-none'>
+    <div class="links tablet-center row">
+      <div class="tablet-col-right" style="color: black;">
+        <%= link_to_unless_current "Categories", admin_categories_url, class: link_class %>
         &nbsp;&nbsp;&nbsp;
-      <% end %>
-      <%= link_to_unless_current "Nonprofits", admin_nonprofits_url %>
-      &nbsp;&nbsp;&nbsp;
-      <% if @nonprofit and !@nonprofit.new_record? %>
-        <%= link_to "Edit Nonprofit", edit_admin_nonprofit_url(@nonprofit.id) %>
+        <% if @category and !@category.new_record? %>
+          <%= link_to "Edit Category", edit_admin_category_url(@category.id), class: link_class %>
+          &nbsp;&nbsp;&nbsp;
+        <% end %>
+        <%= link_to_unless_current "Nonprofits", admin_nonprofits_url, class: link_class %>
         &nbsp;&nbsp;&nbsp;
-      <% end %>
-      <%= link_to_unless_current "Activations", admin_activations_url %>
-      &nbsp;&nbsp;&nbsp;
-      <% if @activation and !@activation.new_record? %>
-        <%= link_to "Edit Activation", edit_admin_activation_url(@activation.id)  %>
+        <%= link_to_unless_current "Activations", admin_activations_url, class: link_class %>
         &nbsp;&nbsp;&nbsp;
-      <% end %>
-      <%= link_to_unless_current "Stats", admin_stats_url %>
-      &nbsp;&nbsp;&nbsp;
-      <%= link_to_unless_current "Emails", "/admin/mailers" %>
-      &nbsp;&nbsp;&nbsp;
-      <%= link_to_unless_current "Subscribers", admin_subscribers_url %>
-      &nbsp;&nbsp;&nbsp;
-      <%= link_to_unless_current "Donors", admin_donors_url %>
-      &nbsp;&nbsp;&nbsp;
-      <%= link_to_unless_current "Payouts", admin_payouts_url %>
-      &nbsp;&nbsp;&nbsp;
-      <%= link_to_unless_current "Delayed Jobs", admin_delayed_jobs_url %>
-      &nbsp;&nbsp;&nbsp;
-      <%= link_to "Logout", destroy_user_session_url, method: :delete %>
+        <%= link_to_unless_current "Stats", admin_stats_url, class: link_class %>
+        &nbsp;&nbsp;&nbsp;
+        <%= link_to_unless_current "Emails", "/admin/mailers", class: link_class  %>
+        &nbsp;&nbsp;&nbsp;
+        <%= link_to_unless_current "Subscribers", admin_subscribers_url, class: link_class  %>
+        &nbsp;&nbsp;&nbsp;
+        <%= link_to_unless_current "Donors", admin_donors_url, class: link_class  %>
+        &nbsp;&nbsp;&nbsp;
+        <%= link_to_unless_current "Payouts", admin_payouts_url, class: link_class  %>
+        &nbsp;&nbsp;&nbsp;
+        <%= link_to_unless_current "Delayed Jobs", admin_delayed_jobs_url, class: link_class  %>
+        &nbsp;&nbsp;&nbsp;
+        <%= link_to "Logout", destroy_user_session_url, method: :delete, class: link_class  %>
+      </div>
     </div>
   </div>
 </div>

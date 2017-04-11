@@ -1,4 +1,3 @@
-//= require jquery_ujs
 //= require ./library/throttle
 //= require_tree ./admin/donors
 //= require_tree ./admin/subscribers
@@ -24,7 +23,6 @@ $(function() {
 
       $this.val(date)
   }, 500))
-
 
   // AJAX request to get details about nonprofits -- helpful for admins
   $('#nonprofit_lookup_ein').click(function(e) {

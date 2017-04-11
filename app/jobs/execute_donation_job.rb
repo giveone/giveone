@@ -20,5 +20,4 @@ class ExecuteDonationJob < GiveOneJob.new(:donation_id)
   def donation
     @donation ||= Donation.find(donation_id)
   end
-
 end

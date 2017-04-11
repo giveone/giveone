@@ -7,19 +7,8 @@
 @import "components/components";
 @import "objects/objects";
 @import "utilities/utilities";
-
-// Vendor
-// Need to download SymbolSet stylesheets in order to import the following
-// https://symbolset.com/icons
-// @import "vendor/ss-social";
-// @import "vendor/ss-standard";
 @import "vendor/tipsy";
 @import "vendor/mapbox";
-
-// Views
-// @import "views/nonprofits/show";
-// @import "views/site/backgrounds";
-// @import "views/site/wall_calendar";
 
 * {
   padding: 0px;
@@ -159,3 +148,12 @@ h1, h2, h3, h4, h5, h6, p, li, span, b, i, strong, a, dt, dd, td, th, button, in
     @include animate(fadeIn, 0.1s);
   }
 }
+
+@import 'public/global/vars';
+@import 'public/global/colors';
+@import 'public/global/utils';
+@import 'public/global/fonts';
+@import 'public/global/styleguide';
+
+// Global Components
+@import 'public/components/header';

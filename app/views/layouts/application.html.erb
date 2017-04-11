@@ -14,9 +14,6 @@
   <%# Admin? %>
   <%= render "layouts/partials/admin_bar" if current_user.try(:is_admin?) %>
 
-  <%# Page header %>
-  <%= render "layouts/partials/header" unless @hide_header %>
-
   <%# Notice/Error %>
   <% if flash[:notice].present? %><p class="flash"><%= flash[:notice] %></p><% end -%>
   <% if flash[:alert].present? %><p class="alert"><%= flash[:alert] %></p> <% end -%>

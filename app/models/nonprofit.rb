@@ -1,12 +1,6 @@
 class Nonprofit < ActiveRecord::Base
   ALLOWED_DESCRIPTION_TAGS = %w(b i a br p)
   belongs_to :category
-  has_many :favorites
-  has_many :fans, through: :favorites,
-                  class_name: 'Subscriber',
-                  foreign_key: 'subscriber_id',
-                  source: :subscriber
-
   has_many :donation_nonprofits
   has_many :donations, through: :donation_nonprofits
   has_many :payouts

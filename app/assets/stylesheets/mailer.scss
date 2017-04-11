@@ -273,10 +273,6 @@ $c-email-body: #444;
   img { margin-right: 0; }
 }
 
-.button--favorite {
-  @include button-fill-color(#F43F77);
-}
-
 .button--white {
   background: white;
   border-color: white;

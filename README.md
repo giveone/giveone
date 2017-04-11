@@ -10,9 +10,10 @@ This is a Ruby 2.1.x Rails 4.1.13 app built on top of a lot of great services & 
   * [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) or [capistrano 3](http://capistranorb.com/) for deployment.  AWS EB can also be used for configuration management.
   * [unicorn](http://unicorn.bogomips.org/) is included in the Gemfile, but it should be fine with puma, etc.
   * [audited](https://github.com/collectiveidea/audited) is also included, and comes in handy quite often.
-  * [Stripe](https://stripe.com/) for payments (explained below)
-  * [MaxMind GeoIP](https://www.maxmind.com/en/geoip2-databases) for subscriber IP lookup.
-  * [mandrill](http://www.mandrill.com/) for sending emails.
+  * [Stripe](https://stripe.com/) for payments (explained below).
+  * [Mandrill](http://www.mandrill.com/) for sending transacation emails.
+  * [Mailchimp](http://www.mailchimp.com/) for sending newsletter emails.
+
 
 #### Getting Started
 
@@ -55,8 +56,8 @@ The app is built to run on the AWS Elastic Beanstalk service.  Deploying can be 
 #### Features
 
 * Subscriber-only newsletters
-* Donor-only newsletters
-* Donations are batched and executed every 30 days to avoid paying fees for individual donations.
+* Donor- newsletters
+* Donations are batched and executed monthly to avoid paying fees for individual donations -- this is done via the Plans/Subscriptions feature in Stripe.
 * Intercom.io integration
 
 #### Models
@@ -104,7 +105,8 @@ DONOR
 ```
 
 #### TODO
-
+* Remove extraneous code - PRIORITY
+* Fix broken specs - PRIORITY
 * Fill out missing functional tests
 * Fill out missing unit tests
 * Cleanup auth code in controllers

@@ -42,13 +42,8 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
 set :linked_files, %w{
-  config/config.yml
   config/database.yml
-  config/s3.yml
   config/secrets.yml
-  config/mail.yml
-  config/mandrill.yml
-  config/devise.yml
 }
 
 # Default value for default_env is {}
@@ -73,17 +68,6 @@ namespace :deploy do
       execute "mkdir -p #{shared_path}/config"
       execute "mkdir -p #{shared_path}/tmp/cache"
       execute "mkdir -p #{shared_path}/tmp/sockets"
-
-      # TODO fix,so we don't accidentally overwrite the config files
-      raise "config.yml already exists!" if test("[ -t #{shared_path}/config/config.yml]")
-
-      upload! "config/config.yml.example", "#{shared_path}/config/config.yml"
-      upload! "config/database.yml.example", "#{shared_path}/config/database.yml"
-      upload! "config/secrets.yml.example", "#{shared_path}/config/secrets.yml"
-      upload! "config/s3.yml.example", "#{shared_path}/config/s3.yml"
-      upload! "config/mail.yml.example", "#{shared_path}/config/mail.yml"
-      upload! "config/mandrill.yml.example", "#{shared_path}/config/mandrill.yml"
-      upload! "config/devise.yml.example", "#{shared_path}/config/devise.yml"
       info "\n\n\n\n\n\n\n\n*********************"
       info "NOTICE: Now edit the config files in #{shared_path}."
       info "\n\n\n\n\n\n\n\n*********************"

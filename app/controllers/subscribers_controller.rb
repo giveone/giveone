@@ -1,7 +1,7 @@
 class SubscribersController < ApplicationController
 
   before_action :load_subscriber,                       except: [:new, :create, :thanks]
-  before_action -> { require_subscriber(@subscriber) }, except: [:new, :create, :thanks, :email_login, :favorites]
+  before_action -> { require_subscriber(@subscriber) }, except: [:new, :create, :thanks, :email_login]
 
   respond_to :html
   respond_to :js, only: :create
@@ -14,7 +14,7 @@ class SubscribersController < ApplicationController
   end
 
   def donations
-    @favorite_nonprofits_ids = @subscriber.favorite_nonprofits.pluck(:id)
+    @donations = @subscriber.donations
   end
 
   def new

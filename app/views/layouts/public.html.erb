@@ -16,7 +16,7 @@
   <body data-theme="<%= (@public_theme || 'blue') %>">
     <% if flash[:notice].present? %><p class="flash"><%= flash[:notice] %></p><% end -%>
     <% if flash[:alert].present? %><p class="alert"><%= flash[:alert] %></p> <% end -%>
-
+    
     <% unless @hide_header %>
       <%= render "layouts/public/partials/header" %>
       <%= render "layouts/public/partials/mobile_header" %>
@@ -27,7 +27,6 @@
       <%= yield %>
     </section>
     <%= render "layouts/public/partials/footer" unless @hide_footer %>
-    <%= render "layouts/partials/admin_bar" if current_user.try(:is_admin?) %>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
     <%= javascript_include_tag "public", async: !true %>

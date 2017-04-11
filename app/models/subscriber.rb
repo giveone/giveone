@@ -2,12 +2,6 @@ class Subscriber < ActiveRecord::Base
   has_one  :donor # inseparable from the subscriber -- don't delete or deatch
   has_many :emails
 
-  has_many :favorites,
-           -> { order(created_at: :desc) }
-  has_many :favorite_nonprofits,
-           through: :favorites,
-           source:  :nonprofit
-
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9\*]+\.)+[a-z]{2,})\Z/i }
   validates :name, length: { minimum: 1, maximum: 100, allow_blank: true }
   validates :auth_token, presence: true, uniqueness: true
@@ -75,27 +69,7 @@ class Subscriber < ActiveRecord::Base
     return if ip_address == "127.0.0.1"
 
     ip_address = ip_address.gsub(/[^0-9.]/, '')
-    response = HTTPI.get "https://#{MAXMIND[:user_id]}:#{MAXMIND[:password]}@geoip.maxmind.com/geoip/v2.0/city/#{ip_address}"
-
-    json = JSON.parse(response.body)
-
-    Rails.logger.info "Maxmind response:"
-    Rails.logger.info json.inspect
-
-    raise "Maxmind error: #{json.inspect}" if json['error']
-
-    if json["location"]
-      self.latitude  = json["location"]["latitude"]
-      self.longitude = json["location"]["longitude"]
-    end
-    self.city      = json['city']['names']['en'] if json['city']
-    self.region    = json['subdivisions'][0]['names']['en'] if json['subdivisions']
-    if json["country"]
-      self.country   = json['country']['names']['en']
-    elsif json["registered_country"]
-      self.country   = json['registered_country']['names']['en']
-    end
-
+    # @TODO: do this via Mailchimp DMITRI
     self.save!
   end
 
