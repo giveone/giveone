@@ -16,6 +16,10 @@
 //= require ./donors/edit
 //= require ./donors/test_data
 //= require jquery_ujs
+//= require ./public/category_cards
+//= require ./public/desktop_nav
+//= require ./public/sub_header
+//= require ./public/mobile_nav
 
 $(function() {
 	if ($('.flash,.alert').length) {

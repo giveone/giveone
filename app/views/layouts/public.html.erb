@@ -22,11 +22,13 @@
     <% unless @hide_header %>
       <%= render "layouts/partials/admin_bar" if current_user.try(:is_admin?) %>
       <%= render "layouts/public/partials/header" %>
+      <%= yield :sub_header %>
       <%= render "layouts/public/partials/mobile_header" %>
       <%= render "layouts/public/partials/mobile_header_content" %>
     <% end %>
 
     <section class='content'>
+      <div id="collapse-desktop-nav"></div>
       <%= yield %>
     </section>
 
@@ -34,6 +36,8 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.1.2/jquery.smooth-scroll.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 
     <%= javascript_include_tag "public", async: !true %>
     <%= javascript_include_tag "admin", async: !true if current_user.try(:is_admin?) %>

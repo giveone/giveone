@@ -1,5 +1,8 @@
 body{
   &[data-theme="green"] {
+    .sub-header .header-item.active {
+      color: color('algae');
+    }
    .accent-color{
      color: color('algae');
     }

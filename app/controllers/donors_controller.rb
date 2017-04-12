@@ -17,7 +17,7 @@ class DonorsController < ApplicationController
     redirect_to account_path and return if current_user.present?
     @require_stripe_js = true
     @hide_footer = true
-    @public_theme = "green"
+    @public_theme = "blue"
 
     if params[:email].present?
       @subscriber = Subscriber.where(email: params[:email].to_s).first_or_initialize
@@ -184,9 +184,10 @@ class DonorsController < ApplicationController
   def thanks
     @hide_header = true
     @hide_footer = true
-
+    @public_theme = 'green'
     @name = session['thanks']
-    redirect_to root_url unless @name = session.delete(:thanks)
+    redirect_to(root_url) and return unless @name = session.delete(:thanks)
+    render :thanks, layout: 'public'
   end
 
   def fetch_state_by_zip

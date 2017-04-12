@@ -1,6 +1,48 @@
+require 'mandrill'
+
 class DonorMailer < BaseMailer
 
   # Declaring a @subscriber variable ensures a "Your Account" link
+
+  def thankyou(donor_id)
+    @donor = Donor.find(donor_id)
+
+    # TODO: get these values
+    category = 'Bullying & Violence'
+    amount = '$2.00'
+
+    vars = [
+      {
+        name: 'category',
+        content: category
+      },
+      {
+        name: 'amount',
+        content: amount
+      }
+    ]
+
+    begin
+
+    mandrill = Mandrill::API.new Rails.application.secrets.mandrill_api_key
+    mandrill.messages.send_template(
+      'thankyou',
+      '',
+      {
+        'to' => [{
+          'email' => @donor.subscriber.email
+        }],
+        'subject' => "Thank You",
+        'from_name' => Rails.application.secrets.name,
+        # 'from_email' => "hello@#{Rails.application.secrets.host}",
+        'from_email' => "hello@give-one.org",
+        'global_merge_vars' => vars
+      }
+    )
+    rescue Exception => e
+      Rails.logger.info "Failed: mandrill.messages.send_template('thankyou', ...) #{e.to_s}"
+    end
+  end
 
   def cancelled(donor_id)
     @donor = Donor.find(donor_id)

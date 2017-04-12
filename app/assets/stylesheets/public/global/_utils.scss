@@ -2,6 +2,23 @@
   min-height: $min-panel-height;
 }
 
+.button-border {
+  border-style: solid;
+  border-width: 2px;
+}
+
+.button-radius {
+  border-radius: 2px;
+}
+
+.viewport-height {
+  height: 100vh;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 .caps {
   letter-spacing: 1px;
 }
