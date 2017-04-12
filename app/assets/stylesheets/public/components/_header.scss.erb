@@ -1,0 +1,68 @@
+.header {
+  display:none;
+  transition: $hover-speed ease-in-out;
+  @media #{$small-break} {
+    display:flex;
+    height: $nav-height;
+    position: fixed;
+    background-color: transparent;
+    width: 100%;
+    z-index: 12;
+    padding: 2rem 5rem 0rem 5rem;
+    margin: 0;
+  }
+  .logo {
+    transition: $hover-speed ease-in-out;
+    &:hover {
+      color: color('lgray');
+    }
+  }
+  .nav-links{
+    .icons{
+      width:25px;
+      height:25px;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    #donate {
+      .icons {
+        background-image: url("<%= image_path('public/Donate-Grey.svg') %>");
+      }
+      &.active {
+        .icons {
+          background-image: url("<%= image_path('public/Donate-Active.svg') %>");
+        }
+      }
+    }
+    #activation{
+      .icons {
+        background-image: url("<%= image_path('public/Volunteer-Grey.svg') %>");
+      }
+      &.active {
+        .icons {
+          background-image: url("<%= image_path('public/Volunteer-Active.svg') %>");
+        }
+      }
+    }
+    #account{
+      .icons {
+        background-image: url("<%= image_path('public/Account-Grey.svg') %>");
+      }
+      &.active {
+        .icons {
+          background-image: url("<%= image_path('public/Account-Active.svg') %>");
+        }
+      }
+    }
+  }
+
+  &.collapsed {
+    background-color: color('white');
+    padding: 2rem 5rem 2rem 5rem;
+  }
+}
+
+.admin-header {
+  position: relative;
+  z-index: 1;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>Account-Grey</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="16" height="6"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Account-Grey" transform="translate(1.000000, 1.000000)">
+            <circle id="Oval-7" stroke="#6060E1" stroke-width="2" cx="11" cy="11" r="11"></circle>
+            <circle id="Oval-5" fill="#6060E1" fill-rule="nonzero" cx="7" cy="8" r="2"></circle>
+            <circle id="Oval-5-Copy" fill="#6060E1" fill-rule="nonzero" cx="15" cy="8" r="2"></circle>
+            <g id="Group-2" transform="translate(3.000000, 14.000000)">
+                <g id="Oval-6-Clipped">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="path-1"></g>
+                    <path d="M15,-2 C15,1.86599325 11.8659932,5 8,5 C4.13400675,5 1,1.86599325 1,-2 L3,-2 C3,0.761423749 5.23857625,3 8,3 C10.7614237,3 13,0.761423749 13,-2 L15,-2 Z M13,-2 L15,-2 C15,1.86599325 11.8659932,5 8,5 C4.13400675,5 1,1.86599325 1,-2 L3,-2 C3,0.761423749 5.23857625,3 8,3 C10.7614237,3 13,0.761423749 13,-2 Z" id="Oval-6" fill="#6060E1" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
