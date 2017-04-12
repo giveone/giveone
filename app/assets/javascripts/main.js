@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   $('*[data-toggles]').on('click', function (e) {
     var $target = $("#"+$(this).data('toggles'));
     $(this).toggleClass('active');

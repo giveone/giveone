@@ -5,9 +5,9 @@
   <%= render "layouts/partials/head" %>
   <%# Extra Head %>
   <%= yield :extra_head %>
+  <%= stylesheet_link_tag "public", media: "all" %>
 </head>
-<body id="<%= page_id %>" class="<%= @theme %><% if current_user.try(:is_admin?) %> admin<% end %> max-width-wrapper bg-green full-height">
-
+<body data-theme="<%= (@public_theme || 'blue') %>">
   <%# 3rd Party Scripts %>
   <%= render "layouts/partials/scripts" %>
 

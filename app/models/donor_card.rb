@@ -83,18 +83,22 @@ class DonorCard < ActiveRecord::Base
         end
 
         card = customer.sources.first
+        
         # check if plan exists first
-        plan_id = "#{self.amount}-recurring-plan"
+        plan_id = "#{self.amount}-30-day-recurring-plan"
         plan = Stripe::Plan.all.data.find { |plan| plan.id == plan_id } if (Stripe::Plan.all.data.any? { |plan| plan.id == plan_id})
 
         Stripe.logger.info "Stripe::Plan.create\n#{plan_id}\n" if plan.nil?
 
+        interval_day_count = 30
+
         plan ||= Stripe::Plan.create(
-          name: "#{self.amount} Recurring Plan",
+          name: plan_id,
           id: plan_id,
-          interval: "month",
+          interval: "day",
+          interval_count: interval_day_count,
           currency: "usd",
-          amount: self.amount.to_i
+          amount: (self.amount.to_f * 100.0 * interval_day_count).to_i
         )
 
         subscription = Stripe::Subscription.create(

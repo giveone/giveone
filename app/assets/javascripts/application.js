@@ -41,7 +41,6 @@
 //= require calendar
 //= require subscribers
 
-
 $(function() {
 
 	if ($('.flash,.alert').length) {

@@ -200,7 +200,7 @@ Devise.setup do |config|
 
   # Set this configuration to false if you want /users/sign_out to sign out
   # only the current scope. By default, Devise signs out all scopes.
-  # config.sign_out_all_scopes = true
+  config.sign_out_all_scopes = true
 
   # ==> Navigation configuration
   # Lists the formats that should be treated as navigational. Formats like
@@ -244,5 +244,5 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
-  config.secret_key = YAML.load_file(File.join(Rails.root, 'config', 'devise.yml'))[Rails.env].symbolize_keys[:secret]
+  config.secret_key = Rails.application.secrets.devise_secret_key
 end

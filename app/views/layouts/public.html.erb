@@ -4,6 +4,8 @@
     <link href="/favicon.png" type="image/png" rel="icon" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
     <link href="//unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+    <%= meta_tags %>
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "public", media: "all" %>
     <% if @require_stripe_js %>
       <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
@@ -16,8 +18,9 @@
   <body data-theme="<%= (@public_theme || 'blue') %>">
     <% if flash[:notice].present? %><p class="flash"><%= flash[:notice] %></p><% end -%>
     <% if flash[:alert].present? %><p class="alert"><%= flash[:alert] %></p> <% end -%>
-    
+
     <% unless @hide_header %>
+      <%= render "layouts/partials/admin_bar" if current_user.try(:is_admin?) %>
       <%= render "layouts/public/partials/header" %>
       <%= render "layouts/public/partials/mobile_header" %>
       <%= render "layouts/public/partials/mobile_header_content" %>
@@ -26,9 +29,12 @@
     <section class='content'>
       <%= yield %>
     </section>
+
     <%= render "layouts/public/partials/footer" unless @hide_footer %>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.payment/3.0.0/jquery.payment.min.js"></script>
+
     <%= javascript_include_tag "public", async: !true %>
     <%= javascript_include_tag "admin", async: !true if current_user.try(:is_admin?) %>
   </body>
