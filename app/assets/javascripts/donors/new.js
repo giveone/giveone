@@ -8,7 +8,10 @@ $(function() {
   // Allow data-amount p tags to change the amount input
   var $amountInput = $('input[data-stripe="amount"]');
   $('p[data-amount]').on('click', function() {
-    $amountInput.val($(this).attr('data-amount'));
+    var $this = $(this);
+    $('p[data-amount]').parent().removeClass('active');
+    $amountInput.val($this.attr('data-amount'));
+    $this.parent().addClass('active');
   });
 
   window.checking_for_existing_donors = false;

@@ -102,6 +102,23 @@ body{
         background-color: color('velure');
       }
     }
+    .double-border-button{
+      &:after {
+        background-color: color('velure');
+      }
+      &:hover {
+        color: color('velure');
+      }
+      &.active{
+        &:hover {
+          color: color('white');
+        }
+        background-color: color('velure');
+        &:after {
+          background-color: color('white');
+        }
+      }
+    }
     #account {
       .account{
         color: color('velure');
