@@ -1,17 +1,24 @@
-<div class='category-cards'>
+<div class='category-cards' data-mode="<%= mode %>">
   <p class='cta mx-auto sofiabold px2 py3 xs-hide dgray'>STEP 1: SELECT A CAUSE</p>
 
   <div class='steps flex flex-wrap xs-hide sofiabold dgray justify-center'>
     <% locals.each do |category| %>
-      <div class='double-border-button flex items-center justify-center m2 p1'><%= category.name %></div>
+      <div class='double-border-button flex items-center justify-center m2 p1' data-category="<%= category.id %>"><%= category.name %></div>
+    <% end %>
+
+    <% if mode == "filter" %>
+      <div class='double-border-button flex items-center justify-center m2 p1' data-category="all">All Categories</div>
     <% end %>
   </div>
 
   <div class='double-border-button select m2 p2 mx-auto sofiabold flex items-center sm-hide md-hide lg-hide dgray h4'>
     <select class='select'>
-      <option value='STEP 1: SELECT A CAUSE'>STEP 1: SELECT A CAUSE</option>
+      <option value='placeholder'>STEP 1: SELECT A CAUSE</option>
       <% locals.each do |category| %>
-        <option value='<%= category.name %>'><%= category.name %></option>
+        <option value='<%= category.id %>'><%= category.name %></option>
+      <% end %>
+      <% if mode == "filter" %>
+        <option value='all'>All Categories</option>
       <% end %>
     </select>
   </div>
