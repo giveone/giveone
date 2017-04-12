@@ -10,6 +10,10 @@
           </div>
 
           <%= render "layouts/public/partials/category_cards", locals: @categories, mode: "autoscroll" %>
+          <div id='collapse-sub-header'></div>
+          <% content_for :sub_header do %>
+            <%= render "layouts/public/partials/donations_sub_header", locals: @categories %>
+          <% end %>
 
         </div>
       </div>

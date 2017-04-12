@@ -1,0 +1,31 @@
+.sub-header {
+  display:none;
+  @media #{$small-break} {
+    display: block;
+  }
+  position: fixed;
+  width: 100%;
+  padding: 10px;
+  left: 0;
+  z-index: 11;
+  background-color: white;
+  top: 80px;
+  opacity: 0;
+  transition: $hover-speed ease-in-out;
+  transform: translateY(-50%);
+  pointer-events: none;
+  &.shown {
+    transform: translateY(0%);
+    pointer-events: auto;
+    opacity: 1;
+  }
+  .header-item {
+    &.active {
+      color: color('nectarine')
+    }
+    &.unavailable {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+  }
+}
