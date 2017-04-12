@@ -1,13 +1,15 @@
 .header {
   display:none;
+  transition: $hover-speed ease-in-out;
   @media #{$small-break} {
     display:flex;
     height: $nav-height;
     position: fixed;
     background-color: transparent;
     width: 100%;
-    z-index: 11;
+    z-index: 12;
     padding: 2rem 5rem 0rem 5rem;
+    margin: 0;
   }
   .logo {
     transition: $hover-speed ease-in-out;
@@ -31,6 +33,11 @@
     #account{
       background-image: url('/static/images/account-icon.svg');
     }
+  }
+
+  &.collapsed {
+    background-color: color('white');
+    padding: 2rem 5rem 2rem 5rem;
   }
 }
 
