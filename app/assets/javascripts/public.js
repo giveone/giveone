@@ -16,6 +16,7 @@
 //= require ./donors/edit
 //= require ./donors/test_data
 //= require jquery_ujs
+//= require ./public/category_cards
 
 $(function() {
 	if ($('.flash,.alert').length) {

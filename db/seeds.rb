@@ -21,7 +21,7 @@ categories = [
   { name: 'Violence & bullying' }
 ].map{ |params| Category.create!(params) }
 
-4.times do
+4.times do |i|
   Activation.create!({
     url: 'https://google.com',
     name: 'Rooftop Garden Clean Up at Hester St.',
@@ -32,7 +32,7 @@ categories = [
     where: '123 Hester St.',
     happening_on: DateTime.now + 1.day,
     time_range: '11-4pm (5 Hours)',
-    category: categories.first
+    category: categories[i]
   })
 end
 

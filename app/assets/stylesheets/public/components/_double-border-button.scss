@@ -8,6 +8,16 @@ $dbb-hover-speed: 100ms;
   top: 0;
   left: 0;
 
+  &.unavailable {
+    pointer-events: none;
+    color: color('lgray');
+    cursor: not-allowed;
+    border: 2px solid color('lgray');
+    &:after {
+      opacity: .2;
+    }
+  }
+
   &:after {
     transition: $dbb-hover-speed ease-in-out;
     content: '';
