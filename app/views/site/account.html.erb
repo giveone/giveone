@@ -11,18 +11,17 @@
         </p>
       </div>
       <div class='account-first-page-options-container flex flex-wrap justify-center bg-accent-color dgray'>
-        <div class='account-first-page-options double-border-box col-4 m1'>
+        <div class='account-first-page-options double-border-button col-4 m1'>
           <p class='sofiabold h6 py5 center dgray'>Change my daily amount</p>
         </div>
-        <div class='account-first-page-options double-border-box col-4 m1'>
+        <div class='account-first-page-options double-border-button col-4 m1'>
           <p class='sofiabold h6 py5 center dgray'>Change support cause</p>
         </div>
-        <div class='account-first-page-options double-border-box col-4 m1'>
+        <div class='account-first-page-options double-border-button col-4 m1'>
           <p class='sofiabold h6 py5 center dgray'>Stop donating</p>
         </div>
-        <div class='account-first-page-options double-border-box col-4 m1'>
-          <%# TODO: This doesn't actually work %>
-          <%= link_to(destroy_user_session_path, method: :delete) do %>
+        <div class='account-first-page-options double-border-button col-4 m1'>
+          <%= link_to(destroy_user_session_path, method: :delete, class: "text-decoration-none") do %>
             <p class='sofiabold h6 py5 center dgray'>Sign out</p>
           <% end %>
         </div>
