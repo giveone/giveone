@@ -124,7 +124,7 @@
                                         <div mc:edit="text_2">
                                           <strong>
                                           <a href="#" target="_blank" class="link" style="color:#474747;text-decoration:none;">
-                                          <span class="link" style="color:#474747; text-decoration:none">Volunter</span>
+                                          <span class="link" style="color:#474747; text-decoration:none">Volunteer</span>
                                           </a>
                                           </strong>
                                         </div>
@@ -173,7 +173,7 @@
                                         <td style="padding-bottom:8px;">
                                           <div class="h4" style="color:#454544;font-family:Arial, sans-serif, Raleway;font-size:18px;line-height:22px;text-align:left;">
                                             <div mc:edit="text_17">
-                                              <strong>Thank you!</strong>
+                                              <strong>Thank you for subscribing!</strong>
                                             </div>
                                           </div>
                                         </td>
@@ -183,75 +183,16 @@
                                           <div class="h3-1" style="color:#454544;font-family:Arial, sans-serif, Roboto;font-size:30px;line-height:41px;text-align:left;">
                                             <div mc:edit="text_18">
                                               <strong>You care about <br>
-                                              <span class="link-green" style="color:#61bb9b; text-decoration:none">Bullying &amp; Violence</span>
-                                              <br> and would like to<br> contribute <span class="link-green" style="color:#61bb9b; text-decoration:none">$2.00</span>
+                                              <span class="link-green" style="color:#61bb9b; text-decoration:none">
+                                                {{category}}
+                                              </span>
+                                              <br> and would like to<br> contribute
+                                              <span class="link-green" style="color:#61bb9b; text-decoration:none">
+                                                {{amount}}
+                                              </span>
                                               <br> everyday.</strong>
                                             </div>
                                           </div>
-                                        </td>
-                                      </tr>
-                                      <tr mc:hideable="">
-                                        <td style="padding-bottom:40px;" align="center">
-                                          <!-- 2 Columns Buttons -->
-                                          <table border="0" cellspacing="0" cellpadding="0">
-                                            <tr mc:repeatable="">
-                                              <td width="158" style="padding:4px 4px;font-size:0pt;line-height:0pt;text-align:left;" mc:hideable="">
-                                                <!-- Button Green -->
-                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                  <tr>
-                                                    <td bgcolor="#61bb9b" style="border-radius:2px;border:2px solid #61bb9b;" align="center">
-                                                      <table border="0" cellspacing="0" cellpadding="0">
-                                                        <tr>
-                                                          <td class="img" style="font-size:0pt;line-height:0pt;text-align:left;" width="5">
-                                                          </td>
-                                                          <td class="text-button" style="color:#ffffff;font-family:Arial, sans-serif, Roboto;font-size:16px;line-height:20px;text-align:center;padding:12px 0;">
-                                                            <div mc:edit="text_19">
-                                                              <strong>
-                                                              <a href="#" target="_blank" class="link-white" style="color:#ffffff;text-decoration:none;">
-                                                              <span class="link-white" style="color:#ffffff; text-decoration:none">Primary green</span>
-                                                              </a>
-                                                              </strong>
-                                                            </div>
-                                                          </td>
-                                                          <td class="img" style="font-size:0pt;line-height:0pt;text-align:left;" width="5">
-                                                          </td>
-                                                        </tr>
-                                                      </table>
-                                                    </td>
-                                                  </tr>
-                                                </table>
-                                                <!-- END Button Green -->
-                                              </td>
-                                              <td width="178" style="padding:4px 4px;font-size:0pt;line-height:0pt;text-align:left;" mc:hideable="">
-                                                <!-- Button Transparent -->
-                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                  <tr>
-                                                    <td style="border-radius:2px;border:2px solid #61bb9b;" align="center">
-                                                      <table border="0" cellspacing="0" cellpadding="0">
-                                                        <tr>
-                                                          <td class="img" style="font-size:0pt;line-height:0pt;text-align:left;" width="5">
-                                                          </td>
-                                                          <td class="text-button-green" style="color:#61bb9b;font-family:Arial, sans-serif, Roboto;font-size:16px;line-height:20px;text-align:center;padding:12px 0;">
-                                                            <div mc:edit="text_20">
-                                                              <strong>
-                                                              <a href="#" target="_blank" class="link-green" style="color:#61bb9b;text-decoration:none;">
-                                                              <span class="link-green" style="color:#61bb9b; text-decoration:none">Secondary green</span>
-                                                              </a>
-                                                              </strong>
-                                                            </div>
-                                                          </td>
-                                                          <td class="img" style="font-size:0pt;line-height:0pt;text-align:left;" width="5">
-                                                          </td>
-                                                        </tr>
-                                                      </table>
-                                                    </td>
-                                                  </tr>
-                                                </table>
-                                                <!-- END Button Transparent -->
-                                              </td>
-                                            </tr>
-                                          </table>
-                                          <!-- END 2 Columns Buttons -->
                                         </td>
                                       </tr>
                                     </table>
@@ -277,6 +218,35 @@
                             <!-- ENd Border Bottom -->
                           </td>
                         </tr>
+                        <!-- Title / Text /  2 Columns Buttons Center / Green -->
+                        <tr mc:repeatable="Select" mc:variant="Title / Text /  2 Columns Buttons Center / Green">
+                          <td style="padding:0 0 60px 0;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tr mc:hideable>
+                                <td style="padding:0 70px 12px 70px;">
+                                  <div class="h3-1-c" style="color:#454544;font-family:Arial, sans-serif, Roboto;font-size:30px;line-height:41px;text-align:center;">
+                                    <div mc:edit="text_26">
+                                      <strong>How This Works</strong>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr mc:hideable>
+                                <td style="padding:0 70px 30px 70px;">
+                                  <div class="text-c" style="color:#6c6c6c;font-family:Arial, sans-serif, Roboto;font-size:16px;line-height:24px;text-align:center;">
+                                    <div mc:edit="text_27">
+                                      We process your credit card payments through Stripe. Stripe takes a 2.2% + $0.30 processing fee, or 3.5% if you use an American Express. Due to this processing fee, we process donations on the 1st of every month, instead of charging you each day. Signed up mid-month? Your donations will be prorated. We’ll send you a receipt once payment is processed.
+                                      <br>
+                                      <br>
+                                      If you’d like to change any of your information, select a different cause to support, adjust your donation amount, or cancel your donation, just log in to your account (LOGIN LINK HERE). Any changes made to your donation amount or the cause you are supporting will take effect on the 1st of the next month.
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <!-- END Title / Text /  2 Columns Buttons Center / Green -->
                         <!-- Dmitri: Footer -->
                         <tr>
                           <td bgcolor="#f8f8f6" style="padding:60px 90px;">
