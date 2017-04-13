@@ -58,9 +58,6 @@ group :test do
   gem 'simplecov', :require => false
   gem 'stripe-ruby-mock', require: 'stripe_mock'
   gem 'rspec'
-  # @TODO: get working
-  # gem 'rails-perftest'
-  # gem 'ruby-prof'
 end
 
 group :development do
