@@ -44,6 +44,10 @@ en:
         exp_year: Expiry date
     errors:
       models:
+        user:
+          attributes:
+            password:
+              too_short: "is too short (minimum is %{count} characters)"
         donor:
           stripe_invalid_email_address: not valid
         donor_card:
