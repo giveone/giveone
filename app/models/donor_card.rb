@@ -108,7 +108,10 @@ class DonorCard < ActiveRecord::Base
           metadata: {
             donor_id: donor.id,
             donor_card_name: self.name,
-            donor_card_email: self.email
+            donor_card_email: self.email,
+            nonprofit_id: self.nonprofit.id,
+            nonprofit_name: self.nonprofit.name,
+            nonprofit_category: self.nonprofit.category
           }
         )
 

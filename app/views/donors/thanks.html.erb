@@ -8,9 +8,9 @@
         <h3 class='sofiasemibold dgray mb2'>Thank you!</h3>
         <h2 class='sofiasemibold dgray mb4'>
           You care about
-          <span class='accent-color'>Bullying & Violence</span>
+          <span class='accent-color'><%= session[:nonprofit_category] %></span>
           and would like to contribute
-          <span class='accent-color'>$2.00</span>
+          <span class='accent-color'>$<%= "%01.2f" % session[:donor_card_amount] %></span>
           everyday.
         </h2>
         <%= link_to "Return home", root_path, {
@@ -24,11 +24,11 @@
           class: "p2 mx-auto text-decoration-none sofiabold bg-white h6 button-border bc-velure button-radius velure",
           target: '_blank'
         } %>
-
-        <%= link_to "Share", "http://www.facebook.com/dialog/feed?display=popup&redirect_uri=#{URI.escape(root_url)}&app_id=#{Rails.application.secrets.facebook_app_id}&link=#{URI.escape(root_url)}", {
+        <!-- @TODO uncomment once facebook app is setup -->
+        <!-- <%= link_to "Share", "http://www.facebook.com/dialog/feed?display=popup&redirect_uri=#{URI.escape(root_url)}&app_id=#{Rails.application.secrets.facebook_app_id}&link=#{URI.escape(root_url)}", {
           class: "p2 mx-auto text-decoration-none sofiabold bg-velure h6 white button-border bc-velure button-radius",
           target: '_blank'
-        } %>
+        } %> -->
 
       </div>
     </div>

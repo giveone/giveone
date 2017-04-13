@@ -25,6 +25,7 @@ class DonorsController < ApplicationController
       @donor.build_card(email: @subscriber.email)
     end
 
+    @nonprofit = Nonprofit.find_by_param(params[:id])
     respond_with(@donor, layout: "public")
   end
 
@@ -63,7 +64,10 @@ class DonorsController < ApplicationController
       sign_in @new_user
       @donor.user = @new_user
       @donor.save!
-      session[:thanks] = @donor.subscriber.first_name
+      session[:thanks] = @donor.subscriber.name
+      session[:donor_name] = @donor.subscriber.name
+      session[:donor_card_amount] = @donor.card.amount
+      session[:nonprofit_category] = @donor.card.nonprofit.category.name
       redirect_to thanks_donors_url
     end
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
@@ -207,13 +211,13 @@ class DonorsController < ApplicationController
   private
   def donor_params
     params.require(:donor).permit(
-      :add_fee, :password, :public_name, {card_attributes: [:name, :email, :amount, :address_zip]}
+      :add_fee, :password, :public_name, {card_attributes: [:name, :email, :amount, :address_zip, :nonprofit_id ]}
     )
   end
 
   def donor_card_params
     params.require(:donor).permit(
-      card_attributes: [:name, :email, :address_zip]
+      card_attributes: [:name, :email, :address_zip, :nonprofit_id ]
     )
   end
 end
