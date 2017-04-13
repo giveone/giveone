@@ -49,16 +49,12 @@ server {
   set \$is_production 1;
 
   # TODO: @DMITRI Remove the "production" OR condition at go-live
-  if (\$http_host ~ (integration|production) ) {
+  if (\$http_host ~ (integration) ) {
     set \$is_production 0;
   }
 
   location / {
     set \$should_redirect_to_https 0;
-
-    if (\$is_production = 1) {
-      rewrite ^ https://giveonelaunch.splashthat.com redirect;
-    }
 
     # Check if we need to redirect to https scheme
     if (\$http_x_forwarded_proto != 'https' ) {
