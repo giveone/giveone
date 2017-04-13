@@ -62,7 +62,7 @@ server {
 
     # Check if we need to redirect to https scheme
     if (\$http_x_forwarded_proto != 'https' ) {
-      set \$should_redirect_to_https 0; # 0 for now -- eventually undo this @DMITRI
+      set \$should_redirect_to_https 1;
     }
 
     if (\$http_user_agent ~ sqsd) {
