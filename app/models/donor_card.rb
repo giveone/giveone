@@ -64,7 +64,7 @@ class DonorCard < ActiveRecord::Base
   after_create :send_thank_you
   def send_thank_you
     # TODO: defer to jobs
-    DonorMailer.thankyou(id).deliver_now
+    DonorMailer.thankyou(donor_id).deliver_now
   end
 
   validate :create_cof, on: :create
