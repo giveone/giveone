@@ -23,5 +23,7 @@ deployment:
   integration:
     branch: master
     commands:
+      - . ./build-and-deploy.sh production:
+          timeout: 1800
       - . ./build-and-deploy.sh integration:
           timeout: 1800
