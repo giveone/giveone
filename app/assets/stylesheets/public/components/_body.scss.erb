@@ -18,7 +18,7 @@ body{
       color: color('algae');
     }
     #money{
-      background-image: url('/static/images/$-green-icon.svg');
+      background-image: url("<%= image_path('public/Donate-Active.svg') %>");
     }
 
     .double-border-button{
@@ -56,7 +56,7 @@ body{
       color: color('nectarine');
     }
     #activation {
-      background-image: url('/static/images/activation-orange-icon.svg');
+      //background-image: url("<%= image_path('public/Volunteer-Active.svg') %>");
     }
     .activation-cards{
       &.active{
@@ -131,7 +131,7 @@ body{
         color: color('velure');
       }
       #account{
-        background-image: url('/static/images/purp-account-icon.svg');
+        background-image: url("<%= image_path('public/Account-Active.svg') %>");
       }
       .double-border-box{
         &:before {

@@ -12,9 +12,6 @@
       <p class='h6 MuseoSans300 pb3 lgray'>
         Choose an amount you are comfortable with donating each day towards your cause of choice.
       </p>
-      <p class='h6 MuseoSans300 pb3 lgray'>
-        We will transfer your money at the end of each month.
-      </p>
       <%= form_for @donor, as: :donor, url: "/donate", html: {autocomplete: "on"} do |d| %>
         <%= render "donors/form", form_builder: d %>
       <% end -%>
