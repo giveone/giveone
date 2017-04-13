@@ -1,5 +1,5 @@
 class DonorCard < ActiveRecord::Base
-	belongs_to :donor, inverse_of: :card
+  belongs_to :donor, inverse_of: :card
   belongs_to :nonprofit
   has_many   :donations
 
@@ -60,6 +60,12 @@ class DonorCard < ActiveRecord::Base
   end
 
   private
+
+  after_create :send_thank_you
+  def send_thank_you
+    # TODO: defer to jobs
+    DonorMailer.thankyou(id).deliver_now
+  end
 
   validate :create_cof, on: :create
   def create_cof
