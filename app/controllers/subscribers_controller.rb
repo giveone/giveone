@@ -34,13 +34,16 @@ class SubscribersController < ApplicationController
       if request.xhr?
         head 200
       else
-        redirect_to thanks_subscribers_url
+        flash[:notice] = "Thanks for subscribing!"
+        redirect_to root_url
       end
     else
       if request.xhr?
         render text: "#{@subscriber.errors.full_messages.first}.", status: 400
       else
-        render :new
+        flash[:notice] = "#{@subscriber.errors.full_messages.first}."
+        flash[:footer_email] = subscriber_params[:email]
+        redirect_to root_url
       end
     end
   end

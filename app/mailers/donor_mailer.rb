@@ -7,9 +7,12 @@ class DonorMailer < BaseMailer
   def thankyou(donor_id)
     @donor = Donor.find(donor_id)
 
-    # TODO: get these values
-    category = 'Bullying & Violence'
-    amount = '$2.00'
+    card = @donor.cards.last
+
+    return if card.nil?
+
+    category = card.nonprofit.category.name
+    amount = "$#{"%.2f" % card.amount}"
 
     vars = [
       {

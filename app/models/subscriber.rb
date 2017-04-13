@@ -1,12 +1,13 @@
+require 'mandrill'
+
 class Subscriber < ActiveRecord::Base
   has_one  :donor # inseparable from the subscriber -- don't delete or deatch
   has_many :emails
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9\*]+\.)+[a-z]{2,})\Z/i }
-  validates :name, length: { minimum: 1, maximum: 100, allow_blank: true }
+  validates :name, length: { maximum: 100, allow_blank: true }
   validates :auth_token, presence: true, uniqueness: true
   validates :ip_address, presence: true
-  validates :name, presence: true
 
   scope :active,   -> { where(unsubscribed_at: nil) }
   scope :inactive, -> { where.not(unsubscribed_at: nil) }
@@ -93,9 +94,38 @@ class Subscriber < ActiveRecord::Base
     true
   end
 
-  after_create :send_first_newsletter
-  def send_first_newsletter
-    SendFirstNewsletterJob.new(self.id).save if active?
+  after_create :send_to_list
+  def send_to_list
+    # Send immediately instead of jobs for now
+    # SendFirstNewsletterJob.new(self.id).save if active?
+    api_key = Rails.application.secrets.mailchimp_api_key
+    list_id = Rails.application.secrets.mailchimp_subscribers_list_id
+    gibbon = Gibbon::Request.new(api_key: api_key)
+    begin
+      gibbon.lists(list_id).members.create(
+        body: {
+          email_address: email,
+          status: "subscribed"
+        }
+      )
+
+    mandrill = Mandrill::API.new Rails.application.secrets.mandrill_api_key
+    mandrill.messages.send_template(
+      'welcome',
+      '',
+      {
+        'to' => [{
+          'email' => email
+        }],
+        'subject' => "Welcome",
+        'from_name' => Rails.application.secrets.name,
+        # 'from_email' => "hello@#{Rails.application.secrets.host}",
+        'from_email' => "hello@give-one.org"
+      }
+    )
+    rescue Exception => e
+      Rails.logger.error "Mailchimp subscription failed: #{e.to_s}"
+    end
   end
 
   after_create :lookup_location
