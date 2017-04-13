@@ -48,6 +48,7 @@ server {
 
   set \$is_production 1;
 
+  # TODO: @DMITRI Remove the "production" OR condition at go-live
   if (\$http_host ~ (integration|production) ) {
     set \$is_production 0;
   }
