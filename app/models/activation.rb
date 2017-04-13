@@ -10,9 +10,9 @@ class Activation < ActiveRecord::Base
   has_attached_file :photo,
     {
       styles: {
-        full: {geometry: "960x540>", format: :png},
-        medium: {geometry: "480x270>", format: :png},
-        thumb: {geometry: "100x100>" , format: :png}
+        full: {geometry: "800x300>", format: :png},
+        medium: {geometry: "400x150>", format: :png},
+        thumb: {geometry: "200x100>" , format: :png}
       },
       default_url: "http://placehold.it/800x300"
     }.reverse_merge(GiveOne::Application.config.paperclip_defaults)

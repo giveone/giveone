@@ -38,7 +38,7 @@ class Admin::ActivationsController < Admin::BaseController
 
   private
   def activation_params
-    params.require(:activation).permit(:category_id, :name, :sponsor, :blurb, :description, :url, :spots_available, :time_range, :happening_on, :where, :is_public)
+    params.require(:activation).permit(:category_id, :name, :sponsor, :blurb, :description, :url, :spots_available, :time_range, :happening_on, :where, :is_public, :photo)
   end
 
   def find_activation

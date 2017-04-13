@@ -25,5 +25,6 @@ AWS_SECRET_ACCESS_KEY
 # Extract docker_env from live environments
 docker_env
 
-# Local env vars
+# Local env vars and misc secrets
 .*env
+.paperclip-bucket-policy

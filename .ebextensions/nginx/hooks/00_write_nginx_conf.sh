@@ -48,7 +48,7 @@ server {
 
   set \$is_production 1;
 
-  if (\$http_host ~ (integration) ) {
+  if (\$http_host ~ (integration|production) ) {
     set \$is_production 0;
   }
 
