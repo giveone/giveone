@@ -1,3 +1,5 @@
+require 'mandrill'
+
 class Subscriber < ActiveRecord::Base
   has_one  :donor # inseparable from the subscriber -- don't delete or deatch
   has_many :emails
@@ -99,12 +101,31 @@ class Subscriber < ActiveRecord::Base
     api_key = Rails.application.secrets.mailchimp_api_key
     list_id = Rails.application.secrets.mailchimp_subscribers_list_id
     gibbon = Gibbon::Request.new(api_key: api_key)
-    gibbon.lists(list_id).members.create(
-      body: {
-        email_address: email,
-        status: "subscribed"
+    begin
+      gibbon.lists(list_id).members.create(
+        body: {
+          email_address: email,
+          status: "subscribed"
+        }
+      )
+
+    mandrill = Mandrill::API.new Rails.application.secrets.mandrill_api_key
+    mandrill.messages.send_template(
+      'welcome',
+      '',
+      {
+        'to' => [{
+          'email' => email
+        }],
+        'subject' => "Welcome",
+        'from_name' => Rails.application.secrets.name,
+        # 'from_email' => "hello@#{Rails.application.secrets.host}",
+        'from_email' => "hello@give-one.org"
       }
     )
+    rescue Exception => e
+      Rails.logger.error "Mailchimp subscription failed: #{e.to_s}"
+    end
   end
 
   after_create :lookup_location
