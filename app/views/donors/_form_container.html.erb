@@ -5,15 +5,12 @@
 <div class='clearfix account-page'>
   <div class='col col-12 py4 px3 flex flex-column items-center border-first-panel relative bc-white bg-notwhite min-panel-height' style='z-index:1'>
     <div class='py4 max-width-2'>
-      <h6 class='dgray sofiasemibold caps'>Step 2 of 3</h6>
-      <p class='sub-heading sofiabold pt3 pb2 dgray'>
+      <h6 class='steps dgray sofiasemibold caps'>Step 2 of 3</h6>
+      <p class='sub-heading sofiabold pt3 pb2 dgray no-wrap'>
         Choose your amount
       </p>
       <p class='h6 MuseoSans300 pb3 lgray'>
         Choose an amount you are comfortable with donating each day towards your cause of choice.
-      </p>
-      <p class='h6 MuseoSans300 pb3 lgray'>
-        We will transfer your money at the end of each month.
       </p>
       <%= form_for @donor, as: :donor, url: "/donate", html: {autocomplete: "on"} do |d| %>
         <%= render "donors/form", form_builder: d %>

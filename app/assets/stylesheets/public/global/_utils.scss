@@ -2,6 +2,10 @@
   min-height: $min-panel-height;
 }
 
+.no-wrap {
+  white-space: nowrap;
+}
+
 .button-border {
   border-style: solid;
   border-width: 2px;
