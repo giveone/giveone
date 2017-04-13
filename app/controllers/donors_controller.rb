@@ -50,8 +50,8 @@ class DonorsController < ApplicationController
     @hide_header = true
     @hide_footer = true
 
-    @donor.attributes      = donor_params
-    @donor.card.ip_address = request.ip
+    @donor.attributes        = donor_params
+    @donor.card.ip_address   = request.ip
     @donor.card.stripe_token = params[:stripeToken] if params["stripeToken"].present?
 
     Donor.transaction do
@@ -63,10 +63,6 @@ class DonorsController < ApplicationController
       sign_in @new_user
       @donor.user = @new_user
       @donor.save!
-      # Have the first donation execute immediately (instead of the 15-minute
-      # cron interval) so it seems more immediate.
-      # Execute right away for testing purposes @TODO: remove
-      @donor.donations.pending.first.lock_and_execute!
       session[:thanks] = @donor.subscriber.first_name
       redirect_to thanks_donors_url
     end
@@ -211,13 +207,13 @@ class DonorsController < ApplicationController
   private
   def donor_params
     params.require(:donor).permit(
-      :add_fee, :password, :public_name, {card_attributes: [:name, :email, :amount]}
+      :add_fee, :password, :public_name, {card_attributes: [:name, :email, :amount, :address_zip]}
     )
   end
 
   def donor_card_params
     params.require(:donor).permit(
-      card_attributes: [:name, :email]
+      card_attributes: [:name, :email, :address_zip]
     )
   end
 end

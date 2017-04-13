@@ -14,3 +14,8 @@ p.flash, p.alert, p.notice, #existing_donor_message {
   z-index: 10;
   text-align: center;
 }
+
+span.payment-errors {
+  color: color('velure');
+  font-family: 'Sofia Medium';
+}

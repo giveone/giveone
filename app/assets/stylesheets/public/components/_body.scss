@@ -29,6 +29,7 @@ body{
         color: color('algae');
       }
       &.active{
+        color: color('white');
         &:hover {
           color: color('white');
         }
@@ -113,6 +114,9 @@ body{
         color: color('velure');
       }
       &.active{
+        p {
+          color: color('white');
+        }
         &:hover {
           color: color('white');
         }

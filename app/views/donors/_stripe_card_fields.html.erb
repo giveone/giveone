@@ -28,7 +28,12 @@
   <div class="field mb1 clearfix">
     <%= c.text_field :exp_month, name: nil, size: 2, maxlength: 2, placeholder: "MM", tabindex: 4, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter col-4 left", data: { stripe: "exp_month" } %>
     <%= c.text_field :exp_year, name: nil, size: 2, maxlength: 2, placeholder: "YY", tabindex: 5, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter col-4 left", data: { stripe: "exp_year" } %>
-    <%= c.text_field :cvc, size: 4, name: nil, maxlength: 4, placeholder: "CVC", tabindex: 6, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter col-4 left", data: { stripe: "cvc" } %>
+    <%= c.text_field :cvc, size: 4, name: nil, maxlength: 4, placeholder: "CVC", tabindex: 6, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter col-4 left", data: { stripe: "cvc" }, autocomplete: :off %>
   </div>
+
+  <div class="field mb1">
+    <%= c.text_field :address_zip, size: 5, maxlength: 5, tabindex: 7, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter full-width", autocorrect: "off", spellcheck: "off", autocapitalize: "off", placeholder: "Zip Code", data: { stripe: "address_zip" } %>
+  </div>
+
 
 <% end -%>
