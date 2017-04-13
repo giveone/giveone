@@ -72,7 +72,7 @@ class DonorsController < ApplicationController
     end
     rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotSaved => e
     flash[:notice] = e.message
-    render :new, layout: "public"
+    redirect_to new_donation_url(donor_card_params[:card_attributes][:nonprofit_id])
   end
 
   # "Change Billing Details"

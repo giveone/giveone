@@ -8,6 +8,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
+
+    <meta content="<%= image_path('public/share.jpg') %>" property="og:image">
+    <meta content="Donate Now: Give One" property="og:title">
+    <meta content="Give One makes giving back to your community easy. Make a daily donation or volunteer locally." property="og:description">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@giveoneorg">
+    <meta name="twitter:title" content="Donate Now: Give One">
+    <meta name="twitter:description" content="Give One makes giving back to your community easy. Make a daily donation or volunteer locally.">
+    <meta name="twitter:image" content="<%= image_path('public/share.jpg') %>">
+
     <%= meta_tags %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "public", media: "all" %>
