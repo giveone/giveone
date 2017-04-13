@@ -18,6 +18,7 @@ class Activation < ActiveRecord::Base
     }.reverse_merge(GiveOne::Application.config.paperclip_defaults)
 
   validates :name, presence: true
+  validates :category, presence: true
   validates :happening_on, presence: true
   validates :slug, uniqueness: { message: "is already used by another Activation", allow_nil: true }
   validates :blurb, presence: true

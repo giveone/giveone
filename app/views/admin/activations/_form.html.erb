@@ -8,6 +8,12 @@
 <br />
 <br />
 
+<%= f.label :category %>
+<br />
+<%= collection_select(:activation, :category_id, Category.all, :id, :name, prompt: true) %>
+<br />
+<br />
+
 <%= f.label :name %>
 <br />
 <%= f.text_field :name %>

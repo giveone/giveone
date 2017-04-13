@@ -9,6 +9,12 @@
 <br />
 <br />
 
+<%= f.label :category %>
+<br />
+<%= collection_select(:nonprofit, :category_id, Category.all, :id, :name, prompt: true) %>
+<br />
+<br />
+
 <%= f.label :name %>
 <br />
 <%= f.text_field :name %>
@@ -32,13 +38,6 @@
 <%= link_to "Lookup EIN", "#", id: "nonprofit_lookup_ein" %>
 <%= content_tag(:div, nonprofit.errors[:ein].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if nonprofit.errors[:ein].present? %>
 <div id="ein_lookup_data" style="font-size: 14px"></div>
-<br />
-
-<%= f.label :featured_on, "Featured On (yyyy/mm/dd)" %>
-<br />
-<%= f.text_field :featured_on, maxlength: 12, size: 12 %>
-<%= content_tag(:span, @nonprofit.errors[:featured_on].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if @nonprofit.errors[:featured_on].present? %>
-<br />
 <br />
 
 <%= f.label :website_url, "Nonprofit Url" %>

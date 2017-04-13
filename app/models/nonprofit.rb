@@ -30,9 +30,9 @@ class Nonprofit < ActiveRecord::Base
     }.reverse_merge(GiveOne::Application.config.paperclip_defaults)
 
   validates :name, presence: true
+  validates :category, presence: true
   validates :ein, format: { with: /\A\d\d?-\d{7}\z/ }
   validates :slug, uniqueness: { message: "is already used by another Nonprofit", allow_nil: true }
-  validates :featured_on, uniqueness: { message: "is already taken by another Nonprofit" }
   validates :blurb, presence: true
   validate :editability, on: :update
   validate :donatability

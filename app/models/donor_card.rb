@@ -1,5 +1,6 @@
 class DonorCard < ActiveRecord::Base
 	belongs_to :donor, inverse_of: :card
+  belongs_to :nonprofit
   has_many   :donations
 
   STRIPE_FIELDS = [
@@ -83,7 +84,7 @@ class DonorCard < ActiveRecord::Base
         end
 
         card = customer.sources.first
-        
+
         # check if plan exists first
         plan_id = "#{self.amount}-30-day-recurring-plan"
         plan = Stripe::Plan.all.data.find { |plan| plan.id == plan_id } if (Stripe::Plan.all.data.any? { |plan| plan.id == plan_id})
