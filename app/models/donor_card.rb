@@ -99,19 +99,22 @@ class DonorCard < ActiveRecord::Base
           interval: "day",
           interval_count: interval_day_count,
           currency: "usd",
-          amount: (self.amount.to_f * 100.0 * interval_day_count).to_i
+          amount: (self.amount.to_f * 100.0 * interval_day_count).to_i,
+          trial_period_days: interval_day_count
         )
 
         subscription = Stripe::Subscription.create(
           customer: customer.id,
           plan: plan_id,
+          trial_period_days: interval_day_count,
           metadata: {
             donor_id: donor.id,
+            donor_card_zip: self.address_zip,
             donor_card_name: self.name,
             donor_card_email: self.email,
             nonprofit_id: self.nonprofit.id,
             nonprofit_name: self.nonprofit.name,
-            nonprofit_category: self.nonprofit.category
+            nonprofit_category: self.nonprofit.category.name
           }
         )
 

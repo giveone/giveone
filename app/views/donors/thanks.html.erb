@@ -1,5 +1,5 @@
 <%= content_for :extra_head do %>
-  <meta property="og:description" content="I just joined <%= donor_count %> others and signed up to give ### a day." />
+  <meta property="og:description" content="<%= Rails.application.secrets.name %> makes giving back to your community easy! <%=root_url%>" />
 <% end %>
 <div class='clearfix'>
   <div class='col col-12 py4 border-first-panel relative bc-white bg-dewy min-panel-height viewport-height' style='z-index:1'>
@@ -20,7 +20,7 @@
           class: "p2 mx-auto text-decoration-none sofiabold bg-algae h6 white bg-algae button-border bc-algae button-radius"
         } %>
 
-        <%= link_to "Tweet", "https://twitter.com/share?text=I%20just%20joined%20#{donor_count}%20donors%20giving%20to%20amazing%20nonprofits!&url=#{root_url}", {
+        <%= link_to "Tweet", "https://twitter.com/share?text=#{Rails.application.secrets.name},%20I%20did!%20#{Rails.application.secrets.name}%20makes%20giving%20back%20to%20your%20community%20easy!&url=#{root_url}", {
           class: "p2 mx-auto text-decoration-none sofiabold bg-white h6 button-border bc-velure button-radius velure",
           target: '_blank'
         } %>
@@ -29,7 +29,6 @@
           class: "p2 mx-auto text-decoration-none sofiabold bg-velure h6 white button-border bc-velure button-radius",
           target: '_blank'
         } %> -->
-
       </div>
     </div>
   </div>
