@@ -34,7 +34,8 @@ class SubscribersController < ApplicationController
       if request.xhr?
         head 200
       else
-        redirect_to thanks_subscribers_url
+        flash[:notice] = "Thanks for subscribing!"
+        redirect_to root_url
       end
     else
       if request.xhr?

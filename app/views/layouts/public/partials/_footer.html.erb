@@ -29,13 +29,13 @@
         </div>
       </div>
     </div>
-    <form class='email-sign-up mailchimp-form flex flex-column mt2 py4'>
+    <%= form_tag("/subscribers", class: 'email-sign-up mailchimp-form flex flex-column mt2 py4') do %>
      <h6 class='sofiasemibold dgray pb3 mb2'>Sign up for our newsletters</h5>
      <div class='email-input mb2'>
-       <input id='email' class='px2' placeholder='Your email address' type='email'>
+       <%= email_field_tag 'subscriber[email]', nil, class: 'px2', placeholder: 'Your email address' %>
      </div>
-     <button type='submit' class='email-submit-button sofiabold button-bg-color white py2 mt1 h6'>I'm in</button>
-    </form>
+     <%= submit_tag "I'm in", class: 'email-submit-button sofiabold button-bg-color white py2 mt1 h6' %>
+    <% end %>
   </div>
 
   <div class='footer-second-box col col-12 clearfix flex justify-between llgray xsmall-font MuseoSans300 p2'>

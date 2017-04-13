@@ -3,10 +3,9 @@ class Subscriber < ActiveRecord::Base
   has_many :emails
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9\*]+\.)+[a-z]{2,})\Z/i }
-  validates :name, length: { minimum: 1, maximum: 100, allow_blank: true }
+  validates :name, length: { maximum: 100, allow_blank: true }
   validates :auth_token, presence: true, uniqueness: true
   validates :ip_address, presence: true
-  validates :name, presence: true
 
   scope :active,   -> { where(unsubscribed_at: nil) }
   scope :inactive, -> { where.not(unsubscribed_at: nil) }
@@ -93,9 +92,19 @@ class Subscriber < ActiveRecord::Base
     true
   end
 
-  after_create :send_first_newsletter
-  def send_first_newsletter
-    SendFirstNewsletterJob.new(self.id).save if active?
+  after_create :send_to_list
+  def send_to_list
+    # Send immediately instead of jobs for now
+    # SendFirstNewsletterJob.new(self.id).save if active?
+    api_key = Rails.application.secrets.mailchimp_api_key
+    list_id = Rails.application.secrets.mailchimp_subscribers_list_id
+    gibbon = Gibbon::Request.new(api_key: api_key)
+    gibbon.lists(list_id).members.create(
+      body: {
+        email_address: email,
+        status: "subscribed"
+      }
+    )
   end
 
   after_create :lookup_location
