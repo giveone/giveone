@@ -10,16 +10,16 @@
         &nbsp;&nbsp;&nbsp;
         <%= link_to_unless_current "Activations", admin_activations_url, class: link_class %>
         &nbsp;&nbsp;&nbsp;
-        <%= link_to_unless_current "Stats", admin_stats_url, class: link_class %>
-        &nbsp;&nbsp;&nbsp;
+        <!-- <%= link_to_unless_current "Stats", admin_stats_url, class: link_class %>
+        &nbsp;&nbsp;&nbsp; -->
         <%= link_to_unless_current "Emails", "/admin/mailers", class: link_class  %>
         &nbsp;&nbsp;&nbsp;
         <%= link_to_unless_current "Subscribers", admin_subscribers_url, class: link_class  %>
         &nbsp;&nbsp;&nbsp;
         <%= link_to_unless_current "Donors", admin_donors_url, class: link_class  %>
         &nbsp;&nbsp;&nbsp;
-        <%= link_to_unless_current "Payouts", admin_payouts_url, class: link_class  %>
-        &nbsp;&nbsp;&nbsp;
+        <!-- <%= link_to_unless_current "Payouts", admin_payouts_url, class: link_class  %>
+        &nbsp;&nbsp;&nbsp; -->
         <%= link_to_unless_current "Delayed Jobs", admin_delayed_jobs_url, class: link_class  %>
         &nbsp;&nbsp;&nbsp;
         <%= link_to "Logout", destroy_user_session_url, method: :delete, class: link_class  %>

@@ -3,12 +3,12 @@
     <div class="pt4 pb4">
       <%= link_to "Add an activation", new_admin_activation_url, class: "button-outline button-dark-green" %>
     </div>
-
     <table cellpadding="0" cellspacing="0">
       <thead>
         <tr>
-          <th class="bg-grey white p1">Happening On</th>
           <th class="bg-grey white p1">Public?</th>
+          <th class="bg-grey white p1">Category</th>
+          <th class="bg-grey white p1">Happening On</th>
           <th class="bg-grey white p1">Name</th>
           <th class="bg-grey white p1">Spots Available</th>
           <th class="bg-grey white p1">URL</th>
@@ -24,8 +24,9 @@
       <tbody>
         <% @activations.each do |activation| %>
           <tr style="<%= activation.happening_on == Time.zone.now.to_date ? 'background-color: lemonchiffon' : '' %>; font-size: 0.8em">
+            <td class="p1 border-bottom"><%= "✔" if activation.is_public? %></td>
+            <td class="p1 border-bottom"><%= activation.category.name %></td>
             <td class="p1 border-bottom"><%= activation.happening_on.to_s :short %></td>
-            <td class="p1 border-bottom"><%= "x" if activation.is_public? %></td>
             <td class="p1 border-bottom">
               <p style="white-space: nowrap"><%= link_to activation.name, edit_admin_activation_url(activation.id) %></p>
               <sub style="white-space: nowrap; font-size: 0.8em; color: #AAA"><%= "(#{activation.name})" if activation.name %></sub>
