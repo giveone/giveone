@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408175250) do
+ActiveRecord::Schema.define(version: 20170413170424) do
 
   create_table "activations", force: true do |t|
     t.integer  "category_id"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170408175250) do
     t.string   "slug"
     t.string   "sponsor"
     t.string   "blurb"
-    t.string   "description"
+    t.text     "description"
     t.string   "url"
     t.integer  "spots_available"
     t.string   "time_range"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20170408175250) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "amount",         precision: 8, scale: 2, default: 0.0
+    t.integer  "nonprofit_id"
   end
 
   create_table "donors", force: true do |t|

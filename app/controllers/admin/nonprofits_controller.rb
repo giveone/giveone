@@ -6,11 +6,6 @@ class Admin::NonprofitsController < Admin::BaseController
   def index
     @nonprofits = Nonprofit.
       order("id ASC")
-    @year = (params[:year] || Time.zone.now.year).to_i
-    @date = Date.new(@year)
-    @nonprofits = Nonprofit.
-      where("YEAR(featured_on) = ?", @year).
-      order("featured_on ASC")
   end
 
   def show
@@ -32,7 +27,7 @@ class Admin::NonprofitsController < Admin::BaseController
   def create
     @nonprofit = Nonprofit.new(nonprofit_params)
     @nonprofit.save
-    respond_with(@nonprofit)
+    respond_with(@nonprofit, location: admin_nonprofits_url)
   end
 
   def edit
@@ -50,7 +45,7 @@ class Admin::NonprofitsController < Admin::BaseController
 
   private
   def nonprofit_params
-    params.require(:nonprofit).permit(:name, :slug, :description, :blurb, :website_url, :twitter, :ein, :logo, :photo, :featured_on, :is_public)
+    params.require(:nonprofit).permit(:category_id, :name, :slug, :description, :blurb, :website_url, :twitter, :ein, :logo, :photo, :featured_on, :is_public)
   end
 
   def find_nonprofit
