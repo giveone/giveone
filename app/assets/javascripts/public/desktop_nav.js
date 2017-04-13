@@ -12,7 +12,7 @@ $(function() {
       break;
   }
 
-  let animatables = $('#account p, #activation p, #donate p').map(function(i, text) {
+  var animatables = $('#account p, #activation p, #donate p').map(function(i, text) {
     return { jEl: $(text), orig: $(text).width() };
   });
 

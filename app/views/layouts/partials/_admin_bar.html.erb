@@ -6,10 +6,6 @@
       <div class="tablet-col-right" style="color: black;">
         <%= link_to_unless_current "Categories", admin_categories_url, class: link_class %>
         &nbsp;&nbsp;&nbsp;
-        <% if @category and !@category.new_record? %>
-          <%= link_to "Edit Category", edit_admin_category_url(@category.id), class: link_class %>
-          &nbsp;&nbsp;&nbsp;
-        <% end %>
         <%= link_to_unless_current "Nonprofits", admin_nonprofits_url, class: link_class %>
         &nbsp;&nbsp;&nbsp;
         <%= link_to_unless_current "Activations", admin_activations_url, class: link_class %>
