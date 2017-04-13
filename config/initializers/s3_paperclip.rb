@@ -1,5 +1,5 @@
 Rails.application.config.paperclip_defaults = {
-  path: "images/:attachment/:id/:style.:extension",
+  path: "images/#{Rails.env}/:attachment/:id/:style.:extension",
   default_url: "assets/photos/:style/missing.png",
   storage: :s3,
   s3_protocol: Rails.env.development? ? :http : :https,
