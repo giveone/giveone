@@ -2,7 +2,7 @@ class DonorsController < ApplicationController
   before_filter :authenticate_user!, only: :index
   before_filter :admin_required, only: :index
 
-  before_filter :require_donor, only: [:cancel, :uncancel, :edit, :update]
+  before_filter :require_donor, only: [:uncancel, :edit, :update]
   before_filter :initialize_donor, only: [:new, :create]
 
   respond_to :html, except: [:exists, :fetch_state_by_zip, :map]
@@ -114,16 +114,18 @@ class DonorsController < ApplicationController
   end
 
   def cancel
-    @creds = params[:donor_verification]
-
-    # TODO test the @auth_method thing -- this is so users don't have to 2x auth
-    #  when going to cancel via website (instead of email)
-    if auth_method == :card || current_donor.card.valid_credentials?(@creds[:last_4], @creds[:exp_month], @creds[:exp_year])
-      current_donor.cancel!
-      render json: {success: "Thanks! Your future donations have been cancelled."}
-    else
-      render json: {error: "Sorry, those were not the correct credentials!"}
-    end
+    @donor_card = DonorCard.find_by(email: current_user.email)
+    redirect_to account_path and return if @donor_card.nil?
+    @donor = @donor_card.donor
+    customer = Stripe::Customer.retrieve(@donor.stripe_customer_id)
+    customer.delete # deletes all subscriptions
+    # customer.subscriptions.each{ |s| s.delete }
+    @donor.subscriber.destroy
+    @donor.destroy
+    @donor_card.destroy
+    current_user.destroy
+    flash[:notice] = "Sorry to see you go!"
+    redirect_to root_url
   end
 
   def uncancel
