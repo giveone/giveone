@@ -32,7 +32,7 @@
     <%= form_tag("/subscribers", class: 'email-sign-up mailchimp-form flex flex-column mt2 py4') do %>
      <h6 class='sofiasemibold dgray pb3 mb2'>Sign up for our newsletters</h5>
      <div class='email-input mb2'>
-       <%= email_field_tag 'subscriber[email]', nil, class: 'px2', placeholder: 'Your email address' %>
+       <%= email_field_tag 'subscriber[email]', flash[:footer_email], class: 'px2', placeholder: 'Your email address' %>
      </div>
      <%= submit_tag "I'm in", class: 'email-submit-button sofiabold button-bg-color white py2 mt1 h6' %>
     <% end %>
