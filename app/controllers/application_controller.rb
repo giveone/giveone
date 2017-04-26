@@ -54,9 +54,6 @@ class ApplicationController < ActionController::Base
     @meta_tags['og:type']         = "website"
     @meta_tags['og:site_name']    = Rails.application.secrets.name
     @meta_tags['og:title']        = Rails.application.secrets.name
-    @meta_tags['og:image']        = view_context.image_path "facebook-avatar.jpg"
-    @meta_tags['og:image:secure_url'] = view_context.image_path "facebook-avatar.jpg"
-    @meta_tags['og:description']  = Rails.application.secrets.description
   end
 
   def current_subscriber(force = false)
