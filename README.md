@@ -2,9 +2,11 @@
 
 *(open-sourced by Give One, Inc. on TBD, 2017)*
 
+@TODO: Briefly explain features, functionality, and link to roadmap/wiki
+
 #### Details
 
-This is a Ruby 2.1.x Rails 4.1.13 app built on top of a lot of great services & open-source software:
+Ruby 2.1.x Rails 4.1.13 app built on top of a lot of great services & open-source software:
 
   * [delayed_job](https://github.com/collectiveidea/delayed_job) to run async jobs.
   * [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) or [capistrano 3](http://capistranorb.com/) for deployment.  AWS EB can also be used for configuration management.
@@ -53,13 +55,6 @@ The app is built to run on the AWS Elastic Beanstalk service.  Deploying can be 
 ```
 * job server -- the app uses DelayedJob and provides rake/cap integration to restart it on deploys
 
-#### Features
-
-* Subscriber-only newsletters
-* Donor- newsletters
-* Donations are batched and executed monthly to avoid paying fees for individual donations -- this is done via the Plans/Subscriptions feature in Stripe.
-* Intercom.io integration
-
 #### Models
 
 NB: the `User` model is currently reserved for admin use, for which it uses Devise.
@@ -76,9 +71,9 @@ bundle exec rspec test
 ```
 SUBSCRIBER
   |
-  -> EMAIL -> NEWSLETTER
-  -> EMAIL -> NEWSLETTER
-  -> EMAIL -> NEWSLETTER
+  -> EMAIL
+  -> EMAIL
+  -> EMAIL
   -> ...
 ```
 
@@ -89,9 +84,9 @@ DONOR
   |
   -> SUBSCRIBER
     |
-    -> EMAIL -> NEWSLETTER
-    -> EMAIL -> NEWSLETTER
-    -> EMAIL -> NEWSLETTER
+    -> EMAIL
+    -> EMAIL
+    -> EMAIL
     -> ...
   |
   -> CARD

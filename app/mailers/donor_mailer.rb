@@ -2,7 +2,56 @@ require 'mandrill'
 
 class DonorMailer < BaseMailer
 
-  # Declaring a @subscriber variable ensures a "Your Account" link
+  def stripe_payment_receipt(donor)
+    card = donor.cards.last
+
+    return if card.nil?
+
+    fullname = card.name
+    category = card.nonprofit.category.name
+    amount = "$#{"%.2f" % (card.amount * 30)}"
+    month_year = (DateTime.now - 30).strftime('%B %Y')
+
+    vars = [
+      {
+        name: 'fullname',
+        content: fullname
+      },
+      {
+        name: 'category',
+        content: category
+      },
+      {
+        name: 'amount',
+        content: amount
+      },
+      {
+        name: 'month_year',
+        content: month_year
+      }
+    ]
+
+    begin
+
+    mandrill = Mandrill::API.new Rails.application.secrets.mandrill_api_key
+    mandrill.messages.send_template(
+      'payment-receipt',
+      '',
+      {
+        'to' => [{
+          'email' => card.email
+        }],
+        'subject' => "Thank you for your donation",
+        'from_name' => Rails.application.secrets.name,
+        # 'from_email' => "hello@#{Rails.application.secrets.host}",
+        'from_email' => "hello@give-one.org",
+        'global_merge_vars' => vars
+      }
+    )
+    rescue Exception => e
+      Rails.logger.info "Failed: mandrill.messages.send_template('payment-receipt', ...) #{e.to_s}"
+    end
+  end
 
   def thankyou(donor_id)
     @donor = Donor.find(donor_id)

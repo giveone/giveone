@@ -4,18 +4,19 @@ class SiteController < ApplicationController
 
   def index
     #TODO: Hugh - Scrub this controller - none of these
-    @nonprofits = Nonprofit.is_public.featured_from(Time.zone.now.to_date + 1.day).limit(16)
+    @nonprofits = Nonprofit.is_public
     @subscriber = Subscriber.new
   end
 
   def login
-    @nonprofits = Nonprofit.all
+    @nonprofits = Nonprofit.is_public
     @subscriber = Subscriber.new
   end
 
   def volunteer
     @categories   = Category.all
-    @activations  = Activation.all
+    @activations  = Activation.is_public
+    @subscriber = Subscriber.new
     @public_theme = "orange"
   end
 

@@ -4,7 +4,6 @@ class NonprofitTest < ActiveSupport::TestCase
 
   should have_many(:donation_nonprofits)
   should have_many(:donations)
-  should have_one(:newsletter)
 
   should validate_presence_of(:name)
   should validate_uniqueness_of(:slug).allow_nil.with_message(/is already used by another Nonprofit/)
@@ -29,10 +28,6 @@ class NonprofitTest < ActiveSupport::TestCase
 
     context "creating" do
       setup { @nonprofit.save! }
-
-      should_change "nonprofits", by: 1 do Nonprofit.count end
-      should_change "newsletters", by: 1 do Newsletter.count end
-      should "attach newsletter" do assert_equal Newsletter.last, @nonprofit.newsletter end
       should "be valid" do assert @nonprofit.valid? end
     end
 

@@ -4,7 +4,6 @@ class Nonprofit < ActiveRecord::Base
   has_many :donation_nonprofits
   has_many :donations, through: :donation_nonprofits
   has_many :payouts
-  has_one  :newsletter
 
   scope :featured_from, ->(d) { where("featured_on >= ?", d).order("featured_on ASC") }
   scope :featured_reverse_from, ->(d) { where("featured_on <= ?", d).order("featured_on DESC") }
@@ -60,7 +59,7 @@ class Nonprofit < ActiveRecord::Base
 
   before_destroy :destroyable?
   def destroyable?
-    new_record?
+    !new_record?
   end
 
   def displayable_donation_count
@@ -130,13 +129,6 @@ class Nonprofit < ActiveRecord::Base
 
   def donatability
     return
-  end
-
-  before_validation :attach_newsletter, on: :create
-  def attach_newsletter
-    unless newsletter.present?
-      self.newsletter = Newsletter.new
-    end
   end
 
   before_save :sanitize_fields

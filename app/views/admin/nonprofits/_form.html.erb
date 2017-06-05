@@ -24,6 +24,14 @@
 <br />
 <br />
 
+<%= f.label :context, "Nonprofit context" %>
+<br />
+<%= f.text_field :context, maxlength: 255, size: 30 %>
+<%= content_tag(:span, @nonprofit.errors[:context].to_sentence, style: "font-size: 10px; color: red; font-weight:bold") if @nonprofit.errors[:context].present? %>
+<br />
+<br />
+
+
 <%= f.label :slug %>
 <br />
 <%= f.text_field :slug, maxlength: 255, size: 25 %>

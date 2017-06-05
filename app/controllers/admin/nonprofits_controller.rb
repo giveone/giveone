@@ -45,7 +45,7 @@ class Admin::NonprofitsController < Admin::BaseController
 
   private
   def nonprofit_params
-    params.require(:nonprofit).permit(:category_id, :name, :slug, :description, :blurb, :website_url, :twitter, :ein, :logo, :photo, :featured_on, :is_public)
+    params.require(:nonprofit).permit(:category_id, :name, :slug, :description, :blurb, :website_url, :twitter, :ein, :logo, :photo, :featured_on, :is_public, :context)
   end
 
   def find_nonprofit

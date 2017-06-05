@@ -29,8 +29,6 @@ class Donor < ActiveRecord::Base
   scope :inactive,  -> { where("finished_on <= ? OR failed_at IS NOT NULL", Date.today) }
   scope :cancelled, -> { where.not(cancelled_at: nil) }
   scope :failed,    -> { where.not(failed_at: nil) }
-  # should be mutually exclusive from Subscriber#for_daily_newsletter
-  scope :for_daily_newsletter, -> { active.subscribed }
   scope :subscribed,        -> { joins(:subscriber).merge(Subscriber.active) }
   scope :unsubscribed,      -> { joins(:subscriber).merge(Subscriber.inactive) }
   scope :with_public_names, -> { where.not(public_name: ["", nil]) }
@@ -112,7 +110,7 @@ class Donor < ActiveRecord::Base
       self.cancelled_at = Time.now
       self.uncancelled_at = nil
       save!
-      SendCancelledJob.new(self.id).save if notify_donor
+      # SendCancelledJob.new(self.id).save if notify_donor @TODO: Dmitri uncomment when jobs are back in the mix for emails
     end
   end
 
@@ -127,7 +125,7 @@ class Donor < ActiveRecord::Base
         Time.now      # bare minimum
       ].compact.max
 
-      # NB schedule at 12am, so the newsletter at 8am has the day's correct donor count
+      # schedule at 12am
       donations.build(scheduled_at: next_donation_at.beginning_of_day)
       self.uncancelled_at = Time.now
       self.finished_on  = nil

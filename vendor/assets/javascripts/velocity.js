@@ -2940,7 +2940,7 @@ return function (global, window, document, undefined) {
                         /* Note: Even if only one of these unit types is being animated, all unit ratios are calculated at once since the overhead
                            of batching the SETs and GETs together upfront outweights the potential overhead
                            of layout thrashing caused by re-querying for uncalculated ratios for subsequently-processed properties. */
-                        /* Todo: Shift this logic into the calls' first tick instance so that it's synced with RAF. */
+                        /* @TODO: Shift this logic into the calls' first tick instance so that it's synced with RAF. */
                         function calculateUnitRatios () {
 
                             /************************

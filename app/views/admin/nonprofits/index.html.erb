@@ -10,6 +10,7 @@
           <th class="bg-grey white p1">Category</th>
           <th class="bg-grey white p1">Donors</th>
           <th class="bg-grey white p1">Name</th>
+          <th class="bg-grey white p1">Context</th>
           <th class="bg-grey white p1">Twitter</th>
           <th class="bg-grey white p1">Blurb</th>
           <th class="bg-grey white p1">Photo</th>
@@ -27,6 +28,7 @@
               <p style="white-space: nowrap"><%= link_to nonprofit.name, edit_admin_nonprofit_url(nonprofit.id) %></p>
               <sub style="white-space: nowrap; font-size: 0.8em; color: #AAA"><%= "(#{nonprofit.name})" if nonprofit.name %></sub>
             </td>
+            <td class="p1 border-bottom" ><%= truncate nonprofit.context %></td>
             <td class="p1 border-bottom"><%= link_to "@#{nonprofit.twitter}", "http://twitter.com/#{nonprofit.twitter}" if nonprofit.twitter %></td>
             <td class="p1 border-bottom" ><%= truncate nonprofit.blurb %></td>
             <td class="p1 border-bottom"><%= image_tag(nonprofit.photo.url(:thumb), width: "50px") %></td>

@@ -1,4 +1,8 @@
+require 'mandrill'
+
 class DonorsController < ApplicationController
+  protect_from_forgery :except => :payment_receipt
+
   before_filter :authenticate_user!, only: :index
   before_filter :admin_required, only: :index
 
@@ -34,7 +38,7 @@ class DonorsController < ApplicationController
     @public_theme      = "green"
     @categories        = Category.all
 
-    # TODO: Unsure if this is needed
+    # @TODO: Unsure if this is needed
     if params[:email].present?
       @subscriber = Subscriber.where(email: params[:email].to_s).first_or_initialize
       @donor.subscriber = @subscriber
@@ -81,6 +85,21 @@ class DonorsController < ApplicationController
     @new_card = current_donor.cards.new
   end
 
+  # Stripe webhook for when an invoice is successfully paid for
+  def payment_receipt
+    mandrill = Mandrill::API.new Rails.application.secrets.mandrill_api_key
+    event_json = JSON.parse(request.body.read) # event data from Stripe
+
+    if event_json["type"] != "invoice.payment_succeeded"
+       render json: {}, status: 400
+    else
+      donor = Donor.find_by(stripe_customer_id: event_json["data"]["object"]["customer"])
+      donor = Donor.find_by(stripe_customer_id: "cus_AT3dv800viOsas") unless donor # @TODO: remove once fully test -- used for integration environment tests temporarily
+      DonorMailer.stripe_payment_receipt(donor).deliver_now if donor
+      render json: {}, status: 200
+    end
+  end
+
   # TODO cleanup
   def update
     @require_stripe_js = true
@@ -114,12 +133,13 @@ class DonorsController < ApplicationController
   end
 
   def cancel
+    # @TODO: DMITRI eventually have this not actually destroy the record (to allow uncancelling)
+    # but also send the cancellation email
     @donor_card = DonorCard.find_by(email: current_user.email)
     redirect_to account_path and return if @donor_card.nil?
     @donor = @donor_card.donor
     customer = Stripe::Customer.retrieve(@donor.stripe_customer_id)
     customer.delete # deletes all subscriptions
-    # customer.subscriptions.each{ |s| s.delete }
     @donor.subscriber.destroy
     @donor.destroy
     @donor_card.destroy

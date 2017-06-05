@@ -7,7 +7,7 @@
 <% weeks = (first_day_of_quarter..last_day_of_quarter).to_a.in_groups_of(7).map { |a| a.reject { |e| e.blank? } } %>
 <% nonprofits = Nonprofit.where(featured_on: weeks) %>
 
-<!--  TODO: Show nonprofits per quarter -->
+<!--  @TODO: Show nonprofits per quarter -->
 <table cellspacing="3" cellpadding="0" style=" vertical-align: top; display: inline-block; margin: 0 8px">
 	<tr>
 		<th colspan="31" align="center">

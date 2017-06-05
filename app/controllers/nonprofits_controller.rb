@@ -6,14 +6,12 @@ class NonprofitsController < ApplicationController
   respond_to :json, only: [:upcoming_report]
 
   def index
-    @nonprofits = Nonprofit.
+    @nonprofits = Nonprofit.is_public
       order("id ASC")
   end
 
   def show
     @current_nonprofit = Nonprofit.is_public.find_by_param(params[:id]).featured_on
-    @next_day = Nonprofit.is_public.featured_from(@current_nonprofit.next_day).first
-    @previous_day = Nonprofit.is_public.featured_reverse_from(@current_nonprofit.prev_day).first
 
     @hide_header = true
     unless current_subscriber?

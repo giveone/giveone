@@ -22,27 +22,17 @@ class << Cron
   # every 15 minutes
   def quarter_hourly
     logger.info "  quarter_hourly"
-    run 'Delayed::Job', :report_queue
-    run 'Donation', :execute_donations_scheduled_for_now
   end
 
   # every hour
   def hourly
     logger.info "  hourly"
-    FinishCancelledDonorsJob.create({})
-    run 'Donor', :check_for_duplicate_donations
   end
 
   # runs at midnight every night
   def daily_midnight
     logger.info "  daily_midnight"
     PersistStatsJob.create({})
-  end
-
-  # run at 8am every morning
-  def daily_morning
-    logger.info "  daily_morning"
-    run('Newsletter', :send!)
   end
 
   # run at 4am every day
@@ -89,7 +79,7 @@ class << Cron
     if locked?
       if (mtime = File.mtime('CRONLOCK')) && File.mtime('CRONLOCK') < 30.minutes.ago
         puts "Sending AdminMailer#cron_issue because lock has existed since #{mtime}."
-        AdminMailer.cron_issue(mtime).deliver
+        # AdminMailer.cron_issue(mtime).deliver DMITRI: uncomment if admin mailer is set up
       end
     else
       lock!

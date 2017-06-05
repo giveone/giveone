@@ -46,13 +46,6 @@ server {
   access_log /var/log/nginx/healthd/application.log.\$year-\$month-\$day-\$hour healthd;
   access_log /var/log/nginx/access.log;
 
-  set \$is_production 1;
-
-  # TODO: @DMITRI Remove the "production" OR condition at go-live
-  if (\$http_host ~ (integration) ) {
-    set \$is_production 0;
-  }
-
   location / {
     set \$should_redirect_to_https 0;
 

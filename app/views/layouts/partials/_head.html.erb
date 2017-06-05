@@ -10,7 +10,6 @@
 <%= stylesheet_link_tag    "application", media: "all" %>
 <%= javascript_include_tag "application", async: !true %>
 <%= javascript_include_tag "admin", async: !true if current_user.try(:is_admin?) %>
-
 <% if @require_stripe_js %>
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
