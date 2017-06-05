@@ -256,7 +256,7 @@ class Donation < ActiveRecord::Base
   def schedule_next_donation
     # TODO good justification for a state machine
     if executed? and executed_at_was.nil? and donor.cancelled_at.blank?
-      # NB schedule at 12am, so the newsletter at 8am has a more accurate donor count
+      # schedule at 12am
       donor.donations.create!(scheduled_at: 30.days.since(scheduled_at).beginning_of_day)
     end
   end

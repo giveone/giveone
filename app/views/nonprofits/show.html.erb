@@ -75,15 +75,5 @@
 
     </div>
   </section>
-  <% if @previous_day %>
-    <%= link_to nonprofit_path(@previous_day), class: "next_prev prev desktop-show" do %>
-      <%= image_tag "arrow-left.svg", height: "60", class: "transition-all" %>
-    <% end %>
-  <% end %>
-  <% if @next_day %>
-    <%= link_to nonprofit_path(@next_day), class: "next_prev next desktop-show" do %>
-      <%= image_tag "arrow-right.svg", height: "60", class: "transition-all" %>
-    <% end %>
-  <% end %>
 
 </article>

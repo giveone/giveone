@@ -20,7 +20,7 @@ class SubscriberTest < ActiveSupport::TestCase
  			should_change "subscribed_at", from: nil do subject.subscribed_at end
  			should_change "guid", from: nil do subject.guid end
  			should_change "auth_token", from: nil do subject.auth_token end
-      should_delay_job "SendFirstNewsletterJob"
+      # should_delay_job "SendFirstNewsletterJob" @TODO: DMITRI uncomment this when newsletters are sent through the app
  			should_delay_job "SetSubscriberLocationJob"
  		end
  	end
@@ -50,7 +50,7 @@ class SubscriberTest < ActiveSupport::TestCase
 
  			should_change "unsubscribed_at", to: nil do subject.unsubscribed_at end
  			should_change "subscribed_at" do subject.unsubscribed_at end
- 			should_delay_job "SendFirstNewsletterJob"
+      # should_delay_job "SendFirstNewsletterJob" @TODO: DMITRI uncomment this when newsletters are sent through the app
  			should_change "active?", to: true do subject.active? end
  		end
  	end

@@ -3,8 +3,8 @@ $(function() {
 
   $('#donate_test_data_button').click(function(e) {
     e.preventDefault();
-    $('#donor_card_attributes_email').val("bob+loblaw" + Math.round(Math.random() * 100000) + "@foo.bar.dev");
-    $('#donor_card_attributes_name').val("Bob Loblaw");
+    $('#donor_card_attributes_email').val("admin+giveone-test-data-" + Math.round(Math.random() * 1000000) + "@give-one.org");
+    $('#donor_card_attributes_name').val("Dmitri Vassilev");
     $('#donor_card_attributes_card_number').val("4242424242424242").trigger('paste');
     $('#donor_card_attributes_cvc').val("1234");
     $('#donor_card_attributes_card_type').val("amex");

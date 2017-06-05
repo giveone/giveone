@@ -12,13 +12,6 @@ class Subscriber < ActiveRecord::Base
   scope :active,   -> { where(unsubscribed_at: nil) }
   scope :inactive, -> { where.not(unsubscribed_at: nil) }
 
-  # should be mutually exclusive from Donor#for_daily_newsletter
-  scope :for_daily_newsletter, -> {
-    active.
-    joins("LEFT JOIN donors ON subscribers.id = donors.subscriber_id").
-    where("donors.id IS NULL OR donors.finished_on < ?", Time.now).
-    where("donors.failed_at IS NULL") # don't send *any* newsletters to failed donors
-  }
   scope :without_donor, -> {
     joins("LEFT JOIN donors ON subscribers.id = donors.subscriber_id").
     where(donors: {id: nil})
@@ -63,7 +56,6 @@ class Subscriber < ActiveRecord::Base
     self.unsubscribed_at = nil
     self.subscribed_at = Time.now
     save!
-    SendFirstNewsletterJob.new(self.id).save
   end
 
   def set_location
@@ -96,7 +88,7 @@ class Subscriber < ActiveRecord::Base
 
   after_create :send_to_list
   def send_to_list
-    # Send immediately instead of jobs for now
+    # @TODO: DMITRI defer this -- Send immediately instead of jobs for now
     # SendFirstNewsletterJob.new(self.id).save if active?
     api_key = Rails.application.secrets.mailchimp_api_key
     list_id = Rails.application.secrets.mailchimp_subscribers_list_id

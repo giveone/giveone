@@ -63,7 +63,19 @@ class DonorCard < ActiveRecord::Base
 
   after_create :send_thank_you
   def send_thank_you
-    # TODO: defer to jobs
+    # @TODO: defer to jobs
+    # Send immediately instead of jobs for now
+    api_key = Rails.application.secrets.mailchimp_api_key
+    list_id = Rails.application.secrets.mailchimp_donors_list_id
+    gibbon = Gibbon::Request.new(api_key: api_key)
+    begin
+      gibbon.lists(list_id).members.create(
+        body: {
+          email_address: email,
+          status: "subscribed"
+        }
+      )
+    end
     DonorMailer.thankyou(donor_id).deliver_now
   end
 

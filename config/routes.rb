@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'thanks'
       get 'fetch_state_by_zip'
       get 'map'
+      post 'payment_receipt'
     end
   end
 
@@ -32,10 +33,6 @@ Rails.application.routes.draw do
     collection do
       get 'thanks'
     end
-  end
-
-  resources :newsletters do
-    get :preview, on: :collection
   end
 
   devise_for :users, :skip => [:registrations]
@@ -83,21 +80,9 @@ Rails.application.routes.draw do
     resources :activations
     resources :donors, except: [:new, :create]
     resources :donations
-    resources :subscribers do
-      member do
-        put :resend_newsletter
-      end
-    end
+    resources :subscribers
     resources :stats
     resources :payouts, only: [:index, :create]
-    resources :newsletters do
-      member do
-        get :preview
-        post :send_preview
-        get :donor_generated
-        get :subscriber_generated
-      end
-    end
   end
 
   get '/health' => 'application#health'

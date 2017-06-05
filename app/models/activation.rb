@@ -43,7 +43,7 @@ class Activation < ActiveRecord::Base
 
   before_destroy :destroyable?
   def destroyable?
-    new_record?
+    !new_record?
   end
 
   def to_param

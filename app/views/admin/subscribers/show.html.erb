@@ -22,10 +22,9 @@
     	<ul style="font-size: 11px">
     		<% @subscriber.emails.each do |e| %>
     		<li>
-          <b><%= "#{e.mailer}##{e.mailer_method} #{'(' + e.newsletter.nonprofit.name + ' Newsletter)' if e.newsletter}" %></b>
+          <b><%= "#{e.mailer}##{e.mailer_method}" %></b>
           -- <%= e.to + " -- " if e.to %>
           sent at <%= e.sent_at %>
-          <%= " -- ".html_safe + link_to("Resend", resend_newsletter_admin_subscriber_url(@subscriber.id, nonprofit_id: e.newsletter.nonprofit.id), method: :put, data: {confirm: "Are you sure you want to resend this newsletter to #{@subscriber.email}?"}) if e.newsletter %>
         </li>
     		<% end -%>
     	</ul>

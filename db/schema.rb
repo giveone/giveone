@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413170424) do
+ActiveRecord::Schema.define(version: 20170605115306) do
 
   create_table "activations", force: true do |t|
     t.integer  "category_id"
@@ -148,7 +148,6 @@ ActiveRecord::Schema.define(version: 20170413170424) do
   end
 
   create_table "emails", force: true do |t|
-    t.integer  "newsletter_id"
     t.integer  "subscriber_id"
     t.string   "to"
     t.string   "mailer"
@@ -161,16 +160,6 @@ ActiveRecord::Schema.define(version: 20170413170424) do
   create_table "metrics", force: true do |t|
     t.string   "key"
     t.decimal  "value",      precision: 10, scale: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "newsletters", force: true do |t|
-    t.integer  "nonprofit_id"
-    t.text     "donor_generated"
-    t.text     "subscriber_generated"
-    t.datetime "donors_sent_at"
-    t.datetime "subscribers_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
