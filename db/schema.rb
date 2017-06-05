@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605115306) do
+ActiveRecord::Schema.define(version: 20170605214749) do
 
   create_table "activations", force: true do |t|
     t.integer  "category_id"
@@ -185,6 +185,7 @@ ActiveRecord::Schema.define(version: 20170605115306) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "twitter"
+    t.string   "context"
   end
 
   add_index "nonprofits", ["ein"], name: "index_nonprofits_on_ein", using: :btree
