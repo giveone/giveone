@@ -95,7 +95,7 @@ class DonorsController < ApplicationController
     else
       donor = Donor.find_by(stripe_customer_id: event_json["data"]["object"]["customer"])
       donor = Donor.find_by(stripe_customer_id: "cus_AT3dv800viOsas") unless donor # @TODO: remove once fully test -- used for integration environment tests temporarily
-      DonorMailer.stripe_payment_receipt(donor).deliver_now if donor
+      DonorMailer.stripe_payment_receipt(donor).deliver_now if donor && event_json["data"]["amount_due"].to_i != 0
       render json: {}, status: 200
     end
   end
