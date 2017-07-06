@@ -65,10 +65,16 @@ class DonorsController < ApplicationController
         name: @donor.card.name,
         password: donor_params[:password],
       })
-      sign_in @new_user
+
+      # only sign in the user if the non-profit is on the index page
+      if @donor.card.nonprofit.is_public
+        sign_in @new_user
+      end
+
       @donor.user = @new_user
       @donor.save!
       session[:thanks] = @donor.subscriber.name
+      session[:nonprofit_id] = @donor.card.nonprofit.id
       session[:donor_name] = @donor.subscriber.name
       session[:donor_card_amount] = @donor.card.amount
       session[:nonprofit_category] = @donor.card.nonprofit.category.name
@@ -208,6 +214,7 @@ class DonorsController < ApplicationController
     @hide_footer = true
     @public_theme = 'green'
     @name = session['thanks']
+    @nonprofit = Nonprofit.find(session['nonprofit_id'])
     redirect_to(root_url) and return unless @name = session.delete(:thanks)
     render :thanks, layout: 'public'
   end

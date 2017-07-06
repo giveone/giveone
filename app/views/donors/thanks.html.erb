@@ -13,13 +13,18 @@
           <span class='accent-color'>$<%= "%01.2f" % session[:donor_card_amount] %></span>
           everyday.
         </h2>
-        <%= link_to "Return home", root_path, {
-          class: "p2 mx-auto text-decoration-none sofiabold bg-white h6 algae bc-algae button-border button-radius"
-        } %>
-        <%= link_to "Go to my account", account_path, {
-          class: "p2 mx-auto text-decoration-none sofiabold bg-algae h6 white bg-algae button-border bc-algae button-radius"
-        } %>
-
+        <% if @nonprofit.is_public %>
+          <%= link_to "Return home", root_path, {
+            class: "p2 mx-auto text-decoration-none sofiabold bg-white h6 algae bc-algae button-border button-radius"
+          } %>
+          <%= link_to "Go to my account", account_path, {
+            class: "p2 mx-auto text-decoration-none sofiabold bg-algae h6 white bg-algae button-border bc-algae button-radius"
+          } %>
+        <% else %>
+          <%= link_to "Go Back", new_donation_path(@nonprofit), {
+            class: "p2 mx-auto text-decoration-none sofiabold bg-white h6 algae bc-algae button-border button-radius"
+          } %>
+        <% end %>
         <%= link_to "Tweet", "https://twitter.com/share?text=#{Rails.application.secrets.name},%20I%20did!%20#{Rails.application.secrets.name}%20makes%20giving%20back%20to%20your%20community%20easy!&url=#{root_url}", {
           class: "p2 mx-auto text-decoration-none sofiabold bg-white h6 button-border bc-velure button-radius velure",
           target: '_blank'
