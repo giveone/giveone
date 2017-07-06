@@ -19,9 +19,9 @@
       </div>
     </div>
 
-    <%= render "layouts/public/partials/donate_cards", nonprofits: @nonprofits %>
+    <%= render "layouts/public/partials/donate_cards", nonprofits: @nonprofits.is_public %>
 
-    <div class='faq-panel col col-12 pb4 min-panel-height'>
+    <div class='faq-panel col col-12 pt4 pb4 min-panel-height'>
       <div class='clearfix pb4 px2 mx-auto max-width-4'>
         <div class='double-border-box-faq biggest-box index-page-box p1'>
           <p class='box-inner-text h4 sofiabold dgray'>A platform for activism</p>
