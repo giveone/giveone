@@ -12,6 +12,9 @@ $(function() {
     $('p[data-amount]').parent().removeClass('active');
     $amountInput.val($this.attr('data-amount'));
     $this.parent().addClass('active');
+    $('html, body').animate({
+      scrollTop: ($('#step3').offset().top)
+    },500);
   });
 
   window.checking_for_existing_donors = false;

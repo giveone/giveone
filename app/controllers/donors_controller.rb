@@ -21,7 +21,7 @@ class DonorsController < ApplicationController
     redirect_to account_path and return if current_user.present?
     @require_stripe_js = true
     @hide_footer = true
-    @public_theme = "blue"
+    @public_theme = "green"
 
     if params[:email].present?
       @subscriber = Subscriber.where(email: params[:email].to_s).first_or_initialize

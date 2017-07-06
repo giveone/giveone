@@ -1,6 +1,6 @@
 <% nonprofits.each_with_index do |nonprofit, index| %>
   <% if index.odd? %>
-    <div data-category="<%= nonprofit.category.id %>" class='donate-card col col-12 py4 bg-money min-panel-height <% if (nonprofit == nonprofits.last)%>before-faq-panel<% end %>'>
+    <div data-category="<%= nonprofit.category.id %>" class='donate-card col col-12 py2 bg-money min-panel-height <% if (nonprofit == nonprofits.last)%>before-faq-panel<% end %>'>
       <div class='column-img-left clearfix py4 px2 flex items-center mx-auto max-width-4'>
         <div class='img-left col md-col-6 sm-col-12 py2'>
           <img class='m0 fit block' src="<%= nonprofit.photo.url %>"/>
@@ -24,8 +24,8 @@
   <% end %>
 
   <% if index.even? %>
-    <div data-category="<%= nonprofit.category.id %>" class='donate-card col col-12 py4 bg-dewy min-panel-height <% if (nonprofit == nonprofits.last)%>before-faq-panel<% end %>'>
-      <div class='column-img-right clearfix pt4 pb4 mb4 px2 flex items-center mx-auto max-width-4'>
+    <div data-category="<%= nonprofit.category.id %>" class='donate-card col col-12 py2 bg-dewy min-panel-height <% if (nonprofit == nonprofits.last)%>before-faq-panel<% end %>'>
+      <div class='column-img-right clearfix pt4 pb2 mb2 px2 flex items-center mx-auto max-width-4'>
         <div class='col md-col-6 sm-col-12 panel-text sofiasemibold dgray'>
           <p class='sofiabold h6 pb1 accent-color my0'><%= nonprofit.category.name %></p>
           <p class='nonprofit-name sofiabold h2 dgray pb2'><%= nonprofit.name %></p>

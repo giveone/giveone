@@ -14,25 +14,25 @@
       <% unless Rails.env.production? -%>
         <span id="donate_test_data_button" style="text-decoration: underline; cursor: pointer;" class="right small">Use Test Data</span>
       <% end %>
-    <%= c.text_field :name, tabindex: "1", placeholder: "Full name", data: { stripe: "name" }, autocompletetype: "given-name", class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter full-width" %>
+    <%= c.text_field :name, tabindex: "1", placeholder: "Full name", data: { stripe: "name" }, autocompletetype: "given-name", class: "h5 my1 py1 border bg-notwhite sofiabold dgray email-enter full-width" %>
   </div>
 
   <div class="field mb1">
-    <%= c.text_field :email, tabindex: "2", placeholder: "Email", type: "email", :"x-autocompletetype" => "email", autocompletetype: "email", autocorrect: "off", spellcheck: "off", autocapitalize: "off", class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter full-width" %>
+    <%= c.text_field :email, tabindex: "2", placeholder: "Email", type: "email", :"x-autocompletetype" => "email", autocompletetype: "email", autocorrect: "off", spellcheck: "off", autocapitalize: "off", class: "h5 my1 py1 border bg-notwhite sofiabold dgray email-enter full-width" %>
   </div>
 
   <div class="field mb1">
-    <%= c.text_field :card_number, name: nil, size: 20, maxlength: 20, placeholder: "MM", tabindex: 3, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter full-width", "x-autocompletetype" => "cc-number", autocompletetype: "cc-number", autocorrect: "off", spellcheck: "off", autocapitalize: "off", placeholder: "Card number", data: { stripe: "number" } %>
+    <%= c.text_field :card_number, name: nil, size: 20, maxlength: 20, placeholder: "MM", tabindex: 3, class: "h5 my1 py1 border bg-notwhite sofiabold dgray email-enter full-width", "x-autocompletetype" => "cc-number", autocompletetype: "cc-number", autocorrect: "off", spellcheck: "off", autocapitalize: "off", placeholder: "Card number", data: { stripe: "number" } %>
   </div>
 
   <div class="field mb1 clearfix">
-    <%= c.text_field :exp_month, name: nil, size: 2, maxlength: 2, placeholder: "MM", tabindex: 4, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter col-4 left", data: { stripe: "exp_month" } %>
-    <%= c.text_field :exp_year, name: nil, size: 2, maxlength: 2, placeholder: "YY", tabindex: 5, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter col-4 left", data: { stripe: "exp_year" } %>
-    <%= c.text_field :cvc, size: 4, name: nil, maxlength: 4, placeholder: "CVC", tabindex: 6, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter col-4 left", data: { stripe: "cvc" }, autocomplete: :off %>
+    <%= c.text_field :exp_month, name: nil, size: 2, maxlength: 2, placeholder: "MM", tabindex: 4, class: "h5 my1 py1 border bg-notwhite sofiabold dgray email-enter col-4 left", data: { stripe: "exp_month" } %>
+    <%= c.text_field :exp_year, name: nil, size: 2, maxlength: 2, placeholder: "YY", tabindex: 5, class: "h5 my1 py1 border bg-notwhite sofiabold dgray email-enter col-4 left", data: { stripe: "exp_year" } %>
+    <%= c.text_field :cvc, size: 4, name: nil, maxlength: 4, placeholder: "CVC", tabindex: 6, class: "h5 my1 py1 border bg-notwhite sofiabold dgray email-enter col-4 left", data: { stripe: "cvc" }, autocomplete: :off %>
   </div>
 
   <div class="field mb1">
-    <%= c.text_field :address_zip, size: 5, maxlength: 5, tabindex: 7, class: "h5 my1 py1 border bg-notwhite sofiabold velure email-enter full-width", autocorrect: "off", spellcheck: "off", autocapitalize: "off", "x-autocompletetype" => "postal-code", autocompletetype: "postal-code", placeholder: "Zip Code", data: { stripe: "address_zip" } %>
+    <%= c.text_field :address_zip, size: 5, maxlength: 5, tabindex: 7, class: "h5 my1 py1 border bg-notwhite sofiabold dgray email-enter full-width", autocorrect: "off", spellcheck: "off", autocapitalize: "off", "x-autocompletetype" => "postal-code", autocompletetype: "postal-code", placeholder: "Zip Code", data: { stripe: "address_zip" } %>
   </div>
 
   <div class="field mb1">

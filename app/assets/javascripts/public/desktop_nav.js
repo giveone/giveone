@@ -10,6 +10,9 @@ $(function() {
     case '/users/sign_in':
       $('#account').addClass('active');
       break;
+    default:
+      $('#donate').addClass('active');
+      break;
   }
 
   var animatables = $('#desktop_nav #account p, #desktop_nav #activation p, #desktop_nav #donate p').map(function(i, text) {
