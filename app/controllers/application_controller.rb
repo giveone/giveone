@@ -50,10 +50,15 @@ class ApplicationController < ActionController::Base
   def default_meta_tags
     @meta_tags ||= {}
     @meta_tags['fb:app_id']       = Rails.application.secrets.facebook_app_id
+    @meta_tags['og:image']        = image_path 'public/share.jpg'
     @meta_tags['og:url']          = "#{root_url}"
     @meta_tags['og:type']         = "website"
+    @meta_tags['og:title']        = "Donate now: #{Rails.application.secrets.name}"
     @meta_tags['og:site_name']    = Rails.application.secrets.name
-    @meta_tags['og:title']        = Rails.application.secrets.name
+    @meta_tags['twitter:card']    = 'summary_large_image'
+    @meta_tags['twitter:title']   = "Donate now: #{Rails.application.secrets.name}"
+    @meta_tags['twitter:image']   = image_path 'public/share.jpg'
+    @meta_tags['twitter:creator'] = '@giveoneorg'
   end
 
   def current_subscriber(force = false)

@@ -5,7 +5,6 @@ class DonorsController < ApplicationController
 
   before_filter :authenticate_user!, only: :index
   before_filter :admin_required, only: :index
-
   before_filter :require_donor, only: [:uncancel, :edit, :update]
   before_filter :initialize_donor, only: [:new, :create]
 
@@ -30,6 +29,7 @@ class DonorsController < ApplicationController
     end
 
     @nonprofit = Nonprofit.find_by_param(params[:id])
+    page_meta_tags
     respond_with(@donor, layout: "public")
   end
 
@@ -228,6 +228,14 @@ class DonorsController < ApplicationController
     @json = []
     @donors.each { |d| @json.push(:latitude => d.subscriber.latitude, :longitude => d.subscriber.longitude, :city => d.subscriber.city) }
     respond_with(@json)
+  end
+
+  protected
+  def page_meta_tags
+    @meta_tags['og:image']        = @nonprofit.photo.url
+    @meta_tags['og:title']        = "Donate now: #{@nonprofit.name}"
+    @meta_tags['twitter:image']   = "#{@nonprofit.photo.url.gsub(/https/, 'http')}"
+    @meta_tags['twitter:title']   = "Donate now: #{@nonprofit.name}"
   end
 
   private
