@@ -76,6 +76,8 @@ class DonorCard < ActiveRecord::Base
             status: "subscribed"
           }
         )
+      rescue Exception => e
+        Rails.logger.info "Failed to subscribe email: #{email}"
       end
       DonorMailer.thankyou(donor_id).deliver_now
     end
