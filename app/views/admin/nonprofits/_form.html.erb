@@ -1,8 +1,4 @@
 <% nonprofit = f.object %>
-<% if @nonprofit.persisted? && @nonprofit.related_nonprofits.present? %>
-  <p>Also featured on: <%= @nonprofit.related_nonprofits.map { |_| link_to(_.featured_on.strftime("%-0m/%-0d/%Y"), edit_admin_nonprofit_url(_.id)) }.join(", ").html_safe %><p>
-<% end %>
-
 
 <%= f.check_box :is_public %>
 <%= f.label :is_public, "Public? " %> <span style="font-size: 0.7em"><%= link_to(nonprofit_url(@nonprofit), nonprofit_url(@nonprofit)) if @nonprofit.persisted? %></span>
