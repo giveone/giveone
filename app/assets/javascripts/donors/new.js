@@ -28,11 +28,24 @@ $(function() {
   $new_donor_form.submit(function(event) {
     var $form = $(this),
       $name = $form.find("#donor_card_attributes_name"),
-      $email = $form.find("#donor_card_attributes_email");
-
+      $email = $form.find("#donor_card_attributes_email"),
+      $password = $form.find("#donor_password");
 
     // Disable the submit button to prevent repeated clicks
     $form.find('input[type=button]').prop('disabled', true);
+
+    if ($('input[data-stripe="amount"]').val() === "0.0") {
+      $form.find('.payment-errors').text("Please select an amount.");
+      $form.find('input[type=button]').prop('disabled', false);
+      return false;
+    }
+
+    // Stripe doesn't validate any name field
+    if (!$name.val().length) {
+      $form.find('.payment-errors').text("Please enter your name.");
+      $form.find('input[type=button]').prop('disabled', false);
+      return false;
+    }
 
     // Stripe doesn't validate any email field
     if (!validateEmail($email.val())) {
@@ -44,9 +57,8 @@ $(function() {
     // Don't send email to Stripe
     $email.prop('disabled', true);
 
-    // Stripe doesn't validate any name field
-    if (!$name.val().length) {
-      $form.find('.payment-errors').text("Please enter your name.");
+    if ($password.val().length < 8) {
+      $form.find('.payment-errors').text("Password must be at least 8 characters");
       $form.find('input[type=button]').prop('disabled', false);
       return false;
     }
