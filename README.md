@@ -21,6 +21,14 @@ Give One is a non-profit federal tax-exempt organization under section 501(c)(3)
 
 Run by a team of volunteers, administrative costs are supported by private philanthropy, ensuring that every dollar raised goes directly to supporting the causes that users care about most.
 
+### How it Works
+
+Give One is built on the open-sourced code of Kickstarter cofounder Perry Chen’s [Dollar A Day](http://dollaraday.co/), which allows recurring donations, processed through Stripe.
+
+Credit card payments are processed through [Stripe](https://stripe.com/), which takes a 2.2% + $0.30 processing fee, or 3.5% for American Express. Donations are processed once a month (30 days from the date that users sign up) rather than daily to avoid surplus processing fees.
+
+Changing billing information and supported causes is managed through user accounts and reflected on the next sequential billing cycle.
+
 ### Platform Goals
 Our goal for the remainder of 2017 and 2018 is to get an initial user base of 2,740 users to an average donation total of $1 per day, which would facilitate $1 million in donations per year.
 
