@@ -1,6 +1,6 @@
-<img src="https://give-one.org/assets/public/Hero-Give-b6fc91be864ace0cdc9d041d9df473ca3172f6d1137c521fe0e3a284fb1c3c2b.png"  style="width:200px;"/>
-## What is [Give One](https://give-one.org/)?
-##### [Give One](https://give-one.org/) is a platform that makes giving back to your community easy.
+<img src="https://give-one.org/assets/public/Hero-Give-b6fc91be864ace0cdc9d041d9df473ca3172f6d1137c521fe0e3a284fb1c3c2b.png"  width=200 />
+## What is Give One?
+[Give One](https:/give-one.org/) is a platform that makes giving back to your community easy.
 
 
 ### The Problem
@@ -55,6 +55,7 @@ A key product feature on Give One’s roadmap is an interactive utility that all
 
  Ideally, users would be able to enter their yearly salary to calculate 1% of their total income, divided by month, week, and day (calculations are performed locally to avoid privacy concerns). The platform would display interface elements representing various charitable causes (categories) and the organizations (charities) available for each, allow users to select how much of “their 1%” would be allocated to each individual category or specific organization.
 
+---
 
 #### Technical Details
 
