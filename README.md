@@ -1,5 +1,7 @@
 <img src="https://give-one.org/assets/public/Hero-Give-b6fc91be864ace0cdc9d041d9df473ca3172f6d1137c521fe0e3a284fb1c3c2b.png"  width=200 />
+
 ## What is Give One?
+
 [Give One](https:/give-one.org/) is a platform that makes giving back to your community easy.
 
 
