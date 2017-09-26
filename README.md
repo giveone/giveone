@@ -2,7 +2,7 @@
 
 ## What is Give One?
 
-[Give One](https:/give-one.org/) is a platform that makes giving back to your community easy.
+[Give One](https://give-one.org/) is a platform that makes giving back to your community easy.
 
 
 ### The Problem
