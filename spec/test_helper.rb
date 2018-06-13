@@ -5,6 +5,9 @@
 # end
 
 ENV["RAILS_ENV"] = "test"
+ENV["MAILCHIMP_API_KEY"] = "test"
+ENV["MANDRILL_API_KEY"] = "test"
+
 require File.expand_path('../../config/environment', __FILE__)
 require "rails/test_help"
 require "mocha/setup"

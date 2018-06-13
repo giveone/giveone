@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(version: 20170605214749) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "amount",         precision: 8, scale: 2, default: 0.0
-    t.integer  "nonprofit_id"
     t.string   "address_zip"
+    t.integer  "nonprofit_id"
   end
 
   create_table "donors", force: true do |t|

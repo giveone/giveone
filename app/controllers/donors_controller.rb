@@ -94,6 +94,7 @@ class DonorsController < ApplicationController
   # Stripe webhook for when an invoice is successfully paid for
   def payment_receipt
     mandrill = Mandrill::API.new Rails.application.secrets.mandrill_api_key
+
     event_json = JSON.parse(request.body.read) # event data from Stripe
 
     if event_json["type"] != "invoice.payment_succeeded"

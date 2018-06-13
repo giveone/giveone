@@ -47,21 +47,6 @@ server {
   access_log /var/log/nginx/access.log;
 
   location / {
-    set \$should_redirect_to_https 0;
-
-    # Check if we need to redirect to https scheme
-    if (\$http_x_forwarded_proto != 'https' ) {
-      set \$should_redirect_to_https 1;
-    }
-
-    if (\$http_user_agent ~ sqsd) {
-      set \$should_redirect_to_https 0;
-    }
-
-    if (\$should_redirect_to_https = 1) {
-      rewrite ^ https://\$host\$request_uri? permanent;
-    }
-
     proxy_pass            http://docker;
     proxy_http_version    1.1;
     send_timeout          3600;
